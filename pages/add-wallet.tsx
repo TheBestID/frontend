@@ -5,6 +5,43 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ethers } from 'ethers'
 
+const BASE_URL = 'http://127.0.0.1:8000'
+
+
+async function checkAddress(address: string): number | null {
+  const body = JSON.stringify({address})
+  const url = `${BASE_URL}/user/check`
+  try {
+    const response = await fetch(url, {
+      mode: 'no-cors',
+      method: 'POST',
+      body,
+    })
+    console.log(response)
+    return uid
+  } catch(e) {
+    return null
+  }
+}
+
+async function postAddress(address: string): number {
+  const body = JSON.stringify({address})
+  const url = `${BASE_URL}/user/address`
+  try {
+    const response = await fetch(url, {
+      mode: 'no-cors',
+      method: 'POST',
+      body,
+    })
+    console.log(response)
+    return uid
+  } catch(e) {
+    return null
+  }
+}
+
+
+
 
 const AddWallet: NextPage = () => {
   const [address, setAddress] = useState(null)
@@ -16,6 +53,15 @@ const AddWallet: NextPage = () => {
 
     const address = accounts[0]
     setAddress(address)
+
+    let uid = await checkAddress(address)
+    if (!uid) {
+      uid = await postAddress(address)
+    }
+    if (!uid) {
+      // backend error
+    }
+
     const balance = await window.ethereum.request({
       method:'eth_getBalance', 
       params: [address, 'latest']
