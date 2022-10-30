@@ -18,25 +18,50 @@ async function checkAddress(address: string): number | null {
       body,
     })
     const data = await response.json()
+    const uid = data.num
     return uid
   } catch(e) {
-    console.log(e)
     return null
   }
 }
 
-async function postAddress(address: string): number {
-  const body = JSON.stringify({address})
+async function postAddress(
+  address: string, txHash: string
+): number {
+  const body = JSON.stringify({address, txHash})
   const url = `${BASE_URL}/user/address`
   try {
     const response = await fetch(url, {
       method: 'POST',
       body,
     })
-    console.log(response)
     const data = await response.json()
+    const uid = data.num
     return uid
   } catch(e) {
+    return null
+  }
+}
+
+async function postMsgParams(address: string): number {
+  const body = JSON.stringify({address})
+  const url = `${BASE_URL}/user/msg_params`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body,
+    })
+    const msgParams = await response.json()
+
+    const params = {...msgParams, from: address}
+    const txHash = await window.ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [params],
+    })
+
+    return txHash
+  } catch(e) {
+    console.log(e)
     return null
   }
 }
@@ -56,8 +81,9 @@ const AddWallet: NextPage = () => {
     setAddress(address)
 
     let responseUid = await checkAddress(address)
-    if (typeof responseUid === 'number') {
-      router.replace(`/profile/${uid}`)
+    if (responseUid != null) {
+      const redirect = `/profile/${responseUid}`
+      router.replace(redirect)
     }
 
     const balance = await window.ethereum.request({
@@ -81,7 +107,11 @@ const AddWallet: NextPage = () => {
 
   async function onSubmit(e) {
     e.preventDefault()
-    const uid = await postAddress(address)
+    const txHash = await postMsgParams(address)
+    const resultUid = await postAddress(address, txHash)
+    if (resultUid != null) {
+      router.replace(`/profile/${resultUid}`)
+    }
   }
 
   return (
