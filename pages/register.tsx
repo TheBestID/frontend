@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { ethers } from 'ethers'
 
 const BASE_URL = 'http://127.0.0.1:8000'
 
-async function checkAddress(
-  address: string
-): number | null {
-  const body = JSON.stringify({address})
+
+async function checkAddress(address: string): number | null {
+  const body = JSON.stringify({ address })
   const url = `${BASE_URL}/user/check`
   try {
     const response = await fetch(url, {
@@ -21,32 +20,44 @@ async function checkAddress(
     const data = await response.json()
     return uid
   } catch(e) {
+    console.log(e)
     return null
   }
 }
 
+async function postAddress(address: string): number {
+  const body = JSON.stringify({address})
+  const url = `${BASE_URL}/user/address`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body,
+    })
+    console.log(response)
+    const data = await response.json()
+    return uid
+  } catch(e) {
+    return null
+  }
+}
+
+
 const AddWallet: NextPage = () => {
   const [address, setAddress] = useState(null)
   const [balance, setBalance] = useState(0)
+  const [uid, setUid] = useState(null)
   const router = useRouter()
-
-  const isMetamaskInstalled =
-    typeof window !== 'undefined' && window.ethereum
+  const isMetamaskInstalled = typeof window !== 'undefined' && window.ethereum
 
   async function onMetamaskConnected(accounts: any) {
-    if (
-      !Array.isArray(accounts)
-      || accounts.length === 0
-    ) return
+    if (!Array.isArray(accounts) || accounts.length === 0) return
 
     const address = accounts[0]
     setAddress(address)
 
-    let uid = await checkAddress(address)
-    if (typeof uid === 'number') {
+    let responseUid = await checkAddress(address)
+    if (typeof responseUid === 'number') {
       router.replace(`/profile/${uid}`)
-    } else {
-      router.replace(`/register`)
     }
 
     const balance = await window.ethereum.request({
@@ -56,44 +67,6 @@ const AddWallet: NextPage = () => {
     setBalance(balance)
   }
 
-  const pJsx = address != null
-    ? (
-      <>
-        <h1 className="text-primary font-bold text-[4rem]">
-          Attached successfully
-        </h1>
-        <p className="text-white text-lg">
-          address:&nbsp;<a 
-            target="_blank"
-            rel="noreferrer noopener"
-            href={`https://etherscan.io/address/${address}`}
-            className="text-primary"
-          >
-            {address}
-          </a>
-          {' '}
-          balance:&nbsp;{ethers.utils.formatEther(balance)}&nbsp;ETH
-        </p>
-      </>
-    ) : (
-      <>
-        <h1 className="text-primary font-bold text-[4rem]">
-          Attach metamask wallet
-        </h1>
-        <p className="text-white text-lg">
-          You can install metamask{' '}
-            <a
-              target="_blank"
-              rel="noreferrer noopener"
-              className="text-primary"
-              href="https://metamask.io/download/"
-            >
-              here
-            </a>
-        </p>
-      </>
-    )
-
   useEffect(() => {
     if (isMetamaskInstalled) {
       window.ethereum.request({
@@ -101,6 +74,15 @@ const AddWallet: NextPage = () => {
       }).then(onMetamaskConnected)
     }
   }, [isMetamaskInstalled])
+
+  if (!address) {
+    return null
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault()
+    const uid = await postAddress(address)
+  }
 
   return (
     <div className="bg-black min-h-[100vh] h-full">
@@ -111,7 +93,14 @@ const AddWallet: NextPage = () => {
 
       <main className="flex items-center justify-center h-full min-h-[100vh]">
         <div className="p-4 max-w-md">
-          {pJsx}
+          <form onSubmit={onSubmit}>
+
+            <button
+              className="bg-black text-primary rounded-xl border-primary border px-4 py-2 uppercase"
+            >
+              register
+            </button>
+          </form>
         </div>
       </main>
     </div>
