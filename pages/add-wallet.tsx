@@ -44,7 +44,7 @@ const AddWallet: NextPage = () => {
       }
       let uid
       try {
-        uid = await checkAddress(address, chainId)
+        uid = await checkAddress({address, chainId})
       } catch(e) { }
       if (typeof uid === 'number') {
         router.replace(`/profile/${address}`)

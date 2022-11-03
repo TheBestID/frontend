@@ -59,6 +59,7 @@ async function postMsgParams(
 ): number {
   const { address } = bodyData
   const body = JSON.stringify(bodyData)
+  console.log(body)
   const url = `${BASE_URL}/user/msg_params`
   try {
     const response = await fetch(url, {
@@ -66,6 +67,7 @@ async function postMsgParams(
       body,
     })
     const msgParams = await response.json()
+    console.log(msgParams)
 
     const params = {...msgParams, from: address}
     const txHash = await window.ethereum.request({
@@ -96,7 +98,7 @@ const Register: NextPage = () => {
       }
       let uid
       try {
-        uid = await checkAddress(address, chainId)
+        uid = await checkAddress({address, chainId})
       } catch(e) { }
       if (typeof uid === 'number') {
         router.replace(`/profile/${address}`)
@@ -142,12 +144,12 @@ const Register: NextPage = () => {
 
   async function onSubmit(e) {
     e.preventDefault()
-    const txHash = await postMsgParams(
+    const txHash = await postMsgParams({
       address, chainId
-    )
-    const resultUid = await postAddress(
+    })
+    const resultUid = await postAddress({
       address, chainId, txHash
-    )
+    })
     if (resultUid != null) {
       router.replace(`/profile/${address}`)
     }
