@@ -42,10 +42,13 @@ const AddWallet: NextPage = () => {
       if (address == null || chainId == null) {
         return () => {}
       }
+      let uid
       try {
-        let uid = await checkAddress(address, chainId)
+        uid = await checkAddress(address, chainId)
+      } catch(e) { }
+      if (typeof uid === 'number') {
         router.replace(`/profile/${address}`)
-      } catch(e) {
+      } else {
         router.replace(`/register`)
       }
     }

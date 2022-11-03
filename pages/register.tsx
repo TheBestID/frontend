@@ -57,6 +57,7 @@ async function postMsgParams(
     chainId: string,
   }
 ): number {
+  const { address } = bodyData
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/msg_params`
   try {
@@ -93,10 +94,13 @@ const Register: NextPage = () => {
       if (address == null || chainId == null) {
         return () => {}
       }
+      let uid
       try {
-        let uid = await checkAddress(address, chainId)
+        uid = await checkAddress(address, chainId)
+      } catch(e) { }
+      if (typeof uid === 'number') {
         router.replace(`/profile/${address}`)
-      } catch(e) {
+      } else {
         router.replace(`/register`)
       }
     }
