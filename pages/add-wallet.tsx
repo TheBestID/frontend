@@ -37,24 +37,25 @@ const AddWallet: NextPage = () => {
   const isMetamaskInstalled =
     typeof window !== 'undefined' && window.ethereum
 
-  async function tryChecking() {
-    if (address == null || chainId == null) {
-      return
+  useEffect(() => {
+    const fn = async () => {
+      if (address == null || chainId == null) {
+        return () => {}
+      }
+      let uid = await checkAddress(address, chainId)
+      if (typeof uid === 'number') {
+        router.replace(`/profile/${address}`)
+      } else {
+        router.replace(`/register`)
+      }
     }
-
-    let uid = await checkAddress(address, chainId)
-    if (typeof uid === 'number') {
-      router.replace(`/profile/${address}`)
-    } else {
-      router.replace(`/register`)
-    }
-  }
+    fn()
+  }, [address, chainId])
 
   async function onChainConnected(
     connectInfo: {chainId: string}
   ) {
     setChainId(chainId)
-    tryChecking()
   }
 
   async function onMetamaskConnected(accounts: any) {
@@ -65,7 +66,6 @@ const AddWallet: NextPage = () => {
 
     const address = accounts[0]
     setAddress(address)
-    tryChecking()
 
     const balance = await window.ethereum.request({
       method:'eth_getBalance', 
@@ -114,10 +114,11 @@ const AddWallet: NextPage = () => {
 
   useEffect(() => {
     if (isMetamaskInstalled) {
+      const data = {chainId: window.ethereum.networkVersion}
+      onChainConnected(data)
       window.ethereum.request({
         method:'eth_requestAccounts'
       }).then(onMetamaskConnected)
-      window.ethereum.on('connect', onChainConnected)
     }
   }, [isMetamaskInstalled])
 
