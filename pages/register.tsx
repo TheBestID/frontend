@@ -93,10 +93,10 @@ const Register: NextPage = () => {
       if (address == null || chainId == null) {
         return () => {}
       }
-      let uid = await checkAddress(address, chainId)
-      if (typeof uid === 'number') {
+      try {
+        let uid = await checkAddress(address, chainId)
         router.replace(`/profile/${address}`)
-      } else {
+      } catch(e) {
         router.replace(`/register`)
       }
     }
