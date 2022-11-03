@@ -30,21 +30,14 @@ async function checkAddress(
 }
 
 async function postAddress(
-<<<<<<< HEAD
-  address: string, txHash: string
-): Promise <number | null> {
-  const body = JSON.stringify({address, txHash})
-  const url = `${BASE_URL}/user/address`
-=======
   {...bodyData}: {
     address: string,
     chainId: string,
     txHash: string,
   }
-): number {
+): Promise<number | null> {
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/add`
->>>>>>> 6981811a6122c6be84a708e2a465242635556b5c
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -58,20 +51,14 @@ async function postAddress(
   }
 }
 
-<<<<<<< HEAD
-async function postMsgParams(address: string): Promise <number | null> {
-  const body = JSON.stringify({address})
-=======
 async function postMsgParams(
   {...bodyData}: {
     address: string,
     chainId: string,
   }
-): number {
+): Promise<number | null> {
   const { address } = bodyData
   const body = JSON.stringify(bodyData)
-  console.log(body)
->>>>>>> 6981811a6122c6be84a708e2a465242635556b5c
   const url = `${BASE_URL}/user/msg_params`
   try {
     const response = await fetch(url, {
