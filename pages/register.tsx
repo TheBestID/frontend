@@ -27,7 +27,7 @@ async function checkAddress(address: string): number | null {
 
 async function postAddress(
   address: string, txHash: string
-): number {
+): Promise <number | null> {
   const body = JSON.stringify({address, txHash})
   const url = `${BASE_URL}/user/address`
   try {
@@ -43,7 +43,7 @@ async function postAddress(
   }
 }
 
-async function postMsgParams(address: string): number {
+async function postMsgParams(address: string): Promise <number | null> {
   const body = JSON.stringify({address})
   const url = `${BASE_URL}/user/msg_params`
   try {
