@@ -44,7 +44,7 @@ async function postAddress(
       body,
     })
     const data = await response.json()
-    const uid = data.num
+    const uid = data.uid
     return uid
   } catch(e) {
     return null
