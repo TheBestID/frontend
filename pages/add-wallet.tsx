@@ -9,9 +9,12 @@ import { ethers } from 'ethers'
 const BASE_URL = 'http://127.0.0.1:8000'
 
 async function checkAddress(
-  address: string
+  {...bodyData}: {
+    address: string,
+    chainId: string,
+  }
 ): number | null {
-  const body = JSON.stringify({address})
+  const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/check`
   try {
     const response = await fetch(url, {
@@ -27,11 +30,36 @@ async function checkAddress(
 
 const AddWallet: NextPage = () => {
   const [address, setAddress] = useState(null)
+  const [chainId, setChainId] = useState(null)
   const [balance, setBalance] = useState(0)
   const router = useRouter()
 
   const isMetamaskInstalled =
     typeof window !== 'undefined' && window.ethereum
+
+  useEffect(() => {
+    const fn = async () => {
+      if (address == null || chainId == null) {
+        return () => {}
+      }
+      let uid
+      try {
+        uid = await checkAddress({address, chainId})
+      } catch(e) { }
+      if (typeof uid === 'number') {
+        router.replace(`/profile/${address}`)
+      } else {
+        router.replace(`/register`)
+      }
+    }
+    fn()
+  }, [address, chainId])
+
+  async function onChainConnected(
+    {chainId}: {chainId: string}
+  ) {
+    setChainId(chainId)
+  }
 
   async function onMetamaskConnected(accounts: any) {
     if (
@@ -41,13 +69,6 @@ const AddWallet: NextPage = () => {
 
     const address = accounts[0]
     setAddress(address)
-
-    let uid = await checkAddress(address)
-    if (typeof uid === 'number') {
-      router.replace(`/profile/${uid}`)
-    } else {
-      router.replace(`/register`)
-    }
 
     const balance = await window.ethereum.request({
       method:'eth_getBalance', 
@@ -96,6 +117,8 @@ const AddWallet: NextPage = () => {
 
   useEffect(() => {
     if (isMetamaskInstalled) {
+      const data = {chainId: window.ethereum.networkVersion}
+      onChainConnected(data)
       window.ethereum.request({
         method:'eth_requestAccounts'
       }).then(onMetamaskConnected)

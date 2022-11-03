@@ -9,8 +9,13 @@ import { ethers } from 'ethers'
 const BASE_URL = 'http://127.0.0.1:8000'
 
 
-async function checkAddress(address: string): number | null {
-  const body = JSON.stringify({ address })
+async function checkAddress(
+  {...bodyData}: {
+    address: string,
+    chainId: string,
+  }
+): number | null {
+  const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/check`
   try {
     const response = await fetch(url, {
@@ -18,7 +23,6 @@ async function checkAddress(address: string): number | null {
       body,
     })
     const data = await response.json()
-    const uid = data.num
     return uid
   } catch(e) {
     return null
@@ -26,10 +30,21 @@ async function checkAddress(address: string): number | null {
 }
 
 async function postAddress(
+<<<<<<< HEAD
   address: string, txHash: string
 ): Promise <number | null> {
   const body = JSON.stringify({address, txHash})
   const url = `${BASE_URL}/user/address`
+=======
+  {...bodyData}: {
+    address: string,
+    chainId: string,
+    txHash: string,
+  }
+): number {
+  const body = JSON.stringify(bodyData)
+  const url = `${BASE_URL}/user/add`
+>>>>>>> 6981811a6122c6be84a708e2a465242635556b5c
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -43,8 +58,20 @@ async function postAddress(
   }
 }
 
+<<<<<<< HEAD
 async function postMsgParams(address: string): Promise <number | null> {
   const body = JSON.stringify({address})
+=======
+async function postMsgParams(
+  {...bodyData}: {
+    address: string,
+    chainId: string,
+  }
+): number {
+  const { address } = bodyData
+  const body = JSON.stringify(bodyData)
+  console.log(body)
+>>>>>>> 6981811a6122c6be84a708e2a465242635556b5c
   const url = `${BASE_URL}/user/msg_params`
   try {
     const response = await fetch(url, {
@@ -52,6 +79,7 @@ async function postMsgParams(address: string): Promise <number | null> {
       body,
     })
     const msgParams = await response.json()
+    console.log(msgParams)
 
     const params = {...msgParams, from: address}
     const txHash = await window.ethereum.request({
@@ -67,24 +95,43 @@ async function postMsgParams(address: string): Promise <number | null> {
 }
 
 
-const AddWallet: NextPage = () => {
+const Register: NextPage = () => {
   const [address, setAddress] = useState(null)
+  const [chainId, setChainId] = useState(null)
   const [balance, setBalance] = useState(0)
   const [uid, setUid] = useState(null)
   const router = useRouter()
   const isMetamaskInstalled = typeof window !== 'undefined' && window.ethereum
 
+  useEffect(() => {
+    const fn = async () => {
+      if (address == null || chainId == null) {
+        return () => {}
+      }
+      let uid
+      try {
+        uid = await checkAddress({address, chainId})
+      } catch(e) { }
+      if (typeof uid === 'number') {
+        router.replace(`/profile/${address}`)
+      } else {
+        router.replace(`/register`)
+      }
+    }
+    fn()
+  }, [address, chainId])
+
+
+  async function onChainConnected(
+    {chainId}: {chainId: string}
+  ) {
+    setChainId(chainId)
+  }
+
   async function onMetamaskConnected(accounts: any) {
     if (!Array.isArray(accounts) || accounts.length === 0) return
 
-    const address = accounts[0]
-    setAddress(address)
-
-    let responseUid = await checkAddress(address)
-    if (responseUid != null) {
-      const redirect = `/profile/${responseUid}`
-      router.replace(redirect)
-    }
+    setAddress(accounts[0])
 
     const balance = await window.ethereum.request({
       method:'eth_getBalance', 
@@ -95,6 +142,8 @@ const AddWallet: NextPage = () => {
 
   useEffect(() => {
     if (isMetamaskInstalled) {
+      const data = {chainId: window.ethereum.networkVersion}
+      onChainConnected(data)
       window.ethereum.request({
         method:'eth_requestAccounts'
       }).then(onMetamaskConnected)
@@ -107,10 +156,14 @@ const AddWallet: NextPage = () => {
 
   async function onSubmit(e) {
     e.preventDefault()
-    const txHash = await postMsgParams(address)
-    const resultUid = await postAddress(address, txHash)
+    const txHash = await postMsgParams({
+      address, chainId
+    })
+    const resultUid = await postAddress({
+      address, chainId, txHash
+    })
     if (resultUid != null) {
-      router.replace(`/profile/${resultUid}`)
+      router.replace(`/profile/${address}`)
     }
   }
 
@@ -137,4 +190,4 @@ const AddWallet: NextPage = () => {
   )
 }
 
-export default AddWallet
+export default Register
