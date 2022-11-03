@@ -14,7 +14,7 @@ async function checkAddress(
     address: string,
     chainId: string,
   }
-): number | null {
+): Promise<number | null> {
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/check`
   try {
@@ -23,7 +23,7 @@ async function checkAddress(
       body,
     })
     const data = await response.json()
-    return uid
+    return data.uid
   } catch(e) {
     return null
   }
