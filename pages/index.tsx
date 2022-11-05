@@ -57,16 +57,16 @@ const Home: NextPage = () => {
             </div>
 
             <div className="mt-5 sm:mt-8 sm:flex justify-center">
-                <div className="rounded-md pb-8">
+                <div className=" rounded-md pb-8">
                   <a
                     href="#"
-                    className="btn btn-primary btn-large mr-4 items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
+                    className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
                   >
                     Explore
                   </a>
                   <a
                     href="#"
-                    className="btn btn-primary btn-large items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg"
+                    className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg"
                   >
                     Create
                   </a>
@@ -74,15 +74,12 @@ const Home: NextPage = () => {
               </div>
 
    
-            <h1 className="text-3xl opacity-50 w-full text-center lh-6 ld-04 font-semibold text-white pt-12 pr-3 pl-3 mt-24">
-              For company
-            </h1>
             
 
-            <div className='relative text-center p-0 mx-auto mt-12'>
+            <div className='relative text-center p-0 mx-auto mt-52'>
                 <h1 className="text-4xl md:text-7xl lg:text-8xl xl:text-9xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-primary text-7xl"></span> 
-                  <span>Find and connect with with digital talent souls</span>
+                  <span>Find and connect with digital talent souls</span>
                 </h1>
             </div>
 
@@ -269,45 +266,70 @@ const Home: NextPage = () => {
             </div>
 
             <div className="pt-2 w-full md:px-1 px-3">
-              <div className ="grid gap-4 grid-cols-1s w-full mt-24 mb-6 p-4 bg-[#282C4B] rounded-lg lg:gap-6 lg:grid-cols-4">
+              <div className ="grid gap-4 grid-cols-1s w-full mt-24 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
 
-                 <div className="text-center">
-                  <span className="text-4xl text-white w-56">Create OWN hackathon for avatars</span>
-                 </div>
-
-                 <div className="text-center text-white">
+                 <div className="text-center mt-6">
+                  <span className="text-4xl text-white w-56">Create <span className="text-4xl font-semibold">OWN</span> hackathon for avatars no-code</span>
+                  
+                  <div className="text-center text-white mt-6">
                   <span className="">Powered by 
                     <a href="/" className="font-semibold"> Souldev Network</a>
                   </span>
                  </div>
 
-                 <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
+                 <div className="flex justify-center items-center pr-1 pl-1">
+                  <a href="#" className="flex w-52 h-14 mt-6 mb-12 items-center text-white text-center justify-center rounded-xl border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
+                    Create hackathon
+                  </a>
+                 </div>
+
+                 </div>
+
+
+                 <div className="snap-x">
+                 <div className="scroll-ml-6 border border-primary p-1 rounded-xl pr-3 pl-3 pb-3 pt-3 mb-12">
+                    <div className="bg-primary rounded-md h-44 w-full flex">
                     </div>
                     <div className="justify-center w-full flex">
                       <div className="flex w-3/12 aspect-square rounded-full bg-black">
                       </div>
                     </div>
-                    <div className="text-center pt-2">
+                    <div className="text-center pt-6">
                       <span className="text-white">Souldev Network</span>
                     </div>
                     <div className="text-center pt-2 opacity-50">
                       <span className="text-white">Empowering people to change the world faster</span>
                     </div>
-                    <div className="text-left pt-6">
+                    <div className="text-left pt-10">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
                     </div>
+                  </div>
+
+                  <div className="scroll-ml-6 border border-primary p-1 rounded-xl pr-3 pl-3 pb-3 pt-3 mb-12">
+                    <div className="bg-primary rounded-md h-44 w-full flex">
+                    </div>
+                    <div className="justify-center w-full flex">
+                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
+                      </div>
+                    </div>
+                    <div className="text-center pt-6">
+                      <span className="text-white">Souldev Network</span>
+                    </div>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
+                    </div>
+                    <div className="text-left pt-10">
+                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
+                    </div>
+                  </div>
+
                   </div>
 
 
                 </div>
             </div>
 
-            <div className="flex w-full pr-1 pl-1">
-                  <a href="#" className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
-                    View all profiles
-                  </a>
-            </div>
+
 
 
 
