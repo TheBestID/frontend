@@ -46,14 +46,14 @@ const Home: NextPage = () => {
       <div id="spacer" className="h-8 w-8"/>
 
       <main className="flex flex-col items-center lg:px-16 w-full">
-
         
+
         <div className='text-center p-0 mx-auto mt-36 md:mt-52 lg:mt-72'>
-                <h1 className="text-4xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#FFB703] text-5xl">HOME </span> 
-                  <span className="">FOR DECENTRALIZED AVATARS</span>
+                <h1 className="text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">HOME </span> 
+                  <span className="text-4xl lg:text-8xl">FOR DECENTRALIZED AVATARS</span>
                 </h1>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 text-center pr-4 pl-4">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 text-center pr-10 pl-10 lg:pr-24 lg:pl-24">
                    A web3 marketplace where people and companies can create and manage decentralized avatars
                 </h2>
             </div>
@@ -62,14 +62,14 @@ const Home: NextPage = () => {
                 <div className=" rounded-md pb-8">
                   <Link href="/add-wallet">
                     <a
-                      className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-10 py-4 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
+                      className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-10 py-4 text-base font-medium text-white hover:bg-secondary-25 lg:py-6 lg:px-12 lg:text-xl lg:rounded-2xl"
                     >
                       Explore
                     </a>
                   </Link>
                   <Link href="/add-wallet">
                     <a
-                      className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-10 py-4 text-base font-medium hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg"
+                      className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-10 py-4 text-base font-medium hover:bg-indigo-200 lg:py-6 lg:px-12 lg:text-xl lg:rounded-2xl"
                     >
                       Create
                     </a>
@@ -80,8 +80,8 @@ const Home: NextPage = () => {
    
             
 
-            <div className='text-center p-0 mx-auto mt-52'>
-                <h1 className="text-4xl md:text-7xl lg:text-8xl xl:text-9xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+            <div className='text-center p-0 mx-auto mt-52 lg:ml-24 lg:mr-24'>
+                <h1 className="text-4xl lg:text-8xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-primary text-7xl"></span> 
                   <span>Be a part of the best company</span>
                 </h1>
@@ -173,8 +173,8 @@ const Home: NextPage = () => {
                 </Link>
             </div>
 
-            <div className='text-center p-0 mx-auto mt-12'>
-                <h1 className="text-4xl md:text-7xl lg:text-8xl xl:text-9xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+            <div className='text-center p-0 mx-auto mt-16 lg:ml-24 lg:mr-24'>
+                <h1 className="text-4xl lg:text-8xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-primary text-7xl"></span> 
                   <span>Find and connect with digital talent souls</span>
                 </h1>
@@ -266,8 +266,8 @@ const Home: NextPage = () => {
                 </Link>
             </div>
 
-            <div className='text-center p-0 mx-auto mt-12'>
-                <h1 className="text-4xl md:text-7xl lg:text-8xl xl:text-9xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+            <div className='text-center p-0 mx-auto mt-12 lg:ml-24 lg:mr-24'>
+                <h1 className="text-4xl lg:text-8xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-primary text-7xl"></span> 
                   <span>Get access to ideas, talents from all over the world</span>
                 </h1>
@@ -330,20 +330,22 @@ const Home: NextPage = () => {
                 </div>
             </div>
 
-            <button className="flex w-60 mt-12 mb-6 border p-3 rounded-xl items-center border-secondary-25">
+            <div className="grid items-center grid-cols-1 lg:grid-cols-3 lg:gap-64">
+            <button className="flex w-60 mt-12 mb-6 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
               <Image alt="link_github" src="/github.png" width="40" height="40"></Image>
               <span className="text-white text-3xl ml-16">Github</span>
             </button>
 
-            <button className="flex w-60 mb-6 border p-3 rounded-xl items-center border-secondary-25">
-              <Image alt="link_github" src="/github.png" width="40" height="40"></Image>
-              <span className="text-white text-3xl ml-16">Github</span>
+            <button className="flex w-60 mb-6 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
+              <Image alt="link_github" src="/twitter.svg" width="40" height="40"></Image>
+              <span className="text-white text-3xl ml-16">Twitter</span>
             </button>
 
-            <button className="flex w-60 mb-12 border p-3 rounded-xl items-center border-secondary-25">
-              <Image alt="link_github" src="/github.png" width="40" height="40"></Image>
-              <span className="text-white text-3xl ml-16">Github</span>
+            <button className="flex w-60 mb-12 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
+              <Image alt="link_github" src="/Logo.png" width="40" height="40"></Image>
+              <span className="text-white text-3xl ml-9">Telegram</span>
             </button>
+            </div>
 
 
       </main>
