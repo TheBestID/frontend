@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 
 
@@ -11,7 +12,7 @@ const Home: NextPage = () => {
         <meta name="description" content="SoulDev landing page" />
       </Head>
 
-      <header className="flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4">
+      <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4">
 
       <div className="flex">
         <div className ="h-16 w-16 ml-2">
@@ -45,7 +46,7 @@ const Home: NextPage = () => {
       <main className="flex flex-col items-center lg:px-16 w-full">
 
         
-        <div className='relative text-center p-0 mx-auto mt-36 md:mt-52 lg:mt-72 xl:mt-80'>
+        <div className='text-center p-0 mx-auto mt-36 md:mt-52 lg:mt-72'>
                 <h1 className="text-4xl md:text-4xl lg:text-6xl xl:text-7xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#FFB703] text-5xl">HOME </span> 
                   <span>FOR DECENTRALIZED AVATARS</span>
@@ -59,12 +60,13 @@ const Home: NextPage = () => {
 
             <div className="mt-5 sm:mt-8 sm:flex justify-center">
                 <div className=" rounded-md pb-8">
-                  <a
-                    href="#"
-                    className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
-                  >
-                    Explore
-                  </a>
+                  <Link href="/add-wallet">
+                    <a
+                      className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
+                    >
+                      Explore
+                    </a>
+                  </Link>
                   <a
                     href="#"
                     className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg"
@@ -77,7 +79,7 @@ const Home: NextPage = () => {
    
             
 
-            <div className='relative text-center p-0 mx-auto mt-52'>
+            <div className='text-center p-0 mx-auto mt-52'>
                 <h1 className="text-4xl md:text-7xl lg:text-8xl xl:text-9xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-primary text-7xl"></span> 
                   <span>Find and connect with digital talent souls</span>
@@ -168,7 +170,7 @@ const Home: NextPage = () => {
                   </a>
             </div>
 
-            <div className='relative text-center p-0 mx-auto mt-12'>
+            <div className='text-center p-0 mx-auto mt-12'>
                 <h1 className="text-4xl md:text-7xl lg:text-8xl xl:text-9xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-primary text-7xl"></span> 
                   <span>Be a part of the best company</span>
@@ -259,7 +261,7 @@ const Home: NextPage = () => {
                   </a>
             </div>
 
-            <div className='relative text-center p-0 mx-auto mt-12'>
+            <div className='text-center p-0 mx-auto mt-12'>
                 <h1 className="text-4xl md:text-7xl lg:text-8xl xl:text-9xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-primary text-7xl"></span> 
                   <span>Get access to ideas, talents from all over the world</span>
