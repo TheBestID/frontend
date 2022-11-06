@@ -8,6 +8,16 @@ import { ethers } from 'ethers'
 
 const BASE_URL = 'http://127.0.0.1:8000'
 
+type Props = {
+  code: string | undefined
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const code = context?.query?.code
+  return {
+    props: { code },
+  }
+}
 
 async function checkAddress(
   {...bodyData}: {
@@ -55,6 +65,7 @@ async function postMsgParams(
   {...bodyData}: {
     address: string,
     chainId: string,
+    githubCode: string,
   }
 ): Promise<number | null> {
   const { address } = bodyData
@@ -82,7 +93,8 @@ async function postMsgParams(
 }
 
 
-const Register: NextPage = () => {
+const Register: NextPage<Props> = (props) => {
+  const { code: githubCode } = props
   const [address, setAddress] = useState<string | null>(null)
   const [chainId, setChainId] = useState<string | null>(null)
   const [balance, setBalance] = useState<number>(0)
@@ -102,7 +114,6 @@ const Register: NextPage = () => {
       if (typeof uid === 'number') {
         router.replace(`/profile/${address}`)
       } else {
-        router.replace(`/register`)
       }
     }
     fn()
@@ -145,10 +156,14 @@ const Register: NextPage = () => {
   async function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
 
-    if (address == null || chainId == null) return
+    if (
+      address == null
+      || chainId == null
+      || githubCode == null
+    ) return
 
     const txHash = await postMsgParams({
-      address, chainId
+      address, chainId, githubCode
     })
     if (txHash == null) return
 

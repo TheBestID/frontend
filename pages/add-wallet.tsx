@@ -7,6 +7,13 @@ import Link from 'next/link'
 import { ethers } from 'ethers'
 
 const BASE_URL = 'http://127.0.0.1:8000'
+const GITHUB_CLIENT_ID = 'ec74794a7d8786ccf463';
+
+async function redirectToGH() {
+  window.location.assign(
+    `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
+  )
+}
 
 async function checkAddress(
   {...bodyData}: {
@@ -49,7 +56,8 @@ const AddWallet: NextPage = () => {
       if (typeof uid === 'number') {
         router.replace(`/profile/${address}`)
       } else {
-        router.replace(`/register`)
+        redirectToGH()
+        // router.replace(`/register`)
       }
     }
     fn()
