@@ -268,8 +268,8 @@ const Home: NextPage = () => {
                 </h1>
             </div>
 
-            <div className="pt-2 w-full md:px-1 px-3">
-              <div className ="grid gap-4 grid-cols-1s w-full mt-24 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
+            <div className="pt-2 md:px-1 px-3">
+              <div className ="overflow-hidden grid gap-4 grid-cols-1s w-full mt-24 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
 
                  <div className="text-center mt-6">
                   <span className="text-4xl text-white w-56">Create <span className="text-4xl font-semibold">OWN</span> hackathon for avatars no-code</span>
@@ -289,7 +289,7 @@ const Home: NextPage = () => {
                  </div>
 
 
-                 <div className="flex snap-x overflow-x-auto w-full mb-12">
+                 <div className="flex overflow-auto w-full">
 
                  {
                  ([0, 0, 0]).map(i => (
