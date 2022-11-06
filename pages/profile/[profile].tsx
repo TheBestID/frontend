@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const Profile: NextPage = () => {
   return (
-    <div className="bg-[#023047] min-h-[100vh] h-full">
+    <div className="bg-[#023047] min-h-[200vh] h-full">
 
 
       <Head>
@@ -43,7 +43,7 @@ const Profile: NextPage = () => {
 
       </header>  
 
-      <main className="flex items-center flex-col mr-2 ml-3">
+      <main className="flex items-center flex-col mr-2 ml-2">
 
         <div className="rounded-md w-full bg-primary h-44 mt-12 mb-12">
           <img src="/download.svg" alt="Identicon" className="rounded-full h-32 w-32 mx-5 my-20"/>
@@ -60,21 +60,59 @@ const Profile: NextPage = () => {
           Edit profile
         </button>
 
-        <div className="grid w-full gap-4 grid-cols-4 rounded-xl mt-12">
-          <button className="text-xl text-white">CV</button>
-          <button className="text-xl text-white">Hacks</button>
-          <button className="text-xl text-white">HR</button>
-          <button className="text-xl text-white">Funds</button>
+        <div className="grid w-full gap-4 grid-cols-4 mt-12 text-bold mr-4">
+          <button className="text-xl font-semibold text-white">CV</button>
+          <button className="text-xl font-semibold text-white">Hacks</button>
+          <button className="text-xl font-semibold text-white">HR</button>
+          <button className="text-xl font-semibold text-white">Funds</button>
         </div>
 
+        <div className="flex scroll-mx-4 w-full text-white mb-6">__________________________________________</div>
 
+        
+        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center">
+            <span className="text-2xl font-semibold text-center text-white ml-4">Experience</span>
+        </div>
 
+        <div className="flex flex-col border border-secondary-25 p-1 rounded-xl w-full mt-6">
+          <span className="text-xl font-medium text-white text ml-4">Google
+          <span className="text-sm ml-32">{2022} - now</span>
+          </span>
+          <span className="mt-2 ml-4 text-white">Head of Frontend</span>
+          <span className="mt-2 ml-4 text-white opacity-60 mr-">Description Description Description Description Description Description</span>
+        </div>
 
+        <div className="flex flex-col border border-secondary-25 p-1 rounded-xl w-full mt-6">
+          <span className="text-xl font-medium text-white text ml-4">Google
+          <span className="text-sm ml-32">{2022} - now</span>
+          </span>
+          <span className="mt-2 ml-4 text-white">Head of Frontend</span>
+          <span className="mt-2 ml-4 text-white opacity-60 mr-">Description Description Description Description Description Description</span>
+        </div>
 
+        <div className="flex flex-col border border-secondary-25 p-1 rounded-xl w-full mt-6 mb-6">
+          <span className="text-xl font-medium text-white text ml-4">Google
+          <span className="text-sm ml-32">{2022} - now</span>
+          </span>
+          <span className="mt-2 ml-4 text-white">Head of Frontend</span>
+          <span className="mt-2 ml-4 text-white opacity-60 mr-">Description Description Description Description Description Description</span>
+        </div>
 
+        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6">
+            <span className="text-2xl font-semibold text-center text-white ml-4">Projects</span>
+        </div>
 
+        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6">
+            <span className="text-2xl font-semibold text-center text-white ml-4">Education</span>
+        </div>
 
+        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6">
+            <span className="text-2xl font-semibold text-center text-white ml-4">Achievements</span>
+        </div>
 
+        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center">
+            <span className="text-2xl font-semibold text-center text-white ml-4">Skills & Hobbies</span>
+        </div>
 
 
       </main>

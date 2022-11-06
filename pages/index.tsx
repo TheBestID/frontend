@@ -44,6 +44,7 @@ const Home: NextPage = () => {
 
       <main className="flex flex-col items-center lg:px-16 w-full">
 
+        
         <div className='relative text-center p-0 mx-auto mt-36 md:mt-52 lg:mt-72 xl:mt-80'>
                 <h1 className="text-4xl md:text-4xl lg:text-6xl xl:text-7xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#FFB703] text-5xl">HOME </span> 
@@ -71,7 +72,7 @@ const Home: NextPage = () => {
                     Create
                   </a>
                 </div>
-              </div>
+              </div> 
 
    
             
