@@ -45,14 +45,14 @@ const Hack: NextPage = () => {
 
       <main className="flex flex-col items-center lg:px-16 w-full">
         
-            <div className='text-center p-0 mx-auto mt-36 md:mt-52 lg:mt-72'>
-                <h1 className="text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+            <div className='text-center p-0 mx-auto mt-52 lg:mt-72'>
+                <h2 className="text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">Create</span> 
                   <span className="text-4xl lg:text-8xl">your SBT hackathon for avatars</span>
-                </h1>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 text-center pr-10 pl-10 lg:pr-24 lg:pl-24">
-                   Zero code. Your rules. Global scale.
                 </h2>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 text-center pr-10 pl-10 lg:pr-24 lg:pl-24">
+                   Zero code. Your rules. Global scale.
+                </h3>
             </div>
 
             <div className="mt-5 sm:mt-8 sm:flex items-center">
@@ -66,6 +66,47 @@ const Hack: NextPage = () => {
                   </Link>
                 </div>
             </div> 
+
+            <div className='text-center p-0 mx-auto mt-52 lg:ml-24 lg:mr-24'>
+                <h2 className="text-4xl lg:text-6xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-4 pl-4">
+                  <span className="block text-primary text-7xl"></span> 
+                  <span>Optimize the HACK for your favorite network and mint cups as SBTs</span>
+                </h2>
+            </div>
+
+            <div className="grid items-center grid-cols-3 lg:gap-32 gap-4 mt-6">
+            <button className="flex items-center">
+              <Image alt="solana" src="/solana.svg" width="130" height="130"></Image>
+            </button>
+
+            <button className="flex items-center">
+              <Image alt="polygon" src="/polygon.svg" width="130" height="130"></Image>
+            </button>
+
+            <button className="flex items-cente">
+              <Image alt="near" src="/near.svg" width="130" height="130"></Image>
+            </button>
+            </div>
+
+            <div className='text-center p-0 mx-auto mt-36 lg:ml-24 lg:mr-24'>
+                <h2 className="text-4xl lg:text-6xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-4 pl-4">
+                  <span className="block text-primary text-7xl"></span> 
+                  <span>Getting started</span>
+                </h2>
+            </div>
+
+            <div className="mt-4 sm:mt-8 sm:flex items-center">
+                <div className="rounded-md pb-8">
+                  <Link href="/add-wallet">
+                    <a
+                      className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-primary px-10 py-4 text-base font-medium text-white hover:bg-secondary-25 lg:py-6 lg:px-20 lg:text-2xl lg:rounded-2xl"
+                    >
+                      Create hackathon
+                    </a>
+                  </Link>
+                </div>
+            </div> 
+            
       </main>
     </div>
 
