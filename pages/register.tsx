@@ -9,6 +9,8 @@ import { ethers } from 'ethers'
 
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
+const BASE_URL = 'http://127.0.0.1:8000'
+
 type Props = {
   code: string | undefined
 }

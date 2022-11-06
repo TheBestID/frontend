@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import Popup from 'src/components/Popup'
 import VacancyForm from 'src/components/VacancyForm'
+import useLoggedIn from 'src/hooks/useLoggedIn'
 
 type Props = {
   wallet: string | undefined
@@ -20,7 +21,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Profile: NextPage<Props> = (props) => {
   const { wallet } = props
+  const loggedIn = useLoggedIn()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  let isOwnPage = false
+  if (loggedIn != null && loggedIn !== false) {
+    isOwnPage = wallet === loggedIn.address
+  }
 
   const onEditButton = () => {
     setIsPopupOpen(true)
@@ -35,8 +41,10 @@ const Profile: NextPage<Props> = (props) => {
       </Head>
 
       {isPopupOpen && (
-        <Popup>
-          <VacancyForm/>
+        <Popup close={e => setIsPopupOpen(false)}>
+          <VacancyForm
+            close={e => setIsPopupOpen(false)}
+          />
         </Popup>
       )}
 
@@ -82,12 +90,14 @@ const Profile: NextPage<Props> = (props) => {
           <span className="text-[#fff8] px-14">{wallet}</span>
         </div>
 
-        <button
-          className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
-          onClick={onEditButton}
-        >
-          Edit profile
-        </button>
+        {isOwnPage && (
+          <button
+            className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
+            onClick={onEditButton}
+          >
+            Add Vacancy
+          </button>
+        )}
 
         <div className="grid w-full gap-4 grid-cols-4 mt-12 text-bold mr-4">
           <button className="text-xl font-semibold text-white">CV</button>
