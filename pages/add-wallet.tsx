@@ -29,9 +29,9 @@ async function checkAddress(
 }
 
 const AddWallet: NextPage = () => {
-  const [address, setAddress] = useState(null)
-  const [chainId, setChainId] = useState(null)
-  const [balance, setBalance] = useState(0)
+  const [address, setAddress] = useState<string | null>(null)
+  const [chainId, setChainId] = useState<string | null>(null)
+  const [balance, setBalance] = useState<number>(0)
   const router = useRouter()
 
   const isMetamaskInstalled =
@@ -53,7 +53,7 @@ const AddWallet: NextPage = () => {
       }
     }
     fn()
-  }, [address, chainId])
+  }, [address, chainId, router])
 
   async function onChainConnected(
     {chainId}: {chainId: string}

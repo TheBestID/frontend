@@ -106,7 +106,7 @@ const Register: NextPage = () => {
       }
     }
     fn()
-  }, [address, chainId])
+  }, [address, chainId, router])
 
 
   async function onChainConnected(

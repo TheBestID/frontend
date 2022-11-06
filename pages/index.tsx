@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <div className="flex">
         <div className ="h-16 w-16 ml-2">
           <div className ="bg-primary rounded-full h-16 w-16">
-            <Image src="/logo.svg" width="64" height="64"></Image>
+            <Image alt="logo" src="/logo.svg" width="64" height="64"></Image>
         </div>
         </div> 
         <div className="flex flex-col ml-2 h-16 justify-center">
@@ -67,12 +67,13 @@ const Home: NextPage = () => {
                       Explore
                     </a>
                   </Link>
-                  <a
-                    href="#"
-                    className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg"
-                  >
-                    Create
-                  </a>
+                  <Link href="/add-wallet">
+                    <a
+                      className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg"
+                    >
+                      Create
+                    </a>
+                  </Link>
                 </div>
               </div> 
 
@@ -292,8 +293,8 @@ const Home: NextPage = () => {
                  <div className="flex overflow-auto w-full">
 
                  {
-                 ([0, 0, 0]).map(i => (
-                 <div className="min-w-[33vw]">
+                 ([0, 0, 0]).map((item, i) => (
+                 <div className="min-w-[33vw]" key={i}>
                    <div className="mr-6 border border-primary rounded-xl p-3">
                       <div className="bg-primary rounded-md h-44 w-full flex">
                       </div>
