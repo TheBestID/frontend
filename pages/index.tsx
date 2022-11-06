@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 
+
+
 const Home: NextPage = () => {
   return (
     <div className="bg-[#023047] min-h-[100vh]">
@@ -47,9 +49,9 @@ const Home: NextPage = () => {
 
         
         <div className='text-center p-0 mx-auto mt-36 md:mt-52 lg:mt-72'>
-                <h1 className="text-4xl md:text-4xl lg:text-6xl xl:text-7xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#FFB703] text-5xl">HOME </span> 
-                  <span>FOR DECENTRALIZED AVATARS</span>
+                <h1 className="text-5xl text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#FFB703]">HOME </span> 
+                  <span className="">FOR DECENTRALIZED AVATARS</span>
                 </h1>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 text-center pr-4 pl-4">
                 The best protocol for storing your digital avatar.
@@ -100,8 +102,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -118,8 +120,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -136,8 +138,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -154,8 +156,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -191,8 +193,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -209,8 +211,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -227,8 +229,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -245,8 +247,8 @@ const Home: NextPage = () => {
                     <div className="text-center pt-2">
                       <span className="text-white">Souldev Network</span>
                     </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                    <div className="text-center pt-2 opacity-50">
+                      <span className="text-white">Empowering people to change the world faster</span>
                     </div>
                     <div className="text-left pt-6">
                       <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
@@ -269,8 +271,8 @@ const Home: NextPage = () => {
                 </h1>
             </div>
 
-            <div className="pt-2 md:px-1 px-3">
-              <div className ="overflow-hidden grid gap-4 grid-cols-1s w-full mt-24 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
+            <div className="pt-2 w-full md:px-1 px-3">
+              <div className ="grid gap-4 grid-cols-1s w-full mt-24 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
 
                  <div className="text-center mt-6">
                   <span className="text-4xl text-white w-56">Create <span className="text-4xl font-semibold">OWN</span> hackathon for avatars no-code</span>
@@ -312,9 +314,9 @@ const Home: NextPage = () => {
                         <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
                       </div>
                     </div>
-                  </div>
-                  ))
-                 }
+                    </div>
+                  ))}
+
 
                   </div>
 
