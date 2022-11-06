@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const Profile: NextPage = () => {
   return (
-    <div className="bg-[#023047] min-h-[200vh] h-full">
+    <div className="bg-[#023047] min-h-[160vh] h-full">
 
 
       <Head>
