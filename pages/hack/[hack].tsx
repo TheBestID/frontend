@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const Hack: NextPage = () => {
   return (
-    <div className="bg-black min-h-[100vh] h-full">
+    <div className="bg-[#023047] min-h-[200vh] h-full">
       <Head>
         <title>Hackaton</title>
         <meta name="description" content="add wallet to register on souldev platform" />
