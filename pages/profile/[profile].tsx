@@ -4,6 +4,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import Popup from 'src/components/Popup'
+import VacancyForm from 'src/components/VacancyForm'
+
 type Props = {
   wallet: string | undefined
 }
@@ -17,6 +20,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Profile: NextPage<Props> = (props) => {
   const { wallet } = props
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+
+  const onEditButton = () => {
+    setIsPopupOpen(true)
+  }
+
   return (
     <div className="bg-[#023047] min-h-[160vh] h-full">
 
@@ -25,7 +34,13 @@ const Profile: NextPage<Props> = (props) => {
         <meta name="description" content="add wallet to register on souldev platform" />
       </Head>
 
-      <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4">
+      {isPopupOpen && (
+        <Popup>
+          <VacancyForm/>
+        </Popup>
+      )}
+
+      <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4 z-10">
 
       <div className="flex">
         <div className ="h-16 w-16 ml-2">
@@ -67,7 +82,10 @@ const Profile: NextPage<Props> = (props) => {
           <span className="text-[#fff8] px-14">{wallet}</span>
         </div>
 
-        <button className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6">
+        <button
+          className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
+          onClick={onEditButton}
+        >
           Edit profile
         </button>
 
