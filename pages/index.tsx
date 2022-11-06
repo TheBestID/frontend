@@ -289,25 +289,31 @@ const Home: NextPage = () => {
                  </div>
 
 
-                 <div className="snap-x">
-                 <div className="scroll-ml-6 border border-primary p-1 rounded-xl pr-3 pl-3 pb-3 pt-3 mb-12">
-                    <div className="bg-primary rounded-md h-44 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
+                 <div className="flex snap-x overflow-x-auto w-full mb-12">
+
+                 {
+                 ([0, 0, 0]).map(i => (
+                 <div className="min-w-[33vw]">
+                   <div className="mr-6 border border-primary rounded-xl p-3">
+                      <div className="bg-primary rounded-md h-44 w-full flex">
+                      </div>
+                      <div className="justify-center w-full flex">
+                        <div className="flex w-3/12 aspect-square rounded-full bg-black">
+                        </div>
+                      </div>
+                      <div className="text-center pt-6">
+                        <span className="text-white">Souldev Network</span>
+                      </div>
+                      <div className="text-center pt-2 opacity-50">
+                        <span className="text-white">Empowering people to change the world faster</span>
+                      </div>
+                      <div className="text-left pt-10">
+                        <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
                       </div>
                     </div>
-                    <div className="text-center pt-6">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2 opacity-50">
-                      <span className="text-white">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-10">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
                   </div>
-
+                  ))
+                 }
 
                   </div>
 
