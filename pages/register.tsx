@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import type { NextPage } from 'next'
+import React, { useState, useEffect } from 'react'
+import { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -33,7 +33,7 @@ async function postAddress(
   {...bodyData}: {
     address: string,
     chainId: string,
-    txHash: string,
+    txHash: number,
   }
 ): Promise<number | null> {
   const body = JSON.stringify(bodyData)
@@ -83,9 +83,9 @@ async function postMsgParams(
 
 
 const Register: NextPage = () => {
-  const [address, setAddress] = useState(null)
-  const [chainId, setChainId] = useState(null)
-  const [balance, setBalance] = useState(0)
+  const [address, setAddress] = useState<string | null>(null)
+  const [chainId, setChainId] = useState<string | null>(null)
+  const [balance, setBalance] = useState<number>(0)
   const [uid, setUid] = useState(null)
   const router = useRouter()
   const isMetamaskInstalled = typeof window !== 'undefined' && window.ethereum
@@ -115,6 +115,7 @@ const Register: NextPage = () => {
     setChainId(chainId)
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function onMetamaskConnected(accounts: any) {
     if (!Array.isArray(accounts) || accounts.length === 0) return
 
@@ -135,20 +136,26 @@ const Register: NextPage = () => {
         method:'eth_requestAccounts'
       }).then(onMetamaskConnected)
     }
-  }, [isMetamaskInstalled])
+  }, [isMetamaskInstalled, onMetamaskConnected])
 
   if (!address) {
     return null
   }
 
-  async function onSubmit(e) {
+  async function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
+
+    if (address == null || chainId == null) return
+
     const txHash = await postMsgParams({
       address, chainId
     })
+    if (txHash == null) return
+
     const resultUid = await postAddress({
       address, chainId, txHash
     })
+
     if (resultUid != null) {
       router.replace(`/profile/${address}`)
     }

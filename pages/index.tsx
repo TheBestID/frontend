@@ -168,9 +168,11 @@ const Home: NextPage = () => {
             </div>
 
             <div className="flex w-full pr-1 pl-1">
-                  <a href="#" className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
+                <Link href="/">
+                  <a className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
                     View all profiles
                   </a>
+                </Link>
             </div>
 
             <div className='text-center p-0 mx-auto mt-12'>
@@ -259,9 +261,11 @@ const Home: NextPage = () => {
             </div>
 
             <div className="flex w-full pr-1 pl-1">
-                  <a href="#" className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
+                <Link href="/">
+                  <a className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
                     View all companies
                   </a>
+                </Link>
             </div>
 
             <div className='text-center p-0 mx-auto mt-12'>
@@ -279,14 +283,18 @@ const Home: NextPage = () => {
                   
                   <div className="text-center text-white mt-6">
                   <span className="">Powered by 
-                    <a href="/" className="font-semibold"> Souldev Network</a>
+                    <Link href="/">
+                      <a className="font-semibold"> Souldev Network</a>
+                    </Link>
                   </span>
                  </div>
 
                  <div className="flex justify-center items-center pr-1 pl-1">
-                  <a href="#" className="flex w-52 h-14 mt-6 mb-12 items-center text-white text-center justify-center rounded-xl border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
-                    Create hackathon
-                  </a>
+                  <Link href="/">
+                    <a className="flex w-52 h-14 mt-6 mb-12 items-center text-white text-center justify-center rounded-xl border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
+                      Create hackathon
+                    </a>
+                  </Link>
                  </div>
 
                  </div>

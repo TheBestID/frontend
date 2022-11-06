@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react'
-import type { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export async function getServerSideProps(context) {
-  const wallet = context.params.profile
+type Props = {
+  wallet: string | undefined
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const wallet = context?.params?.profile
   return {
-    props: {test: 'hi', wallet}, // will be passed to the page component as props
+    props: { wallet },
   }
 }
 
-const Profile: NextPage = (props) => {
+const Profile: NextPage<Props> = (props) => {
   const { wallet } = props
   return (
     <div className="bg-[#023047] min-h-[160vh] h-full">
@@ -26,7 +30,7 @@ const Profile: NextPage = (props) => {
       <div className="flex">
         <div className ="h-16 w-16 ml-2">
           <div className ="bg-primary rounded-full h-16 w-16">
-            <Image src="/logo.svg" width="64" height="64"></Image>
+            <Image alt="logo" src="/logo.svg" width="64" height="64"></Image>
         </div>
         </div> 
         <div className="flex flex-col ml-2 h-16 justify-center">
@@ -53,7 +57,7 @@ const Profile: NextPage = (props) => {
       <main className="flex items-center flex-col mr-2 ml-2 pt-14">
 
         <div className="rounded-md w-full bg-primary h-44 mt-12 mb-12">
-          <img src="/download.svg" alt="Identicon" className="rounded-full h-32 w-32 mx-5 my-20"/>
+          <Image src="/download.svg" alt="Identicon" width="128" height="128" className="rounded-full h-32 w-32 mx-5 my-20"/>
         </div>
 
         <div className=" flex w-full text-left text-2xl text-white mb-6">DANILA</div>
