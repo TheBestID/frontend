@@ -4,10 +4,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Profile: NextPage = () => {
+export async function getServerSideProps(context) {
+  const wallet = context.params.profile
+  return {
+    props: {test: 'hi', wallet}, // will be passed to the page component as props
+  }
+}
+
+const Profile: NextPage = (props) => {
+  const { wallet } = props
   return (
     <div className="bg-[#023047] min-h-[160vh] h-full">
-
 
       <Head>
         <title>Profile</title>
@@ -53,7 +60,7 @@ const Profile: NextPage = () => {
 
         <div className="border w-full h-12 border-primary p-1 rounded-xl pr-3 pl-3 pb-3 pt-3">
           <span className="text-white opacity-60 ">Address</span>
-          <span className="text-white opacity-60 px-14"> 0x///////////////////</span>
+          <span className="text-white opacity-60 px-14"> {wallet}</span>
         </div>
 
         <button className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6">
