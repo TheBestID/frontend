@@ -27,7 +27,6 @@ const Home: NextPage = () => {
           <div className="font-semibold tracking-[0.55em] text-[#219EBC]	">network</div>
         </div>
 
-
         </div>
         <div className='flex'>
           <div className ="h-12 w-12 pt-2 pr-12">
@@ -47,18 +46,18 @@ const Home: NextPage = () => {
 
       <main className="flex flex-col items-center lg:px-16 w-full">
         
-
-        <div className='text-center p-0 mx-auto mt-36 md:mt-52 lg:mt-72'>
-                <h1 className="text-center font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">HOME </span> 
-                  <span className="text-4xl lg:text-8xl">FOR DECENTRALIZED AVATARS</span>
+        <div className="lg:grid lg:grid-cols-2">
+        <div className="lg:ml-12">
+            <div className='text-left p-0 mx-auto mt-36 lg:mt-44'>
+                <h1 className="text-center lg:text-left font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">HOME <span className="text-white text-4xl lg:text-8xl">FOR</span></span> 
+                  <span className="text-4xl lg:text-8xl"> DECENTRALIZED AVATARS</span>
                 </h1>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 text-center pr-10 pl-10 lg:pr-24 lg:pl-24">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 lg:text-left text-center">
                    A web3 marketplace where people and companies can create and manage decentralized avatars
                 </h2>
             </div>
-
-            <div className="mt-5 sm:mt-8 sm:flex justify-center">
+            <div className="flex mt-5 justify-center lg:justify-start">
                 <div className=" rounded-md pb-8">
                   <Link href="/add-wallet">
                     <a
@@ -74,8 +73,15 @@ const Home: NextPage = () => {
                       Create
                     </a>
                   </Link>
-                </div>
-              </div> 
+                 </div>
+               </div> 
+            </div>
+
+              <div className="mt-24">
+              <Image alt="logo" src="/Product.svg" width="1000" height="1000" className=""></Image>
+              </div>
+
+        </div>
 
    
             
