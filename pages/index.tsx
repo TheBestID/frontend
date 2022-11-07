@@ -47,35 +47,35 @@ const Home: NextPage = () => {
       <main className="flex flex-col items-center lg:px-16 w-full">
         
         <div className="lg:grid lg:grid-cols-2">
-        <div className="lg:ml-12">
-            <div className='text-left p-0 mx-auto mt-36 lg:mt-44'>
-                <h1 className="text-center lg:text-left font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">HOME <span className="text-white text-4xl lg:text-8xl">FOR</span></span> 
-                  <span className="text-4xl lg:text-8xl"> DECENTRALIZED AVATARS</span>
-                </h1>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 lg:text-left text-center">
-                   A web3 marketplace where people and companies can create and manage decentralized avatars
-                </h2>
-            </div>
-            <div className="flex mt-5 justify-center lg:justify-start">
-                <div className=" rounded-md pb-8">
-                  <Link href="/add-wallet">
-                    <a
-                      className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-10 py-4 text-base font-medium text-white hover:bg-secondary-25 lg:py-6 lg:px-12 lg:text-xl lg:rounded-2xl"
-                    >
-                      Explore
-                    </a>
-                  </Link>
-                  <Link href="/add-wallet">
-                    <a
-                      className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-10 py-4 text-base font-medium hover:bg-indigo-200 lg:py-6 lg:px-12 lg:text-xl lg:rounded-2xl"
-                    >
-                      Create
-                    </a>
-                  </Link>
-                 </div>
-               </div> 
-            </div>
+            <div className="lg:ml-12">
+              <div className='text-left p-0 mx-auto mt-36 lg:mt-44'>
+                  <h1 className="text-center lg:text-left font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">HOME <span className="text-white text-4xl lg:text-8xl">FOR</span></span> 
+                    <span className="text-4xl lg:text-8xl"> DECENTRALIZED AVATARS</span>
+                  </h1>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-4 font-regular lh-6 ld-04 pb-11 text-gray-400 lg:text-left text-center">
+                    A web3 marketplace where people and companies can create and manage decentralized avatars
+                  </h2>
+              </div>
+              <div className="flex mt-5 justify-center lg:justify-start">
+                  <div className=" rounded-md pb-8">
+                    <Link href="/add-wallet">
+                      <a
+                        className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-10 py-4 text-base font-medium text-white hover:bg-secondary-25 lg:py-6 lg:px-12 lg:text-xl lg:rounded-2xl"
+                      >
+                        Explore
+                      </a>
+                    </Link>
+                    <Link href="/add-wallet">
+                      <a
+                        className="btn btn-primary btn-large items-center justify-center rounded-xl border border-transparent bg-indigo-100 px-10 py-4 text-base font-medium hover:bg-indigo-200 lg:py-6 lg:px-12 lg:text-xl lg:rounded-2xl"
+                      >
+                        Create
+                      </a>
+                    </Link>
+                  </div>
+                </div> 
+              </div>
 
               <div className="mt-24">
               <Image alt="logo" src="/Product.svg" width="1000" height="1000" className=""></Image>
