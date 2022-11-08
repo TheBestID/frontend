@@ -129,14 +129,14 @@ const Hack: NextPage = () => {
             <div className="ml-5 mt-20 lg:mt-0">
                 <div className="text-white text-2xl opacity-50 text-left">Step 2</div>
                 <div className="flex text-white text-xl text-left mr-10 mt-4">Fill out the form to create all the parts.</div>
-                <div className="w-80 mt-6 lg:mt-10 lg:w-full">
+                <div className="w-80 mt-6 lg:mt-14 lg:w-full">
                   <Image alt="fills" src="/fill.svg" width="394" height="311" className=""></Image>
                 </div>
             </div>
             <div className="ml-5 mt-20 lg:mt-0">
                 <div className="text-white text-2xl opacity-50 text-left">Step 3</div>
                 <div className="flex text-white text-xl text-left mr-10 mt-4">Your hackathon is live.</div>
-                <div className="w-80 mt-6 lg:mt-10 lg:w-full">
+                <div className="w-80 mt-6 lg:mt-14 lg:w-full">
                   <Image alt="well done" src="/congrats.svg" width="394" height="311" className=""></Image>
                 </div>
             </div>

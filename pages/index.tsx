@@ -49,7 +49,7 @@ const Home: NextPage = () => {
         <div className="lg:grid lg:grid-cols-2">
             <div className="lg:ml-12">
               <div className='text-left p-0 mx-auto mt-36 lg:mt-44'>
-                  <h1 className="text-center lg:text-left font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3 pl-3">
+                  <h1 className="text-center lg:text-left font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3">
                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">HOME <span className="text-white text-4xl lg:text-8xl">FOR</span></span> 
                     <span className="text-4xl lg:text-8xl"> DECENTRALIZED AVATARS</span>
                   </h1>
@@ -336,7 +336,7 @@ const Home: NextPage = () => {
                 </div>
             </div>
 
-            <div className="grid items-center grid-cols-1 lg:grid-cols-3 lg:gap-64">
+            <div className="grid items-center grid-cols-1 lg:grid-cols-3 lg:gap-64 mt-44w">
             <button className="flex w-60 mt-12 mb-6 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
               <Image alt="link_github" src="/github.png" width="40" height="40"></Image>
               <span className="text-white text-3xl ml-16">Github</span>
