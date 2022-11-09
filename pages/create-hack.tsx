@@ -147,20 +147,26 @@ const Hack: NextPage = () => {
 
 
             <div className="grid items-center grid-cols-1 lg:grid-cols-3 lg:gap-64">
-            <button className="flex w-60 mt-12 mb-6 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
-              <Image alt="link_github" src="/github.png" width="40" height="40"></Image>
-              <span className="text-white text-3xl ml-16">Github</span>
-            </button>
+            <Link href="https://github.com/TheBestID">
+                <button className="flex w-60 mt-12 mb-6 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
+                  <Image alt="link_github" src="/github.png" width="40" height="40"></Image>
+                  <span className="text-white text-3xl ml-16">Github</span>
+                </button>
+            </Link>
+            
+            <Link href="https://www.youtube.com/channel/UCnJCdLblFETZD97EF1lr0eg">
+                <button className="flex w-60 mb-6 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
+                  <Image alt="link_github" src="/youtube.svg" width="40" height="40"></Image>
+                  <span className="text-white text-3xl ml-10">YouTube</span>
+                </button>
+            </Link>
 
-            <button className="flex w-60 mb-6 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
-              <Image alt="link_github" src="/twitter.svg" width="40" height="40"></Image>
-              <span className="text-white text-3xl ml-16">Twitter</span>
-            </button>
-
-            <button className="flex w-60 mb-12 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
-              <Image alt="link_github" src="/Logo.png" width="40" height="40"></Image>
-              <span className="text-white text-3xl ml-9">Telegram</span>
-            </button>
+            <Link href="https://t.me/souldev_network">
+                <button className="flex w-60 mb-12 border p-3 rounded-xl items-center border-secondary-25 lg:mt-12 lg:mb-12">
+                  <Image alt="link_github" src="/Logo.png" width="40" height="40"></Image>
+                  <span className="text-white text-3xl ml-9">Telegram</span>
+                </button>
+            </Link> 
             </div>
 
             
