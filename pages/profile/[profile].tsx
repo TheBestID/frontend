@@ -18,7 +18,7 @@ type Props = {
 const MOCK_GLE = {
   startTimestamp: '13 nov 2020',
   endTimestamp: null,
-  company: 'Google',
+  company: 'Meta',
   position: 'Chief Executive Officer',
   description: 'I did great things. Mostly attending useless meetings',
 }
@@ -120,19 +120,19 @@ const Profile: NextPage<Props> = (props) => {
             )
         }
         
-        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6 mt-6">
+        <div className="flex w-full bg-secondary-25 h-12 items-center mb-6 mt-6">
             <span className="text-2xl font-semibold text-center text-white ml-4">Projects</span>
         </div>
 
-        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6">
+        <div className="flex w-full bg-secondary-25 h-12 items-center mb-6">
             <span className="text-2xl font-semibold text-center text-white ml-4">Education</span>
         </div>
 
-        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6">
+        <div className="flex w-full bg-secondary-25 h-12 items-center mb-6">
             <span className="text-2xl font-semibold text-center text-white ml-4">Achievements</span>
         </div>
 
-        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center">
+        <div className="flex w-full bg-secondary-25 h-12 items-center">
             <span className="text-2xl font-semibold text-center text-white ml-4">Skills & Hobbies</span>
         </div>
 

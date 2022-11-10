@@ -29,10 +29,10 @@ const Achivement: React.FC<Props> = (props) => {
     : (new Date(endTimestamp)).toString()
 
   return (
-    <div className="flex flex-col border border-secondary-25 p-1 rounded-xl w-full mt-6">
+    <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-6">
       <div className="flex justify-between">
         <span
-          className="text-xl font-medium text-white text ml-4"
+          className="text-xl font-medium text-white text"
         >
           {company}
         </span>
@@ -40,10 +40,10 @@ const Achivement: React.FC<Props> = (props) => {
           {start} - {end}
         </span>
       </div>
-      <span className="mt-2 ml-4 text-white">
+      <span className="text-white">
         {position}
       </span>
-      <span className="mt-2 ml-4 text-white opacity-60 mr-">
+      <span className="mt-2 text-white opacity-60 mr-">
         {description}
       </span>
     </div>
