@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       <main className="flex flex-col items-center lg:px-16 w-full">
         
         <div className="xl:grid xl:grid-cols-2">
-            <div className="lg:ml-12">
+            <div className="">
               <div className='text-left p-0 mx-auto mt-36 lg:mt-44'>
                   <h1 className="text-center lg:text-left font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3">
                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFB703] to-primary text-5xl lg:text-9xl">HOME <span className="text-white text-4xl lg:text-8xl">FOR</span></span> 
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
                 </div> 
               </div>
 
-              <div className="mt-24">
+              <div className="mt-24 ml-4">
               <Image alt="logo" src="/Product.svg" width="1000" height="1000" className=""></Image>
               </div>
 
