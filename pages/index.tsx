@@ -3,8 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
-
-
+import Logo from 'src/components/Logo'
 
 const Home: NextPage = () => {
   return (
@@ -14,20 +13,9 @@ const Home: NextPage = () => {
         <meta name="description" content="SoulDev landing page" />
       </Head>
 
-      <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4">
+      <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4 z-10">
 
-      <div className="flex">
-        <div className ="h-16 w-16 ml-2">
-          <div className ="bg-primary rounded-full h-16 w-16">
-            <Image alt="logo" src="/logo.svg" width="64" height="64"></Image>
-        </div>
-        </div> 
-        <div className="flex flex-col ml-2 h-16 justify-center">
-          <div className="text-white font-bold text-3xl">Souldev</div>
-          <div className="font-semibold tracking-[0.55em] text-[#219EBC]	">network</div>
-        </div>
-
-        </div>
+        <Logo/>
         <div className='flex'>
           <div className ="h-12 w-12 pt-2 pr-12">
             <div className ="bg-primary rounded-full h-12 w-12"></div>
@@ -46,7 +34,7 @@ const Home: NextPage = () => {
 
       <main className="flex flex-col items-center lg:px-16 w-full">
         
-        <div className="lg:grid lg:grid-cols-2">
+        <div className="xl:grid xl:grid-cols-2">
             <div className="lg:ml-12">
               <div className='text-left p-0 mx-auto mt-36 lg:mt-44'>
                   <h1 className="text-center lg:text-left font-4 lh-6 ld-04 font-bold text-white mb-6 pr-3">
@@ -172,7 +160,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="flex w-full pr-1 pl-1">
-                <Link href="/">
+                <Link href="/vacancies">
                   <a className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
                     View all vacancies
                   </a>
@@ -280,7 +268,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="pt-2 w-full md:px-1 px-3">
-              <div className ="grid gap-4 grid-cols-1s w-full mt-10 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
+              <div className ="w-full mt-10 mb-6 p-4 bg-secondary-25 rounded-lg">
 
                  <div className="text-center mt-6">
                   <span className="text-4xl text-white w-56">Create <span className="text-4xl font-semibold">OWN</span> hackathon for avatars no-code</span>
@@ -294,7 +282,7 @@ const Home: NextPage = () => {
                  </div>
 
                  <div className="flex justify-center items-center pr-1 pl-1">
-                  <Link href="/">
+                  <Link href="/create-hack">
                     <a className="flex w-52 h-14 mt-6 mb-12 items-center text-white text-center justify-center rounded-xl border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
                       Create hackathon
                     </a>
@@ -304,32 +292,33 @@ const Home: NextPage = () => {
                  </div>
 
 
-                 <div className="flex overflow-auto w-full">
+                 <div className="flex w-full">
+                   <div className="flex overflow-x-auto w-full">
 
-                 {
-                 ([0, 0, 0]).map((item, i) => (
-                 <div className="min-w-[33vw]" key={i}>
-                   <div className="mr-6 border border-primary rounded-xl p-3">
-                      <div className="bg-primary rounded-md h-44 w-full flex">
-                      </div>
-                      <div className="justify-center w-full flex">
-                        <div className="flex w-3/12 aspect-square rounded-full bg-black">
+                   {
+                   ([0, 0, 0]).map((item, i) => (
+                   <div className="min-w-[33vw]" key={i}>
+                     <div className="mr-6 border border-primary rounded-xl p-3">
+                        <div className="bg-primary rounded-md h-44 w-full flex">
+                        </div>
+                        <div className="justify-center w-full flex">
+                          <div className="flex w-3/12 aspect-square rounded-full bg-black">
+                          </div>
+                        </div>
+                        <div className="text-center pt-6">
+                          <span className="text-white">Souldev Network</span>
+                        </div>
+                        <div className="text-center pt-2">
+                          <span className="text-[#fff8]">Empowering people to change the world faster</span>
+                        </div>
+                        <div className="text-left pt-10">
+                          <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
                         </div>
                       </div>
-                      <div className="text-center pt-6">
-                        <span className="text-white">Souldev Network</span>
                       </div>
-                      <div className="text-center pt-2">
-                        <span className="text-[#fff8]">Empowering people to change the world faster</span>
-                      </div>
-                      <div className="text-left pt-10">
-                        <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                      </div>
-                    </div>
-                    </div>
-                  ))}
+                    ))}
 
-
+                    </div>
                   </div>
 
 

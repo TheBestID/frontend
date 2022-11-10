@@ -23,6 +23,7 @@ async function postSendEmail(bodyData: {
   address: string,
   chainId: number,
   email: string,
+  githubCode: string,
 }) {
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/email`
@@ -57,7 +58,7 @@ const SendEmail: NextPage<Props> = (props) => {
 
   async function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
-    if (loggedIn == null) {
+    if (code == null || loggedIn == null) {
       router.replace(`/add-wallet`)
       return
     }
@@ -67,7 +68,7 @@ const SendEmail: NextPage<Props> = (props) => {
     }
     const { address, chainId } = loggedIn
     const res = await postSendEmail({
-      address, chainId, email,
+      address, chainId, email, githubCode: code,
     })
   }
 

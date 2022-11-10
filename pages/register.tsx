@@ -12,21 +12,27 @@ import useLoggedIn from 'src/hooks/useLoggedIn'
 const BASE_URL = 'http://127.0.0.1:8000'
 
 type Props = {
-  code: string | undefined
+  github_token: string | null,
+  hash_email: string | null,
+  email_token: string | null,
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const code = context?.query?.code
+  const github_token = context?.query?.github_token || null
+  const hash_email = context?.query?.hash_email || null
+  const email_token = context?.query?.email_token || null
   return {
-    props: { code },
+    props: { github_token, hash_email, email_token, },
   }
 }
 
 async function postMsgParams(
   {...bodyData}: {
     address: string,
-    chainId: number,
-    githubCode: string,
+    chainId: string,
+    github_token: string,
+    hash_email: string,
+    email_token: string,
   }
 ): Promise<number | null> {
   const { address } = bodyData
@@ -78,7 +84,7 @@ async function postAddress(
 
 const Register: NextPage<Props> = (props) => {
   const router = useRouter()
-  const { code: githubCode } = props
+  const { github_token, hash_email, email_token } = props
   const loggedIn = useLoggedIn()
   if (
       loggedIn != null
@@ -96,16 +102,24 @@ const Register: NextPage<Props> = (props) => {
     if (
       address == null
       || chainId == null
-      || githubCode == null
+      || github_token == null
+      || email_token == null
+      || hash_email == null
     ) return
 
     const txHash = await postMsgParams({
-      address, chainId, githubCode
+      address,
+      chainId: String(chainId),
+      github_token,
+      email_token,
+      hash_email,
     })
     if (txHash == null) return
 
     const resultUid = await postAddress({
-      address, chainId, txHash
+      address,
+      chainId: String(chainId),
+      txHash,
     })
 
     if (resultUid != null) {

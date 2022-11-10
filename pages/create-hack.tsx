@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
-import type { NextPage } from 'next'
+import { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import Logo from 'src/components/Logo'
 
 const Hack: NextPage = () => {
   return (
@@ -14,18 +16,7 @@ const Hack: NextPage = () => {
 
       <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4">
 
-      <div className="flex">
-        <div className ="h-16 w-16 ml-2">
-          <div className ="bg-primary rounded-full h-16 w-16">
-            <Image alt="logo" src="/logo.svg" width="64" height="64"></Image>
-        </div>
-        </div> 
-        <div className="flex flex-col ml-2 h-16 justify-center">
-          <div className="text-white font-bold text-3xl">Souldev</div>
-          <div className="font-semibold tracking-[0.55em] text-[#219EBC]	">network</div>
-        </div>
-
-        </div>
+        <Logo/>
         <div className='flex'>
           <div className ="h-12 w-12 pt-2 pr-12">
             <div className ="bg-primary rounded-full h-12 w-12"></div>
