@@ -56,7 +56,7 @@ const VacancyForm = (props) => {
     if (loggedIn == null) return
     const { address, chainId } = loggedIn
     if (address == null || chainId == null) return
-    const res = await postAddVacancy({
+    const txHash = await postAddVacancy({
       address, chainId, price, category, info
     })
 
@@ -72,7 +72,9 @@ const VacancyForm = (props) => {
       </h2>
       <div className="h-4 w-full"/>
       <label htmlFor="category" className="p-1">
-        category:
+        <span className="cursor-pointer">
+          category:
+        </span>
         <input
           className="ml-2 border border-primary"
           type="text"
@@ -85,7 +87,9 @@ const VacancyForm = (props) => {
         />
       </label>
       <label htmlFor="info" className="p-1">
-        info:
+        <span className="cursor-pointer">
+          info:
+        </span>
         <input
           className="ml-2 border border-primary"
           type="text"
@@ -98,7 +102,9 @@ const VacancyForm = (props) => {
         />
       </label>
       <label htmlFor="price" className="p-1">
-        price ETH:
+        <span className="cursor-pointer">
+          price ETH:
+        </span>
         <input
           className="ml-2 border border-primary"
           type="number"
@@ -121,3 +127,4 @@ const VacancyForm = (props) => {
 }
 
 export default VacancyForm
+
