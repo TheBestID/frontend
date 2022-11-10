@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -20,9 +20,17 @@ const Vacancies: NextPage = () => {
       </Head>
 
       {isPopupOpen && (
-        <Popup close={e => setIsPopupOpen(false)}>
+        <Popup
+          close={
+            (e: React.SyntheticEvent) =>
+              setIsPopupOpen(false)
+          }
+        >
           <VacancyForm
-            close={e => setIsPopupOpen(false)}
+            close={
+              (e: React.SyntheticEvent) =>
+                setIsPopupOpen(false)
+            }
           />
         </Popup>
       )}

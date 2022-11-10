@@ -4,7 +4,7 @@ const BASE_URL = 'http://127.0.0.1:8000'
 async function checkAddress(
   {...bodyData}: {
     address: string,
-    chainId: string,
+    chainId: number,
   }
 ): Promise<number | null> {
   const body = JSON.stringify(bodyData)
@@ -22,15 +22,18 @@ async function checkAddress(
 }
 
 type WalletInfo = {
-  address: string, balance: number, chainId: number
+  address: string,
+  balance: number,
+  chainId: number,
+  isAuth: boolean,
 }
-type Res = null | false | WalletInfo
+type Res = null | WalletInfo
 
 export default function useLoggedIn(): Res {
   const [address, setAddress] = useState<string | null>(null)
-  const [chainId, setChainId] = useState<string | null>(null)
+  const [chainId, setChainId] = useState<number | null>(null)
   const [balance, setBalance] = useState<number>(0)
-  const [result, setResult] = useState<null | false | number>(null)
+  const [result, setResult] = useState<Res>(null)
 
   useEffect(() => {
     const fn = async () => {
@@ -45,14 +48,15 @@ export default function useLoggedIn(): Res {
       try {
         uid = await checkAddress({address, chainId})
       } catch(e) { }
-      if (typeof uid === 'number') {
-        setResult({address, balance, chainId})
-      } else {
-        setResult(false)
-      }
+      setResult({
+        address,
+        balance,
+        chainId,
+        isAuth: typeof uid === 'number',
+      })
     }
     fn()
-  }, [address, chainId])
+  }, [address, chainId, balance])
 
   async function onMetamaskConnected(accounts: any) {
     if (
@@ -72,7 +76,9 @@ export default function useLoggedIn(): Res {
 
   useEffect(() => {
     if (window?.ethereum) {
-      setChainId(window.ethereum.networkVersion)
+      setChainId(Number(
+        window.ethereum.networkVersion
+      ))
       window.ethereum.request({
         method:'eth_requestAccounts'
       }).then(onMetamaskConnected)

@@ -3,7 +3,9 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { ethers } from 'ethers'
+
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
 const BASE_URL = 'http://127.0.0.1:8000'
@@ -33,7 +35,10 @@ const AddWallet: NextPage = () => {
       </p>
     </>
   )
-  if (loggedIn === false) {
+  if (
+    loggedIn != null
+    && loggedIn.isAuth === false
+  ) {
     const url = 
       `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
     window.location.assign(url)

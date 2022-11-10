@@ -8,7 +8,7 @@ const BASE_URL = 'http://127.0.0.1:8000'
 async function postAddAchivement(
   {...bodyData}: {
     address: string,
-    chainId: string,
+    chainId: number,
     price: number,
     category: string,
     info: string,
@@ -38,15 +38,21 @@ async function postAddAchivement(
   }
 }
 
-const AchivementForm = (props) => {
+type Props = {
+  close: Function
+};
+
+const AchivementForm: React.FC<Props> = (props) => {
   const { close } = props
   const loggedIn = useLoggedIn()
   const router = useRouter()
-  if (loggedIn === false) {
+  if (
+    loggedIn != null && loggedIn.isAuth === false
+  ) {
     router.replace('/add-wallet')
   }
   const [info, setInfo] = useState<string>('')
-  const [price, setPrice] = useState<string>('')
+  const [price, setPrice] = useState<number>(0)
   const [
     category, setCategory
   ] = useState<string>('')
@@ -56,7 +62,7 @@ const AchivementForm = (props) => {
     if (loggedIn == null) return
     const { address, chainId } = loggedIn
     if (address == null || chainId == null) return
-    const txHash = await postAddVacancy({
+    const txHash = await postAddAchivement({
       address, chainId, price, category, info
     })
 
@@ -82,7 +88,10 @@ const AchivementForm = (props) => {
           value={category}
           onChange={
             (e: React.SyntheticEvent) =>
-              setCategory(e.target.value)
+              setCategory(
+                (e.target as HTMLInputElement)
+                .value
+              )
           }
         />
       </label>
@@ -97,7 +106,10 @@ const AchivementForm = (props) => {
           value={info}
           onChange={
             (e: React.SyntheticEvent) =>
-              setInfo(e.target.value)
+              setInfo(
+                (e.target as HTMLInputElement)
+                .value
+              )
           }
         />
       </label>
@@ -112,7 +124,10 @@ const AchivementForm = (props) => {
           value={price}
           onChange={
             (e: React.SyntheticEvent) =>
-              setPrice(e.target.value)
+              setPrice(Number(
+                (e.target as HTMLInputElement)
+                .value
+              ))
           }
         />
       </label>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -24,7 +24,7 @@ const Profile: NextPage<Props> = (props) => {
   const loggedIn = useLoggedIn()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   let isOwnPage = false
-  if (loggedIn != null && loggedIn !== false) {
+  if (loggedIn != null && loggedIn.isAuth !== false) {
     isOwnPage = wallet === loggedIn.address
   }
 
@@ -41,9 +41,16 @@ const Profile: NextPage<Props> = (props) => {
       </Head>
 
       {isPopupOpen && (
-        <Popup close={e => setIsPopupOpen(false)}>
+        <Popup close={
+          (e: React.SyntheticEvent) =>
+            setIsPopupOpen(false)
+          }
+        >
           <AchivementForm
-            close={e => setIsPopupOpen(false)}
+            close={
+              (e: React.SyntheticEvent) =>
+                setIsPopupOpen(false)
+            }
           />
         </Popup>
       )}

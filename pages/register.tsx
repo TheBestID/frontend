@@ -1,5 +1,5 @@
 import React from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 async function postMsgParams(
   {...bodyData}: {
     address: string,
-    chainId: string,
+    chainId: number,
     githubCode: string,
   }
 ): Promise<number | null> {
@@ -56,7 +56,7 @@ async function postMsgParams(
 async function postAddress(
   {...bodyData}: {
     address: string,
-    chainId: string,
+    chainId: number,
     txHash: number,
   }
 ): Promise<number | null> {
@@ -80,13 +80,17 @@ const Register: NextPage<Props> = (props) => {
   const router = useRouter()
   const { code: githubCode } = props
   const loggedIn = useLoggedIn()
-  if (loggedIn !== false || loggedIn != null) {
+  if (
+      loggedIn != null
+      && loggedIn.isAuth !== false
+  ) {
     const { address } = loggedIn
     router.replace(`/profile/${address}`)
   }
 
   async function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
+    if (loggedIn == null) return
     const { address, chainId } = loggedIn
 
     if (

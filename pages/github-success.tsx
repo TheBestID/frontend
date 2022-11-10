@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -17,12 +17,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const GithubSuccess: NextPage<Props> = (props) => {
   const { code } = props
-  const url = `/register?code=${code}`
+  const url = `/send-email?code=${code}`
 
   const router = useRouter()
   useEffect(() => {
     router.replace(url)
-  }, [router])
+  }, [router, url])
 
   return (
     <div className="bg-[#023047] min-h-[100vh]">
@@ -37,7 +37,7 @@ const GithubSuccess: NextPage<Props> = (props) => {
 
       <Link href={url}>
         <a className="text-primary">
-          click here if redirect doesn't work
+          click here if redirect doesn&apos;t work
         </a>
       </Link>
 
@@ -46,5 +46,4 @@ const GithubSuccess: NextPage<Props> = (props) => {
 }
 
 export default GithubSuccess
-
 

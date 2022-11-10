@@ -1,6 +1,12 @@
+import React from 'react'
 import styles from 'styles/Popup.module.css'
 
-const Popup = (props) => {
+type Props = {
+  close: Function,
+  children: React.ReactNode,
+};
+
+const Popup: React.FC<Props> = (props) => {
   const { children, close } = props
 
   return (
@@ -11,7 +17,7 @@ const Popup = (props) => {
         <div className={styles.closeWrapper}>
           <button
             className={styles.close}
-            onClick={close}
+            onClick={() => close()}
           />
         </div>
         {children}
