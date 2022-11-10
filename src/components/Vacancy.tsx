@@ -18,12 +18,14 @@ const Vacancy: React.FC<Props> = (props) => {
     category, owner_uuid, price, timestamp
   } = data
 
+  const datePosted = (new Date(timestamp)).toString()
+
   return (
     <div className="w-full bg-white p-1 rounded mb-4">
       <span className="text-red-300">{category}</span>
       <span>{owner_uuid}</span>
       <span>{price}</span>
-      <span>{timestamp}</span>
+      <span>{datePosted}</span>
     </div>
   )
 }
