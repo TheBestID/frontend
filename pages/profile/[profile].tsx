@@ -3,33 +3,46 @@ import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import Logo from 'src/components/Logo'
+import Achivement, { TAchivement } from 'src/components/Achivement'
+import Header from 'src/components/Header'
 import Popup from 'src/components/Popup'
 import AchivementForm from 'src/components/AchivementForm'
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
 type Props = {
-  wallet: string | undefined
+  wallet: string | undefined,
+  achivements: Array<TAchivement>,
+}
+
+
+const MOCK_GLE = {
+  startTimestamp: '13 nov 2020',
+  endTimestamp: null,
+  company: 'Google',
+  position: 'Chief Executive Officer',
+  description: 'I did great things. Mostly attending useless meetings',
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const wallet = context?.params?.profile
+  const achivements = [
+    MOCK_GLE, MOCK_GLE, MOCK_GLE, MOCK_GLE,
+  ]
   return {
-    props: { wallet },
+    props: { wallet, achivements },
   }
 }
 
 const Profile: NextPage<Props> = (props) => {
-  const { wallet } = props
+  const { wallet, achivements } = props
   const loggedIn = useLoggedIn()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
-  let isOwnPage = false
-  if (loggedIn != null && loggedIn.isAuth !== false) {
-    isOwnPage = wallet === loggedIn.address
-  }
 
-  const onEditButton = () => {
-    setIsPopupOpen(true)
+  let isOwnPage = false
+  if (
+    loggedIn != null && loggedIn.isAuth !== false
+  ) {
+    isOwnPage = wallet === loggedIn.address
   }
 
   return (
@@ -55,22 +68,7 @@ const Profile: NextPage<Props> = (props) => {
         </Popup>
       )}
 
-      <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4 z-10">
-
-        <Logo/>
-        <div className='flex'>
-          <div className ="h-12 w-12 pt-2 pr-12">
-            <div className ="bg-primary rounded-full h-12 w-12"></div>
-          </div> 
-
-          <div className = "space-y-1 pt-4 ml-2 mr-2">
-            <div className ="bg-primary rounded-full h-2 w-12"></div>
-            <div className ="bg-primary rounded-full h-2 w-12"></div>
-            <div className ="bg-primary rounded-full h-2 w-12"></div>
-          </div>
-        </div>
-
-      </header>  
+      <Header/>
 
       <main className="flex items-center flex-col mr-2 ml-2 pt-14">
 
@@ -78,7 +76,8 @@ const Profile: NextPage<Props> = (props) => {
           <Image src="/download.svg" alt="Identicon" width="128" height="128" className="rounded-full h-32 w-32 mx-5 my-20"/>
         </div>
 
-        <div className=" flex w-full text-left text-2xl text-white mb-6">DANILA</div>
+        <div className="flex flex-col w-full mb-6 md:flex-row md:items-center">
+          <span className="text-2xl text-white px-4 py-2">DANILA</span>
 
           <a 
             target="_blank"
@@ -86,58 +85,42 @@ const Profile: NextPage<Props> = (props) => {
             href={`https://etherscan.io/address/${wallet}`}
             className="border w-full h-12 border-primary p-1 rounded-xl pr-3 pl-3 pb-3 pt-3"
           >
-          <span className="text-[#fff8] ">Address</span>
-          <span className="text-[#fff8] px-14">{wallet}</span>
-        </a>
+            <span className="text-[#fff8]">Address</span>
+            <span className="text-[#fff8] px-14 underline">{wallet}</span>
+          </a>
+        </div>
 
         {isOwnPage && (
           <button
             className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
-            onClick={onEditButton}
+            onClick={() => setIsPopupOpen(true)}
           >
-            Add Vacancy
+            Add Achivement
           </button>
         )}
 
         <div className="grid w-full gap-4 grid-cols-4 mt-12 text-bold mr-4">
-          <button className="text-xl font-semibold text-white">CV</button>
-          <button className="text-xl font-semibold text-white">Hacks</button>
-          <button className="text-xl font-semibold text-white">HR</button>
-          <button className="text-xl font-semibold text-white">Funds</button>
+          <button className="underline decoration-primary text-xl font-semibold text-white">CV</button>
+          <button className="text-xl font-semibold text-gray-600">Hacks</button>
+          <button className="text-xl font-semibold text-gray-600">HR</button>
+          <button className="text-xl font-semibold text-gray-600">Funds</button>
         </div>
 
-        <div className="flex scroll-mx-4 w-full text-white mb-6">__________________________________________</div>
+        <div className="mt-6 flex w-full bg-secondary-25 h-12 items-center">
+            <span className="text-2xl font-semibold text-center text-white ml-4">
+              Experience
+            </span>
+        </div>
 
+        {
+          Array.isArray(achivements)
+          && achivements.map(
+            (achivement: TAchivement, i: number) =>
+              <Achivement key={i} data={achivement}/>
+            )
+        }
         
-        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center">
-            <span className="text-2xl font-semibold text-center text-white ml-4">Experience</span>
-        </div>
-
-        <div className="flex flex-col border border-secondary-25 p-1 rounded-xl w-full mt-6">
-          <span className="text-xl font-medium text-white text ml-4">Google
-          <span className="text-sm ml-32">{2022} - now</span>
-          </span>
-          <span className="mt-2 ml-4 text-white">Head of Frontend</span>
-          <span className="mt-2 ml-4 text-white opacity-60 mr-">Description Description Description Description Description Description</span>
-        </div>
-
-        <div className="flex flex-col border border-secondary-25 p-1 rounded-xl w-full mt-6">
-          <span className="text-xl font-medium text-white text ml-4">Google
-          <span className="text-sm ml-32">{2022} - now</span>
-          </span>
-          <span className="mt-2 ml-4 text-white">Head of Frontend</span>
-          <span className="mt-2 ml-4 text-white opacity-60 mr-">Description Description Description Description Description Description</span>
-        </div>
-
-        <div className="flex flex-col border border-secondary-25 p-1 rounded-xl w-full mt-6 mb-6">
-          <span className="text-xl font-medium text-white text ml-4">Google
-          <span className="text-sm ml-32">{2022} - now</span>
-          </span>
-          <span className="mt-2 ml-4 text-white">Head of Frontend</span>
-          <span className="mt-2 ml-4 text-white opacity-60 mr-">Description Description Description Description Description Description</span>
-        </div>
-
-        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6">
+        <div className="flex w-full bg-secondary-25 rounded-xl h-12 items-center mb-6 mt-6">
             <span className="text-2xl font-semibold text-center text-white ml-4">Projects</span>
         </div>
 

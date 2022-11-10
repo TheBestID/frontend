@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Logo from 'src/components/Logo'
+import Header from 'src/components/Header'
 
 const Hack: NextPage = () => {
   return (
@@ -14,22 +14,7 @@ const Hack: NextPage = () => {
         <meta name="description" content="add wallet to register on souldev platform" />
       </Head>
 
-      <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4">
-
-        <Logo/>
-        <div className='flex'>
-          <div className ="h-12 w-12 pt-2 pr-12">
-            <div className ="bg-primary rounded-full h-12 w-12"></div>
-          </div> 
-
-          <div className = "space-y-1 pt-4 ml-2 mr-2">
-            <div className ="bg-primary rounded-full h-2 w-12"></div>
-            <div className ="bg-primary rounded-full h-2 w-12"></div>
-            <div className ="bg-primary rounded-full h-2 w-12"></div>
-          </div>
-        </div>
-
-      </header>
+      <Header/>
 
       <div id="spacer" className="h-8 w-8"/>
 

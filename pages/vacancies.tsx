@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import Vacancy, { TVacancy } from 'src/components/Vacancy'
-import Logo from 'src/components/Logo'
+import Header from 'src/components/Header'
 import Popup from 'src/components/Popup'
 import VacancyForm from 'src/components/VacancyForm'
 import useLoggedIn from 'src/hooks/useLoggedIn'
@@ -42,7 +40,12 @@ const Vacancies: NextPage = () => {
   const [vacancies, setVacancies] = useState(null)
 
   useEffect(() => {
-    getVacancies().then(res => {
+    getVacancies({
+      value_sorted: 'price',
+      offset: 0,
+      top_number: null,
+      in_asc: true,
+    }).then(res => {
       setVacancies(res)
     })
   }, [])
@@ -54,6 +57,9 @@ const Vacancies: NextPage = () => {
         <title>Vacancies</title>
         <meta name="description" content="explore all vacancies on Souldev network"/>
       </Head>
+
+
+      <Header/>
 
       {isPopupOpen && (
         <Popup
@@ -71,47 +77,28 @@ const Vacancies: NextPage = () => {
         </Popup>
       )}
 
+      <main className="flex flex-col items-center lg:px-16 w-full pt-32 px-1">
+        <button
+          className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
+          onClick={() => setIsPopupOpen(true)}
+        >
+          Add Vacancy
+        </button>
 
-        <header className="fixed flex bg-[#023047] h-24 w-full lg:px-16 justify-between pt-4">
 
-          <Logo/>
-          <div className='flex'>
-            <div className ="h-12 w-12 pt-2 pr-12">
-              <div className ="bg-primary rounded-full h-12 w-12"></div>
-            </div> 
-
-            <div className = "space-y-1 pt-4 ml-2 mr-2">
-              <div className ="bg-primary rounded-full h-2 w-12"></div>
-              <div className ="bg-primary rounded-full h-2 w-12"></div>
-              <div className ="bg-primary rounded-full h-2 w-12"></div>
+        {
+          Array.isArray(vacancies)
+          && (
+            <div className="p-1 mt-4 bg-slate-300">
+              {vacancies.map(
+                (vacancyData: TVacancy, i: number) =>
+                  <Vacancy key={i} data={vacancyData}/>
+                )
+              }
             </div>
-          </div>
-
-        </header>
-
-
-        <main className="flex flex-col items-center lg:px-16 w-full pt-32 px-1">
-          <button
-            className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
-            onClick={() => setIsPopupOpen(true)}
-          >
-            Add Vacancy
-          </button>
-
-
-          {
-            Array.isArray(vacancies)
-            && (
-              <div className="p-1 mt-4 bg-slate-300">
-                {vacancies.map(
-                  (vacancyData: TVacancy, i: number) =>
-                    <Vacancy key={i} data={vacancyData}/>
-                  )
-                }
-              </div>
-            )
-          }
-        </main>
+          )
+        }
+      </main>
     </div>
   )
 }
