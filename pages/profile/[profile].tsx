@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import Popup from 'src/components/Popup'
-import VacancyForm from 'src/components/VacancyForm'
+import AchivementForm from 'src/components/AchivementForm'
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
 type Props = {
@@ -42,7 +42,7 @@ const Profile: NextPage<Props> = (props) => {
 
       {isPopupOpen && (
         <Popup close={e => setIsPopupOpen(false)}>
-          <VacancyForm
+          <AchivementForm
             close={e => setIsPopupOpen(false)}
           />
         </Popup>
