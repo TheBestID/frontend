@@ -32,7 +32,7 @@ const Home: NextPage = () => {
               </div>
               <div className="flex mt-5 justify-center lg:justify-start">
                   <div className=" rounded-md pb-8">
-                    <Link href="/add-wallet">
+                    <Link href="/vacancies">
                       <a
                         className="btn btn-primary btn-large mr-4 items-center justify-center rounded-xl border border-transparent bg-primary px-10 py-4 text-base font-medium text-white hover:bg-secondary-25 lg:py-6 lg:px-12 lg:text-xl lg:rounded-2xl"
                       >
@@ -238,7 +238,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="flex w-full pr-1 pl-1">
-                <Link href="/">
+                <Link href="/vacancies">
                   <a className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
                     View all profiles
                   </a>
