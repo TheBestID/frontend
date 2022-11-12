@@ -93,7 +93,7 @@ const Hack: NextPage = () => {
                 </div>
             </div> 
 
-            <div className="grid items-center justify-center grid-cols-1 lg:grid-cols-3 lg:gap-8 mt-24 mb-52">
+            <div className="grid items-center justify-center grid-cols-1 lg:grid-cols-3 lg:gap-8 mt-24 mb-52 lg:ml-24">
 
             <div className="ml-5">
                 <div className="text-white text-2xl opacity-50 text-left">Step 1</div>
