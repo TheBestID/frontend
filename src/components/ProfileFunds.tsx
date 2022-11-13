@@ -10,7 +10,7 @@ const ProfileFunds: React.FC<Props> = (props) => {
 
   return (
     <div>
-      Hacks im taking part of
+      My funds
     </div>
   )
 }

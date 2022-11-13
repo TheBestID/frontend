@@ -10,7 +10,7 @@ const ProfileHR: React.FC<Props> = (props) => {
 
   return (
     <div>
-      Hacks im taking part of
+      My hiring process
     </div>
   )
 }
