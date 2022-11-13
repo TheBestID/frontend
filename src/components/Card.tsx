@@ -16,10 +16,12 @@ const Card: React.FC<Props> = (props) => {
       <a>
         <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
           <div className="bg-primary rounded-md h-24 w-full flex"/>
-          <div className="justify-center w-full flex">
-            <div className="flex w-3/12 aspect-square rounded-full bg-black"/>
+
+          <div className="justify-center w-full flex relative top-[-3rem]">
+            <div className="flex w-24 aspect-square rounded-full bg-black"/>
           </div>
-          <div className="text-center pt-2">
+
+          <div className="text-center">
             <span className="text-white">
               {title}
             </span>
