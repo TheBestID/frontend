@@ -30,8 +30,8 @@ async function postMsgParams(
   {...bodyData}: {
     address: string,
     chainId: string,
-    code: string,
-    email: string,
+    github_token: string,
+    hash_email: string,
     email_token: string,
   }
 ): Promise<number | null> {
@@ -110,9 +110,9 @@ const Register: NextPage<Props> = (props) => {
     const txHash = await postMsgParams({
       address,
       chainId: String(chainId),
-      code,
+      github_token: code,
       email_token,
-      email,
+      hash_email: email,
     })
     if (txHash == null) return
 
