@@ -25,6 +25,7 @@ const Vacancy: React.FC<Props> = (props) => {
   const datePosted = (new Date(timestamp)).toString()
 
   return (
+
     <Card
       title={category || 'no category'}
       subtitle={`${price}$`}
@@ -34,6 +35,15 @@ const Vacancy: React.FC<Props> = (props) => {
         {datePosted}
       </span>
     </Card>
+  )
+
+ return (
+     <div className="bg-[#023047] min-h-[100vh]">
+        <main className="flex flex-col items-center lg:px-16 w-full">
+        
+        
+        </main>
+    </div>
   )
 }
 
