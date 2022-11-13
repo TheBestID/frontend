@@ -6,7 +6,7 @@ import Achivement, { TAchivement } from 'src/components/Achivement'
 type Props = {
 }
 
-const ProfileHacks: React.FC<Props> = (props) => {
+const ProfileFunds: React.FC<Props> = (props) => {
 
   return (
     <div>
@@ -15,4 +15,4 @@ const ProfileHacks: React.FC<Props> = (props) => {
   )
 }
 
-export default ProfileHacks
+export default ProfileFunds

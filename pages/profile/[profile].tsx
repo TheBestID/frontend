@@ -6,6 +6,9 @@ import Link from 'next/link'
 
 import Achivement, { TAchivement } from 'src/components/Achivement'
 import ProfileCV from 'src/components/ProfileCV'
+import ProfileHacks from 'src/components/ProfileHacks'
+import ProfileHR from 'src/components/ProfileHR'
+import ProfileFunds from 'src/components/ProfileFunds'
 import ProfileNav from 'src/components/ProfileNav'
 import Header from 'src/components/Header'
 import Popup from 'src/components/Popup'
@@ -119,11 +122,11 @@ const Profile: NextPage<Props> = (props) => {
             activeSubPage === 'CV'
             ? <ProfileCV achivements={achivements}/>
             : activeSubPage === 'Hacks'
-            ? null
+            ? <ProfileHacks />
             : activeSubPage === 'HR'
-            ? null
+            ? <ProfileHR />
             : activeSubPage === 'Funds'
-            ? null
+            ? <ProfileFunds />
             : null
           }
           </div>
