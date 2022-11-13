@@ -19,14 +19,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-const Profiles: NextPage<Props> = (props) => {
+const Hacks: NextPage<Props> = (props) => {
   const { data } = props
 
   return (
     <div className="bg-[#023047] min-h-[200vh] h-full">
       <Head>
-        <title>Avatars</title>
-        <meta name="description" content="explore all profiles on Souldev network"/>
+        <title>Hacks</title>
+        <meta name="description" content="explore all hackatons on Souldev network"/>
       </Head>
 
 
@@ -36,7 +36,7 @@ const Profiles: NextPage<Props> = (props) => {
         <ExploreNav/>
 
         <main>
-          profiles go here
+          hacks go here
         </main>
 
       </div>
@@ -44,4 +44,4 @@ const Profiles: NextPage<Props> = (props) => {
   )
 }
 
-export default Profiles
+export default Hacks

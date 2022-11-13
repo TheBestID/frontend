@@ -41,13 +41,7 @@ type Props = {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data = await getVacancies({
-    value_sorted: 'price',
-    offset: 0,
-    top_number: null,
-    in_asc: true,
-  })
-
+  const data = null
   return {
     props: { data },
   }
@@ -98,14 +92,15 @@ const Vacancies: NextPage<Props> = (props) => {
       )}
 
       <div className="flex flex-col items-center lg:px-16 w-full pt-32 px-3">
+
+        <ExploreNav/>
+
         <button
           className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
           onClick={() => setIsPopupOpen(true)}
         >
           Add Vacancy
         </button>
-
-        <ExploreNav/>
 
         <main>
           {
