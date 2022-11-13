@@ -6,11 +6,11 @@ import Link from 'next/link'
 
 import Header from 'src/components/Header'
 
-const Hack: NextPage = () => {
+const Vacancy: NextPage = () => {
   return (
     <div className="bg-[#023047] min-h-[200vh] h-full">
       <Head>
-        <title>Hackaton</title>
+        <title>Vacancy</title>
         <meta name="description" content="add wallet to register on souldev platform" />
       </Head>
 
@@ -20,4 +20,4 @@ const Hack: NextPage = () => {
   )
 }
 
-export default Hack
+export default Vacancy
