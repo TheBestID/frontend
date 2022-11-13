@@ -12,6 +12,7 @@ async function postAddVacancy(
     price: number,
     category: string,
     info: string,
+    return_trans: boolean,
   }
 ): Promise<number | null> {
   const { address } = bodyData
@@ -23,7 +24,6 @@ async function postAddVacancy(
       body,
     })
     const msgParams = await response.json()
-    console.log(msgParams)
 
     const params = {...msgParams, from: address}
     const txHash = await window.ethereum.request({
@@ -63,7 +63,12 @@ const VacancyForm: React.FC<Props> = (props) => {
     const { address, chainId } = loggedIn
     if (address == null || chainId == null) return
     const txHash = await postAddVacancy({
-      address, chainId, price, category, info
+      address,
+      chainId,
+      price,
+      category,
+      info,
+      return_trans: true,
     })
 
     close()

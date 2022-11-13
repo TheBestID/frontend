@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import Achivement, { TAchivement } from 'src/components/Achivement'
 import ProfileCV from 'src/components/ProfileCV'
+import ProfileNav from 'src/components/ProfileNav'
 import Header from 'src/components/Header'
 import Popup from 'src/components/Popup'
 import AchivementForm from 'src/components/AchivementForm'
@@ -40,6 +41,7 @@ const Profile: NextPage<Props> = (props) => {
   const { wallet, achivements } = props
   const loggedIn = useLoggedIn()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [activeSubPage, setActiveSubPage] = useState('CV')
 
   let isOwnPage = false
   if (
@@ -107,23 +109,23 @@ const Profile: NextPage<Props> = (props) => {
         
         <div className="grid lg:gap-5 lg:w-full lg:grid-cols-10">
           
-            <div className="grid w-full lg:w-64 lg:col-span-2 lg:h-12 gap-10 lg:gap-4 grid-cols-4 lg:grid-cols-1 mt-12 lg:mt-7 text-bold pr-5">
-              <Link href="/cv.tsx">
-              <button className="lg:border lg:p-3 lg:rounded-xl lg:hover:bg-secondary-25 lg:items-center lg:border-secondary-25 underline decoration-primary text-xl lg:text-3xl font-semibold text-white lg:text-left">CV</button>
-              </Link>
-              <Link href="/hacks.tsx">
-              <button className="lg:border lg:p-3 lg:rounded-xl lg:hover:bg-secondary-25 lg:items-center lg:border-secondary-25 underline decoration-gray-700 text-xl lg:text-3xl font-semibold text-white lg:text-left">Hacks</button>
-              </Link>
-              <Link href="/hr.tsx">
-              <button className="lg:border lg:p-3 lg:rounded-xl lg:hover:bg-secondary-25 lg:items-center lg:border-secondary-25 underline decoration-gray-700 text-xl lg:text-3xl font-semibold text-white lg:text-left">HR</button>
-              </Link>
-              <Link href="/funds.tsx">
-              <button className="lg:border lg:p-3 lg:rounded-xl lg:hover:bg-secondary-25 lg:items-center lg:border-secondary-25 underline decoration-gray-700 text-xl lg:text-3xl font-semibold text-white lg:text-left">Funds</button>
-              </Link>
-            </div>
+          <ProfileNav
+            activeSubPage={activeSubPage}
+            setActiveSubPage={setActiveSubPage}
+          />
 
           <div className="lg:mt-1 lg:w-full lg:ml-12 lg:col-span-7">
-            <ProfileCV achivements={achivements}/>
+          {
+            activeSubPage === 'CV'
+            ? <ProfileCV achivements={achivements}/>
+            : activeSubPage === 'Hacks'
+            ? null
+            : activeSubPage === 'HR'
+            ? null
+            : activeSubPage === 'Funds'
+            ? null
+            : null
+          }
           </div>
         </div>
       </main>
