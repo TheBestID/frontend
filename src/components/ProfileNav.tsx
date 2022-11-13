@@ -3,15 +3,25 @@ import React from 'react'
 type ButtonProps = {
   children: React.ReactNode,
   onClick: Function,
+  isActive: boolean,
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, onClick } = props
+  const { children, onClick, isActive } = props
   return (
     <button
       onClick={() => onClick()}
-      className="lg:border lg:p-3 lg:rounded-xl lg:hover:bg-secondary-25 lg:items-center lg:border-secondary-25 underline decoration-gray-300 text-xl lg:text-3xl font-semibold text-white lg:text-left">
-      {children}
+      className="lg:border lg:p-3 lg:rounded-xl lg:hover:bg-secondary-25 lg:items-center lg:border-secondary-25 text-xl lg:text-3xl font-semibold lg:text-left"
+    >
+      <span
+        className={
+          isActive
+            ? 'underline decoration-primary text-white'
+            : 'underline decoration-gray-400 text-gray-400'
+        }
+      >
+        {children}
+      </span>
     </button>
   )
 }
