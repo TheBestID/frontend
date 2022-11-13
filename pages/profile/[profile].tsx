@@ -85,14 +85,14 @@ const Profile: NextPage<Props> = (props) => {
           <Image src="/download.svg" alt="Identicon" width="128" height="128" className="rounded-full h-32 w-32 mx-5 my-20"/>
         </div>
 
-        <div className="flex flex-col w-full mb-6 md:flex-row md:items-center">
-          <span className="text-2xl text-white lg:mr-6 py-2">DANILA</span>
+        <div className="gap-2 flex flex-col w-full mb-6 md:flex-row md:items-center">
+          <span className="text-2xl text-white lg:mr-6">DANILA</span>
 
           <a 
             target="_blank"
             rel="noreferrer noopener"
             href={`https://etherscan.io/address/${wallet}`}
-            className="border w-full h-12 border-primary p-1 rounded-xl pr-3 pl-3 pb-3 pt-3"
+            className="border w-full h-12 border-primary rounded-xl p-3"
           >
             <span className="text-[#fff8]">Address</span>
             <span className="text-[#fff8] px-14 underline">{wallet}</span>

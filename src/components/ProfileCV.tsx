@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import Badge from 'src/components/Badge'
 import Achivement, { TAchivement } from 'src/components/Achivement'
 
 type Props = {
@@ -63,15 +65,9 @@ const ProfileCV: React.FC<Props> = (props) => {
             </div>
 
             <div className="flex grid-cols-4 gap-2 justify-start items-center mt-1">
-            <div className="rounded-xl border border-transparent bg-secondary-25">
-              <span className="ml-2 mr-2">Solidity</span>
-            </div>
-            <div className="rounded-xl border border-transparent bg-secondary-25">
-              <span className="ml-2 mr-2">Java script</span>
-            </div>
-            <div className="rounded-xl border border-transparent bg-secondary-25">
-              <span className="ml-2 mr-2">Figma</span>
-            </div>
+              <Badge> Solidity </Badge>
+              <Badge> JavaScript </Badge>
+              <Badge> Figma </Badge>
             </div>
 
             <span className="mt-2 text-white">Help Souldev create tutorials on how to use our capabilities. https://github.com/TheBestID</span>
@@ -111,20 +107,9 @@ const ProfileCV: React.FC<Props> = (props) => {
                 </div>
 
                 <div className="flex grid-cols-2 gap-2 justify-start items-center">
-
-                  <div className="gap-py-2">
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text- lg:text-xl">Solidity</span>
-                    </div>
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text-sm lg:text-xl">Java script</span>
-                    </div>
-                  </div>
-                    
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text-sm lg:text-xl">Figma</span>
-                    </div>
-                    
+                  <Badge> Solidity </Badge>
+                  <Badge> JavaScript </Badge>
+                  <Badge> Figma </Badge>
                 </div>
           </div>
 
@@ -134,20 +119,9 @@ const ProfileCV: React.FC<Props> = (props) => {
                 </div>
 
                 <div className="flex grid-cols-2 gap-2 justify-start items-center">
-
-                  <div className="gap-py-2">
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text- lg:text-xl">Solidity</span>
-                    </div>
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text-sm lg:text-xl">Java script</span>
-                    </div>
-                  </div>
-                    
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text-sm lg:text-xl">Figma</span>
-                    </div>
-                    
+                  <Badge> Solidity </Badge>
+                  <Badge> JavaScript </Badge>
+                  <Badge> Figma </Badge>
                 </div>
           </div>
 
@@ -157,20 +131,9 @@ const ProfileCV: React.FC<Props> = (props) => {
                 </div>
 
                 <div className="flex grid-cols-2 gap-2 justify-start items-center">
-
-                  <div className="gap-py-2">
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text- lg:text-xl">Solidity</span>
-                    </div>
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text-sm lg:text-xl">Java script</span>
-                    </div>
-                  </div>
-                    
-                    <div className="rounded-xl border border-transparent bg-secondary-25">
-                      <span className="ml-2 mr-2 text-white text-sm lg:text-xl">Figma</span>
-                    </div>
-                    
+                  <Badge> Solidity </Badge>
+                  <Badge> JavaScript </Badge>
+                  <Badge> Figma </Badge>
                 </div>
           </div>
     </div>
