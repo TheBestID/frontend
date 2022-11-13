@@ -32,35 +32,21 @@ const ProfileCV: React.FC<Props> = (props) => {
 
       <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-4">
             <div className="flex justify-between">
-              <span className="text-xl font-medium text-white">Hackathon prize 
-              <Image src="/icon.png" alt="Identicon" width="16" height="16" className=""></Image>
+              <span className="text-xl font-medium text-white">
+                Hackathon prize 
+                <span className="ml-2">
+                  <Image src="/icon.png" alt="Identicon" width="16" height="16"/>
+                </span>
               </span>
               <span className="text-white text-sm">2022-2024</span>
             </div>
             <span className="text-white">Chainlink Fall 2022 Hackathon</span>
             <ul className="list-inside list-disc mt-3 text-white opacity-60">
-                <li className="">Social impact prize
-                </li>
-                <span className="ml-5">1st place</span>
-                <li className="">Grand prize</li>
-                <span className="ml-6"> Winner</span>
-            </ul>
-          </div>
-
-          <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-4">
-            <div className="flex justify-between">
-              <span className="text-xl font-medium text-white">Hackathon prize 
-              <Image src="/icon.png" alt="Identicon" width="16" height="16" className=""></Image>
-              </span>
-              <span className="text-white text-sm">2022-2024</span>
-            </div>
-            <span className="text-white">Chainlink Fall 2022 Hackathon</span>
-            <ul className="list-inside list-disc mt-3 text-white opacity-60">
-                <li className="">Social impact prize
-                </li>
-                <span className="ml-5">1st place</span>
-                <li className="">Grand prize</li>
-                <span className="ml-6"> Winner</span>
+              <li className="">Social impact prize
+              </li>
+              <span className="ml-5">1st place</span>
+              <li className="">Grand prize</li>
+              <span className="ml-6"> Winner</span>
             </ul>
           </div>
 
