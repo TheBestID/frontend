@@ -1,11 +1,83 @@
+import React, { useState, useEffect } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import Header from 'src/components/Header'
+import Card from 'src/components/Card'
 
 const Home: NextPage = () => {
+  const [vacanciesData, setVacanciesData] = useState([])
+  const [profilesData, setProfilesData] = useState([])
+  const [hacksData, setHacksData] = useState([])
+
+  useEffect(() => {
+    const MOCK_VACANCY = {
+      title: 'SoulDev Network',
+      subtitle: 'Empowering people to change the world faster',
+      children: (
+        <span className="text-white text-sm">
+          {23} vacancies | {1000} followers
+        </span>
+      ),
+      href: '/vacancy/1',
+    }
+
+    setVacanciesData([
+      MOCK_VACANCY, MOCK_VACANCY, MOCK_VACANCY, MOCK_VACANCY, 
+    ])
+
+    const MOCK_PROFILE = {
+      title: 'Artem',
+      subtitle: 'Evolution is not about going forward',
+      children: (
+        <span className="text-white text-sm">
+          Cool guy!!!
+        </span>
+      ),
+      href: '/profile/0x41c9288b78090946db0fd6d32d8cb1fefe18134b',
+    }
+
+    setProfilesData([
+      MOCK_PROFILE, MOCK_PROFILE, MOCK_PROFILE, MOCK_PROFILE,
+    ])
+
+    const MOCK_HACK = {
+      title: 'Artem',
+      subtitle: 'Evolution is not about going forward',
+      children: (
+        <span className="text-white text-sm">
+          Cool guy!!!
+        </span>
+      ),
+      href: '/profile/0x41c9288b78090946db0fd6d32d8cb1fefe18134b',
+    }
+
+    setHacksData([
+      MOCK_HACK, MOCK_HACK, MOCK_HACK, MOCK_HACK,
+    ])
+
+  }, [])
+
+  const vacanciesJsx = vacanciesData.map((vacancyData: any, i: number) => {
+    return (
+      <Card key={i} {...vacancyData}/>
+    )
+  })
+
+  const profilesJsx = profilesData.map((profileData: any, i: number) => {
+    return (
+      <Card key={i} {...profileData}/>
+    )
+  })
+
+  const hacksJsx = hacksData.map((hackData: any, i: number) => {
+    return (
+      <Card key={i} {...hackData}/>
+    )
+  })
+
   return (
     <div className="bg-[#023047] min-h-[100vh]">
       <Head>
@@ -68,79 +140,7 @@ const Home: NextPage = () => {
 
             <div className="pt-2 w-full md:px-1 px-3">
               <div className ="grid gap-4 grid-cols-1s w-full mt-6 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
-
-                 <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
-                  <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
-                    <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
-                    <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
+                  {vacanciesJsx}
                 </div>
             </div>
 
@@ -161,84 +161,12 @@ const Home: NextPage = () => {
 
             <div className="pt-2 w-full md:px-1 px-3">
               <div className ="grid gap-4 grid-cols-1s w-full mt-6 mb-6 p-4 bg-secondary-25 rounded-lg lg:gap-6 lg:grid-cols-4">
-
-                 <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
-                  <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
-                    <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
-                    <div className="border border-primary p-1 rounded-md pr-3 pl-3 pb-3 pt-3">
-                    <div className="bg-primary rounded-md h-24 w-full flex">
-                    </div>
-                    <div className="justify-center w-full flex">
-                      <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                      </div>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-white">Souldev Network</span>
-                    </div>
-                    <div className="text-center pt-2">
-                      <span className="text-[#fff7]">Empowering people to change the world faster</span>
-                    </div>
-                    <div className="text-left pt-6">
-                      <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                    </div>
-                  </div>
-
+                  {profilesJsx}
                 </div>
             </div>
 
             <div className="flex w-full pr-1 pl-1">
-                <Link href="/vacancies">
+                <Link href="/profiles">
                   <a className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
                     View all profiles
                   </a>
@@ -266,10 +194,15 @@ const Home: NextPage = () => {
                   </span>
                  </div>
 
-                 <div className="flex justify-center items-center pr-1 pl-1">
+                 <div className="gap-8 flex justify-center items-center pr-1 pl-1">
                   <Link href="/create-hack">
                     <a className="flex w-52 h-14 mt-6 mb-12 items-center text-white text-center justify-center rounded-xl border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
                       Create hackathon
+                    </a>
+                  </Link>
+                  <Link href="/hacks">
+                    <a className="flex w-52 h-14 mt-6 mb-12 items-center text-white text-center justify-center rounded-xl border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
+                      View all hackathons
                     </a>
                   </Link>
                  </div>
@@ -278,31 +211,8 @@ const Home: NextPage = () => {
 
 
                  <div className="flex w-full">
-                   <div className="flex overflow-x-auto w-full">
-
-                   {
-                   ([0, 0, 0]).map((item, i) => (
-                   <div className="min-w-[33vw]" key={i}>
-                     <div className="mr-6 border border-primary rounded-xl p-3">
-                        <div className="bg-primary rounded-md h-44 w-full flex">
-                        </div>
-                        <div className="justify-center w-full flex">
-                          <div className="flex w-3/12 aspect-square rounded-full bg-black">
-                          </div>
-                        </div>
-                        <div className="text-center pt-6">
-                          <span className="text-white">Souldev Network</span>
-                        </div>
-                        <div className="text-center pt-2">
-                          <span className="text-[#fff8]">Empowering people to change the world faster</span>
-                        </div>
-                        <div className="text-left pt-10">
-                          <span className="text-white text-sm">{23} vacancies | {1000} followers</span>
-                        </div>
-                      </div>
-                      </div>
-                    ))}
-
+                   <div className="gap-4 flex overflow-x-auto w-full">
+                      {hacksJsx}
                     </div>
                   </div>
 

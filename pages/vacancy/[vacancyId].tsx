@@ -35,7 +35,9 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params.vacancyId
-  const data = await getVacancy(id)
+  const data = await getVacancy({
+    id: Number(id),
+  })
   return {
     props: { data },
   }
@@ -54,7 +56,9 @@ const Vacancy: NextPage<Props> = (props) => {
       <Header/>
 
       <main className="pt-24">
-        {JSON.stringify(data)}
+        <span className="text-white">
+          {JSON.stringify(data)}
+        </span>
       </main>
 
     </div>

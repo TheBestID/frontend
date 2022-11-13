@@ -102,17 +102,14 @@ const Vacancies: NextPage<Props> = (props) => {
           Add Vacancy
         </button>
 
-        <main>
+        <main className ="grid gap-4 grid-cols-1s w-full mt-6 mb-6 p-4 rounded-lg lg:gap-6 lg:grid-cols-4">
           {
             Array.isArray(vacancies)
             && (
-              <div className="p-1 mt-4 bg-slate-300">
-                {vacancies.map(
-                  (vacancyData: TVacancy, i: number) =>
-                    <Vacancy key={i} data={vacancyData}/>
-                  )
-                }
-              </div>
+              vacancies.map(
+                (vacancyData: TVacancy, i: number) =>
+                  <Vacancy key={i} data={vacancyData}/>
+              )
             )
           }
         </main>
