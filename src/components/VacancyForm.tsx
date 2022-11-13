@@ -124,7 +124,7 @@ const VacancyForm: React.FC<Props> = (props) => {
         </span>
         <input
           className="ml-2 border border-primary"
-          type="number"
+          type="text"
           id="price"
           value={price}
           onChange={
@@ -132,7 +132,7 @@ const VacancyForm: React.FC<Props> = (props) => {
               setPrice(Number(
                 (e.target as HTMLInputElement)
                 .value
-              ))
+              ) || 0)
           }
         />
       </label>
