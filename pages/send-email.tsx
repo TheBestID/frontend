@@ -4,6 +4,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { BASE_URL } from 'src/constants'
+
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
 type Props = {
@@ -16,8 +18,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: { code },
   }
 }
-
-const BASE_URL = 'http://127.0.0.1:8000'
 
 async function postSendEmail(bodyData: {
   address: string,

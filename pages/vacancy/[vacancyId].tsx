@@ -4,9 +4,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Header from 'src/components/Header'
+import { BASE_URL } from 'src/constants'
 
-const BASE_URL = 'http://127.0.0.1:8000'
+import Header from 'src/components/Header'
 
 async function getVacancy(
   {...bodyData}: {

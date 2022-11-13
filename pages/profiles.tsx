@@ -3,10 +3,10 @@ import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { BASE_URL } from 'src/constants'
+
 import Header from 'src/components/Header'
 import ExploreNav from 'src/components/ExploreNav'
-
-const BASE_URL = 'http://127.0.0.1:8000'
 
 type Props = {
   data: any,

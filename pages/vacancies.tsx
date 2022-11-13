@@ -3,6 +3,8 @@ import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { BASE_URL } from 'src/constants'
+
 import Vacancy, { TVacancy } from 'src/components/Vacancy'
 import Header from 'src/components/Header'
 import ExploreNav from 'src/components/ExploreNav'
@@ -10,7 +12,6 @@ import Popup from 'src/components/Popup'
 import VacancyForm from 'src/components/VacancyForm'
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
-const BASE_URL = 'http://127.0.0.1:8000'
 
 async function getVacancies(
   {...bodyData}: {

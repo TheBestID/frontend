@@ -1,15 +1,14 @@
 import React from 'react'
 import { NextPage, GetServerSideProps } from 'next'
+import { ethers } from 'ethers'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { ethers } from 'ethers'
+import { BASE_URL } from 'src/constants'
 
 import useLoggedIn from 'src/hooks/useLoggedIn'
-
-const BASE_URL = 'http://127.0.0.1:8000'
 
 type Props = {
   code: string | null,

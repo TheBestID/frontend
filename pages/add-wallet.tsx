@@ -1,14 +1,14 @@
 import { NextPage } from 'next'
+import { ethers } from 'ethers'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { ethers } from 'ethers'
+import { BASE_URL } from 'src/constants'
 
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
-const BASE_URL = 'http://127.0.0.1:8000'
 const GITHUB_CLIENT_ID = 'ec74794a7d8786ccf463';
 
 const AddWallet: NextPage = () => {
