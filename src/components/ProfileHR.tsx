@@ -10,8 +10,9 @@ const ProfileHR: React.FC<Props> = (props) => {
 
   return (
     <div>
+
       
-      <div className="grid grid-cols-5 border bg-secondary-25 border-secondary-25 p-4 items-center rounded-md gap-4">
+      <div className="grid grid-cols-5 border border-secondary-25 p-4 items-center rounded-md gap-4">
             <button className="bg-secondary-25 p-4 rounded-md h-50 w-50 border border-secondary-25 hover:border-secondary-60 items-center">
                   <div className="text-center">
                   <Image src="/vacancy.svg" alt="Identicon" width="200" height="200" className=""/>

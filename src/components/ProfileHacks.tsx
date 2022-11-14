@@ -10,10 +10,15 @@ const ProfileHacks: React.FC<Props> = (props) => {
 
   return (
     <div>
+
       <div className="mt-6">
-        <span className="text-white text-2xl font-medium">1/5 Steps done</span>
+        <span className="text-white text-4xl text-left font-medium">Chainlink Fall 2022 Hackathon</span>
       </div>
-              <div className="border border-secondary-25 p-3 rounded-xl mt-6">
+
+      <div className="mt-10">
+        <span className="text-white text-2xl font-regular opacity-60">1/5 Steps done</span>
+      </div>
+              <div className="border border-secondary-25 p-3 rounded-xl mt-4">
 
                   <div className="grid grid-cols-5 gap-2 items-center">
                       <div className="col-span-1 bg-secondary-25 p-2 rounded-md h-20 border border-secondary-25 hover:border-secondary-60">
