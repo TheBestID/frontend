@@ -162,10 +162,10 @@ const Vacancy: NextPage<Props> = (props) => {
 
              <div className="grid grid-cols-5 items-center justify-start">
                   <div className="text-left items-center col-span-1 mt-1">
-                  <Image src="/smallchainlink.svg" alt="vacancy" width="70" height="70" className=""/>
+                  <Image src="/logo.svg" alt="vacancy" width="70" height="70" className=""/>
                   </div>
                   <div className="col-span-2 text-left">
-                    <span className="text-white text-2xl font-medium">Chainlink</span>
+                    <span className="text-white text-2xl font-medium">Souldev network</span>
                   </div>
                   <div className="col-span-2 text-left">
                     <span className="text-white text-xl font-medium opacity-70">Address</span>
@@ -205,7 +205,6 @@ const Vacancy: NextPage<Props> = (props) => {
                         <span className="text-white opacity-50 font-medium">now</span>
                         </div>
                       </div>
-
                   </div>
 
                   <div className="bg-secondary-25 grid grid-cols-1 items-center justify-center mt-2 rounded-xl h-12">
