@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
+
+import { TAchivement } from 'src/components/Achivement'
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
 const BASE_URL = 'http://127.0.0.1:8000'
@@ -9,32 +11,55 @@ async function postAddAchivement(
   {...bodyData}: {
     address: string,
     chainId: number,
-    price: number,
-    category: string,
-    info: string,
+    sbt_id: string,
+    txHash: string,
   }
 ): Promise<number | null> {
   const { address } = bodyData
   const body = JSON.stringify(bodyData)
-  const url = `${BASE_URL}/achivement/add`
+  const url = `${BASE_URL}/achievements/add`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body,
+    })
+    const res = await response.json()
+
+    return res.uid
+  } catch(e) {
+    console.log(e)
+    return null
+  }
+}
+
+async function postAddAchivementParams(
+  {...bodyData}: {
+    from_address: string,
+    to_address: string,
+    chainId: number,
+    data: TAchivement,
+  }
+): Promise<Array<string | null>> {
+  const { address } = bodyData
+  const body = JSON.stringify(bodyData)
+  const url = `${BASE_URL}/achievements/add_params`
   try {
     const response = await fetch(url, {
       method: 'POST',
       body,
     })
     const msgParams = await response.json()
-    console.log(msgParams)
+    const { transaction, sbt_id } = msgParams
 
-    const params = {...msgParams, from: address}
     const txHash = await window.ethereum.request({
       method: 'eth_sendTransaction',
-      params: [params],
+      params: [transaction],
     })
 
-    return txHash
+    return [txHash, sbt_id]
   } catch(e) {
     console.log(e)
-    return null
+    return [null, null]
   }
 }
 
@@ -46,27 +71,60 @@ const AchivementForm: React.FC<Props> = (props) => {
   const { close } = props
   const loggedIn = useLoggedIn()
   const router = useRouter()
+
+  const [company, setCompany] = useState<string>('')
+  const [position, setPosition] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [startTimestamp, setStartTimestamp] = useState<number>(Date.now())
+  const [endTimestamp, setEndTimestamp] = useState<number | null>(null)
+
   if (
     loggedIn != null && loggedIn.isAuth === false
   ) {
     router.replace('/add-wallet')
   }
-  const [info, setInfo] = useState<string>('')
-  const [price, setPrice] = useState<number>(0)
-  const [
-    category, setCategory
-  ] = useState<string>('')
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     if (loggedIn == null) return
     const { address, chainId } = loggedIn
     if (address == null || chainId == null) return
-    const txHash = await postAddAchivement({
-      address, chainId, price, category, info
+    if (
+      company === ''
+      || position === ''
+      || description === ''
+      || startTimestamp === ''
+      || endTimestamp === ''
+    ) return
+
+    const [
+      txHash, sbt_id
+    ] = await postAddAchivementParams({
+      from_address: address,
+      to_address: address,
+      chainId,
+      data: {
+        company,
+        position,
+        description,
+        startTimestamp,
+        endTimestamp
+      },
+    })
+    if (txHash == null || sbt_id == null) {
+      return
+    }
+
+    const res = await postAddAchivement({
+      address,
+      chainId,
+      txHash,
+      sbt_id,
     })
 
-    close()
+    if (typeof res === 'number') {
+      close()
+    }
   }
   return (
     <form
@@ -77,60 +135,116 @@ const AchivementForm: React.FC<Props> = (props) => {
         Input achivement details
       </h2>
       <div className="h-4 w-full"/>
-      <label htmlFor="category" className="p-1">
+
+      <label htmlFor="company" className="p-1">
         <span className="cursor-pointer">
-          category:
+          company:
         </span>
         <input
           className="ml-2 border border-primary"
           type="text"
+          id="company"
+          value={company}
+          onChange={
+            (e: React.SyntheticEvent) =>
+              setCompany(
+                (e.target as HTMLInputElement)
+                .value
+              )
+          }
+        />
+      </label>
+
+      <label htmlFor="position" className="p-1">
+        <span className="cursor-pointer">
+          position:
+        </span>
+        <input
+          className="ml-2 border border-primary"
+          type="text"
+          id="position"
+          value={position}
+          onChange={
+            (e: React.SyntheticEvent) =>
+              setPosition(
+                (e.target as HTMLInputElement)
+                .value
+              )
+          }
+        />
+      </label>
+
+      <label htmlFor="startTimestamp" className="p-1">
+        <span className="cursor-pointer">
+          started:
+        </span>
+        <input
+          className="ml-2 border border-primary"
+          type="date"
+          id="startTimestamp"
+          value={new Date(startTimestamp).toISOString().split('T')[0]}
+          onChange={
+            (e: React.SyntheticEvent) =>
+              setStartTimestamp(new Date(
+                (e.target as HTMLInputElement)
+                .value
+              ).getTime())
+          }
+        />
+      </label>
+
+      <label htmlFor="endTimestamp" className="p-1">
+        <span className="cursor-pointer">
+          ended:
+        </span>
+        <input
+          type="checkbox"
+          value={endTimestamp != null}
+          onChange={
+            () =>
+              setEndTimestamp(
+                endTimestamp == null
+                  ? Date.now()
+                  : null
+              )
+          }
+        />
+
+        {endTimestamp != null && (
+          <input
+            className="ml-2 border border-primary"
+            type="date"
+            id="endTimestamp"
+            value={new Date(endTimestamp).toISOString().split('T')[0]}
+            onChange={
+              (e: React.SyntheticEvent) =>
+                setEndTimestamp(new Date(
+                  (e.target as HTMLInputElement)
+                  .value
+                ).getTime())
+            }
+          />
+        )}
+      </label>
+
+      <label htmlFor="description" className="p-1">
+        <span className="cursor-pointer">
+          description:
+        </span>
+        <textarea
+          className="ml-2 border border-primary"
           id="category"
-          value={category}
+          value={description}
           onChange={
             (e: React.SyntheticEvent) =>
-              setCategory(
-                (e.target as HTMLInputElement)
+              setDescription(
+                (e.target as HTMLTextAreaElement)
                 .value
               )
           }
         />
       </label>
-      <label htmlFor="info" className="p-1">
-        <span className="cursor-pointer">
-          info:
-        </span>
-        <input
-          className="ml-2 border border-primary"
-          type="text"
-          id="info"
-          value={info}
-          onChange={
-            (e: React.SyntheticEvent) =>
-              setInfo(
-                (e.target as HTMLInputElement)
-                .value
-              )
-          }
-        />
-      </label>
-      <label htmlFor="price" className="p-1">
-        <span className="cursor-pointer">
-          price ETH:
-        </span>
-        <input
-          className="ml-2 border border-primary"
-          type="number"
-          id="price"
-          value={price}
-          onChange={
-            (e: React.SyntheticEvent) =>
-              setPrice(Number(
-                (e.target as HTMLInputElement)
-                .value
-              ))
-          }
-        />
-      </label>
+
       <button
         className="p-1 rounded-lg border border-primary justify-self-end"
       >

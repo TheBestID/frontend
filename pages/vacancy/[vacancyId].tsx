@@ -45,6 +45,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Vacancy: NextPage<Props> = (props) => {
   const { data } = props
+  const { owner_uuid, price, category, info, id } = data
+  const dollars = price * 1200;
+  const candidates = 3
+  const created = 'now'
 
   return (
     <div className="bg-[#023047] min-h-[200vh] h-full">
@@ -56,9 +60,6 @@ const Vacancy: NextPage<Props> = (props) => {
       <Header/>
 
       <main className="pt-44 px-6">
-        <span className="text-white">
-          {JSON.stringify(data)}
-        </span>
 
         <div className="grid w-full grid-cols-4">
           
@@ -158,7 +159,7 @@ const Vacancy: NextPage<Props> = (props) => {
 
           <div className="flex justify-start col-span-1">
             <div className="">
-             <div className="flex w-full text-white font-semibold text-3xl mb-4">Senior Frontend developer</div>
+             <div className="flex w-full text-white font-semibold text-3xl mb-4">{category}</div>
 
              <div className="grid grid-cols-5 items-center justify-start">
                   <div className="text-left items-center col-span-1 mt-1">
@@ -193,16 +194,16 @@ const Vacancy: NextPage<Props> = (props) => {
                       <div className="text-left col-span-1 bg-secondary-25 p-3 rounded-md h-24">
                         <div className="grid-cols-1 grid">
                         <span className="text-white opacity-50 font-medium">Price</span>
-                        <span className="text-white text-xl font-medium">1578,58 SOL</span>
-                        <span className="text-white opacity-50 font-medium">23 000 $</span>
+                        <span className="text-white text-xl font-medium">{price} ETH</span>
+                        <span className="text-white opacity-50 font-medium">{dollars} $</span>
                         </div>
                       </div>
 
                       <div className="text-left col-span-1 bg-secondary-25 p-3 rounded-md h-24">
                         <div className="grid-cols-1 grid">
                         <span className="text-white opacity-50 font-medium">Candidates</span>
-                        <span className="text-white text-xl font-medium">3</span>
-                        <span className="text-white opacity-50 font-medium">now</span>
+                        <span className="text-white text-xl font-medium">{candidates}</span>
+                        <span className="text-white opacity-50 font-medium">{created}</span>
                         </div>
                       </div>
                   </div>

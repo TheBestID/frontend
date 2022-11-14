@@ -15,7 +15,7 @@ async function checkAddress(
       body,
     })
     const data = await response.json()
-    return data.uid
+    return data.uuid
   } catch(e) {
     return null
   }

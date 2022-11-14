@@ -4,6 +4,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { BASE_URL } from 'src/constants'
+
 import Achivement, { TAchivement } from 'src/components/Achivement'
 import ProfileCV from 'src/components/ProfileCV'
 import ProfileHacks from 'src/components/ProfileHacks'
@@ -20,6 +22,26 @@ type Props = {
   achivements: Array<TAchivement>,
 }
 
+async function postGetAchivements(bodyData: {
+  address: string,
+  chainId: number,
+}) {
+  const body = JSON.stringify(bodyData)
+  const url = `${BASE_URL}/achievements/get_created_achievement`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body,
+    })
+    const res = await response.json()
+
+    return res.data
+  } catch(e) {
+    console.log(e)
+    return null
+  }
+}
+
 
 const MOCK_GLE = {
   startTimestamp: '13 nov 2020',
@@ -32,7 +54,6 @@ const MOCK_GLE = {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const wallet = context?.params?.profile
   const achivements = [
-    MOCK_GLE, MOCK_GLE, MOCK_GLE, MOCK_GLE,
   ]
   return {
     props: { wallet, achivements },
@@ -41,10 +62,26 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 
 const Profile: NextPage<Props> = (props) => {
-  const { wallet, achivements } = props
+  const { wallet, achivements: preloadedAchivements } = props
   const loggedIn = useLoggedIn()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [activeSubPage, setActiveSubPage] = useState('CV')
+
+  const [achivements, setAchivements] = useState(preloadedAchivements)
+
+  useEffect(() => {
+    // TODO: remove this as this data is irrelevant
+    if (loggedIn == null || loggedIn.isAuth == false) {
+      return () => {}
+    }
+    const { address, chainId } = loggedIn
+    // till here
+
+    postGetAchivements({
+      address: wallet,
+      chainId,
+    }).then(res => setAchivements(res))
+  }, [loggedIn])
 
   let isOwnPage = false
   if (
