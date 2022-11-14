@@ -10,7 +10,9 @@ const ProfileFunds: React.FC<Props> = (props) => {
 
   return (
     <div>
-      My funds
+        <div className="mt-6">
+          <span className="text-white text-3xl font-medium">Coming soon</span>
+        </div>
     </div>
   )
 }

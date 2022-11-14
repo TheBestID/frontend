@@ -67,7 +67,7 @@ const Companies: NextPage = () => {
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Souldev Network</span>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-2">15</span>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">25 000 $</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">20,28 ETH</span>
                     <span className="text-left font-regular text-2xl text-white ">Coming soon</span>
                 </div>
 
@@ -77,7 +77,7 @@ const Companies: NextPage = () => {
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Solana</span>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-2">20</span>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">43 000 $</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">1767,15 SOL</span>
                     <span className="text-left font-regular text-2xl text-white ">Coming soon</span>
                 </div>
 
@@ -87,7 +87,7 @@ const Companies: NextPage = () => {
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Polygon</span>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-2">13</span>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">30 000 $</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">27249 MATIC</span>
                     <span className="text-left font-regular text-2xl text-white ">Coming soon</span>
                 </div>
 
@@ -97,7 +97,7 @@ const Companies: NextPage = () => {
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Chainlink</span>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-2">17</span>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">27 500 $</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">4041,2 LINK</span>
                     <span className="text-left font-regular text-2xl text-white ">Coming soon</span>
                 </div>
           </div>

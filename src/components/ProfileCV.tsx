@@ -59,7 +59,9 @@ const ProfileCV: React.FC<Props> = (props) => {
       <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-4">
             <div className="flex justify-between">
               <span className="text-xl font-medium text-white">Build an anti-cheat tool
-              <Image src="/icon.png" alt="Identicon" width="16" height="16" className=""></Image>
+              <span className="ml-2">
+                  <Image src="/icon.png" alt="Identicon" width="16" height="16"/>
+                </span>
               </span>
               <span className="text-white text-sm">10 November 2022</span>
             </div>
@@ -119,9 +121,9 @@ const ProfileCV: React.FC<Props> = (props) => {
                 </div>
 
                 <div className="flex grid-cols-2 gap-2 justify-start items-center">
-                  <Badge> Solidity </Badge>
-                  <Badge> JavaScript </Badge>
-                  <Badge> Figma </Badge>
+                  <Badge> English C1 </Badge>
+                  <Badge> Spanish B2 </Badge>
+                  <Badge> Chinese A1 </Badge>
                 </div>
           </div>
 
@@ -131,9 +133,9 @@ const ProfileCV: React.FC<Props> = (props) => {
                 </div>
 
                 <div className="flex grid-cols-2 gap-2 justify-start items-center">
-                  <Badge> Solidity </Badge>
-                  <Badge> JavaScript </Badge>
-                  <Badge> Figma </Badge>
+                  <Badge> Basketball </Badge>
+                  <Badge> Crossfit </Badge>
+                  <Badge> Ballroom dancing </Badge>
                 </div>
           </div>
     </div>
