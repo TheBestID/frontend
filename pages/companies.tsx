@@ -53,26 +53,56 @@ const Companies: NextPage = () => {
 
           <ExploreNav/>
 
+          <div className="grid w-full grid-cols-4 gap-2 items-center mt-12">
+                      <div className="col-span-3 border border-secondary-25 p-4 rounded-xl">
+                        <span className="text-white opacity-50 font-regular">Add team members - address avatar or username</span>
+                      </div>
+                      <div className="col-span-1 bg-secondary-25 rounded-xl hover:bg-secondary-60 p-4 text-center mr-6">
+                        <span className="text-white text-xl text-center">Send invite</span>
+                      </div>
+                       <div className="col-span-2"></div>
+          </div>
+
           <div className="grid w-full grid-cols-12 mt-12 mb-2">
             <span className="text-left opacity-60 font-regular text-md text-white lg:col-span-4 lg:ml-4">Company</span>
             <span className="text-left opacity-60 font-regular text-md text-white lg:col-span-2">All vacancies</span>
             <span className="text-left opacity-60 font-regular text-md text-white lg:col-span-1">Floor price</span>
           </div>
+        
 
           <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full pt-12">
 
                 <div className="grid w-full grid-cols-12 items-center">
-                    <div className="border border-secondary-25 p-7 rounded-xl items-center w-28 h-28 ml-3">
+                    <div className="border border-secondary-25 p-7 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
                       <Image src="/logo.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Souldev Network</span>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-2">15</span>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">20,28 ETH</span>
-                    <span className="text-left font-regular text-2xl text-white ">Coming soon</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-2">20,28 ETH</span>
+                    <Link href="/vacancy/1">
+                    <button className="border border-secondary-25 p-3 rounded-xl items-center w-28 h-28 ml-3">
+                      <Image src="/vacancy.svg" alt="Identicon" width="90" height="90" className="lg:col-span-1 border-2"></Image>
+                    </button>
+                    </Link>
+                    <Link href="/vacancy/1">
+                    <button className="border border-secondary-25 p-3 rounded-xl items-center w-28 h-28 ml-3">
+                      <Image src="/vacancy.svg" alt="Identicon" width="90" height="90" className="lg:col-span-1 border-2"></Image>
+                    </button>
+                    </Link>
+                    <Link href="/vacancy/1">
+                    <button className="border border-secondary-25 p-3 rounded-xl items-center w-28 h-28 ml-3">
+                      <Image src="/vacancy.svg" alt="Identicon" width="90" height="90" className="lg:col-span-1 border-2"></Image>
+                    </button>
+                    </Link>
+                    <Link href="/vacancy/1">
+                    <button className="border border-secondary-25 p-3 rounded-xl items-center w-28 h-28 ml-3">
+                      <Image src="/vacancy.svg" alt="Identicon" width="90" height="90" className="lg:col-span-1 border-2"></Image>
+                    </button>
+                    </Link>
                 </div>
 
                 <div className="grid w-full grid-cols-12 items-center mt-12">
-                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3">
+                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
                       <Image src="/solana.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Solana</span>
@@ -82,7 +112,7 @@ const Companies: NextPage = () => {
                 </div>
 
                 <div className="grid w-full grid-cols-12 items-center mt-12">
-                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3">
+                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
                       <Image src="/polygon.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Polygon</span>
@@ -92,10 +122,20 @@ const Companies: NextPage = () => {
                 </div>
 
                 <div className="grid w-full grid-cols-12 items-center mt-12 mb-12">
-                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3">
+                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
                       <Image src="/chainlink.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Chainlink</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-2">17</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">4041,2 LINK</span>
+                    <span className="text-left font-regular text-2xl text-white ">Coming soon</span>
+                </div>
+
+                <div className="grid w-full grid-cols-12 items-center mb-12">
+                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
+                      <Image src="/filecoin.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
+                    </div>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">Filecoin</span>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-2">17</span>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">4041,2 LINK</span>
                     <span className="text-left font-regular text-2xl text-white ">Coming soon</span>

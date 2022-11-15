@@ -72,12 +72,16 @@ const Header: React.FC<Props> = () => {
           <div className="border-b border-primary"></div>
             <div className="grid grid-cols-6 items-center gap-10 mt-3">
               <div className="col-span-2"></div>
+              <Link href="/vacancies">
               <button className="col-span-1">
                   <span className="text-white opacity-80 hover:opacity-100 text-2xl font-medium text-center">Explore</span>
               </button>
+              </Link>
+              <Link href="/profile/4">
               <button className="col-span-1">
                   <span className="text-white opacity-80 hover:opacity-100 text-2xl font-medium text-center">My Profile</span>
               </button>
+              </Link>
               <div className=""></div>
             </div>
         </div>

@@ -36,7 +36,9 @@ const Hacks: NextPage<Props> = (props) => {
         <ExploreNav/>
 
         <main>
-          hacks go here
+          <div className="mt-24">
+            <span className="text-left text-white text-2xl">Hacks is coming soon</span>
+          </div>
         </main>
 
       </div>

@@ -36,7 +36,9 @@ const Profiles: NextPage<Props> = (props) => {
         <ExploreNav/>
 
         <main>
-          profiles go here
+          <div className="mt-24">
+            <span className="text-left text-white text-2xl">Profiles is coming soon</span>
+          </div>
         </main>
 
       </div>
