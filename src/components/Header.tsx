@@ -66,8 +66,20 @@ const Header: React.FC<Props> = () => {
       </div>
 
       { isMenuOpen && (
-        <div className="h-10 w-full transition-all duration-500 ">
-          hi
+
+        
+        <div className="h-14 w-full transition-all duration-500">
+          <div className="border-b border-primary"></div>
+            <div className="grid grid-cols-6 items-center gap-10 mt-3">
+              <div className="col-span-2"></div>
+              <button className="col-span-1">
+                  <span className="text-white opacity-80 hover:opacity-100 text-2xl font-medium text-center">Explore</span>
+              </button>
+              <button className="col-span-1">
+                  <span className="text-white opacity-80 hover:opacity-100 text-2xl font-medium text-center">My Profile</span>
+              </button>
+              <div className=""></div>
+            </div>
         </div>
       )}
 
