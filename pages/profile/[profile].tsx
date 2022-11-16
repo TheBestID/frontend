@@ -136,7 +136,7 @@ const Profile: NextPage<Props> = (props) => {
             <span className="text-[#fff8]">Address</span>
             <span className="text-[#fff8] px-14 underline">{wallet}</span>
           </a>
-          <button className="h-12 w-1/5 p-2 rounded-xl border border-primary hover:bg-primary font-medium items-center justify-center">
+          <button className="h-12 w-1/5 p-2 rounded-xl border-2 border-primary hover:bg-primary font-medium items-center justify-center">
             <div className="text-center">
                <span className="text-white text-xl">Add wallet</span>
             </div>
