@@ -93,6 +93,7 @@ const Vacancies: NextPage<Props> = (props) => {
       )}
 
       <div className="flex flex-col items-center lg:px-16 w-full pt-32 px-3">
+        
 
         <ExploreNav/>
 
@@ -104,6 +105,7 @@ const Vacancies: NextPage<Props> = (props) => {
         </button>
 
         <main className ="grid gap-4 grid-cols-1s w-full mt-6 mb-6 p-4 rounded-lg lg:gap-6 lg:grid-cols-4">
+          
           {
             Array.isArray(vacancies)
             && (

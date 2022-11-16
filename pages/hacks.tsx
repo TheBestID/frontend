@@ -32,11 +32,25 @@ const Hacks: NextPage<Props> = (props) => {
 
       <Header/>
 
-      <div className="flex flex-col items-center lg:px-16 w-full pt-32 px-3">
+      <div className="flex flex-col lg:px-16 w-full pt-32 px-3">
         <ExploreNav/>
 
         <main>
-          <div className="mt-24">
+        <div className="grid w-full grid-cols-4 gap-2 items-center mt-12">
+                      <div className="col-span-3 border border-secondary-25 p-4 rounded-xl hover:border-secondary-60">
+                        <span className="text-white opacity-50 font-regular">Search by hackathons</span>
+                      </div>
+                      <div className="col-span-1 bg-secondary-25 rounded-xl border border-secondary-25 hover:border-secondary-60 p-4 text-center">
+                          <span className="text-white text-xl text-center col-span-3">All Blockchains
+                          <span className="ml-6">
+                            <Image src="/galka.svg" alt="Identicon" width="20" height="20" className=""></Image>
+                          </span>
+                          </span>
+                      </div>
+                      <div className="col-span-2"></div>
+          </div>
+          
+          <div className="mt-24 ">
             <span className="text-left text-white text-2xl">Hacks is coming soon</span>
           </div>
         </main>

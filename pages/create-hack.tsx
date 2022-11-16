@@ -62,15 +62,15 @@ const Hack: NextPage = () => {
 
             <div className="grid items-center grid-cols-3 lg:gap-32 gap-4 mt-6">
             <button className="flex items-center">
-              <Image alt="solana" src="/solana.svg" width="130" height="130"></Image>
+              <Image alt="solana" src="/solana.svg" width="150" height="150"></Image>
             </button>
 
             <button className="flex items-center">
-              <Image alt="polygon" src="/polygon.svg" width="130" height="130"></Image>
+              <Image alt="polygon" src="/polygon.svg" width="150" height="150"></Image>
             </button>
 
             <button className="flex items-cente">
-              <Image alt="near" src="/near.svg" width="130" height="130"></Image>
+              <Image alt="near" src="/&&&.svg" width="130" height="130"></Image>
             </button>
             </div>
 
@@ -97,7 +97,7 @@ const Hack: NextPage = () => {
 
             <div className="ml-5">
                 <div className="text-white text-2xl opacity-50 text-left">Step 1</div>
-                <div className="flex text-white text-xl text-left mr-10 mt-4">Conect your wallet to the network where you want to create a hacktahon.</div>
+                <div className="flex text-white text-xl text-left mr-10 mt-4">Conect your wallet to the network where you want to create a hackathon.</div>
                 <div className="w-80 mt-6 lg:w-full">
                   <Image alt="wallets" src="/metamask.svg" width="394" height="311" className=""></Image>
                 </div>

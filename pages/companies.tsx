@@ -54,13 +54,17 @@ const Companies: NextPage = () => {
           <ExploreNav/>
 
           <div className="grid w-full grid-cols-4 gap-2 items-center mt-12">
-                      <div className="col-span-3 border border-secondary-25 p-4 rounded-xl">
-                        <span className="text-white opacity-50 font-regular">Add team members - address avatar or username</span>
+                      <div className="col-span-3 border border-secondary-25 p-4 rounded-xl hover:border-secondary-60">
+                        <span className="text-white opacity-50 font-regular">Search by companies</span>
                       </div>
-                      <div className="col-span-1 bg-secondary-25 rounded-xl hover:bg-secondary-60 p-4 text-center mr-6">
-                        <span className="text-white text-xl text-center">Send invite</span>
+                      <div className="col-span-1 bg-secondary-25 rounded-xl border border-secondary-25 hover:border-secondary-60 p-4 text-center">
+                          <span className="text-white text-xl text-center col-span-3">All Blockchains
+                          <span className="ml-6">
+                            <Image src="/galka.svg" alt="Identicon" width="20" height="20" className=""></Image>
+                          </span>
+                          </span>
                       </div>
-                       <div className="col-span-2"></div>
+                      <div className="col-span-2"></div>
           </div>
 
           <div className="grid w-full grid-cols-12 mt-12 mb-2">

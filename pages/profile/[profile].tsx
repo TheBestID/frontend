@@ -118,12 +118,14 @@ const Profile: NextPage<Props> = (props) => {
       <main className="flex items-center flex-col mr-4 lg:mr-8 ml-4 lg:ml-8 pt-14">
 
         
-        <div className="rounded-md w-full bg-primary h-44 mt-16 mb-12">
-          <Image src="/download.svg" alt="Identicon" width="128" height="128" className="rounded-full h-32 w-32 mx-5 my-20"/>
+        <div className="rounded-2xl w-full bg-[#FFB703] h-60 mt-16 mb-24">
+          <div className="mt-40 ml-8">
+          <Image src="/danila.svg" alt="Identicon" width="128" height="128" className="rounded-full h-32 w-32 mx-5 my-20"/>
+          </div>
         </div>
 
         <div className="gap-2 flex flex-col w-full mb-6 md:flex-row md:items-center">
-          <span className="text-2xl text-white lg:mr-6">DANILA</span>
+          <span className="text-2xl text-white font-medium ml-2 lg:mr-6">BOB</span>
 
           <a 
             target="_blank"
