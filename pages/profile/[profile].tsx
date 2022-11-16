@@ -124,18 +124,23 @@ const Profile: NextPage<Props> = (props) => {
           </div>
         </div>
 
-        <div className="gap-2 flex flex-col w-full mb-6 md:flex-row md:items-center">
+        <div className="gap-10 flex flex-col w-full mb-6 md:flex-row items-center">
           <span className="text-2xl text-white font-medium ml-2 lg:mr-6">BOB</span>
 
           <a 
             target="_blank"
             rel="noreferrer noopener"
             href={`https://etherscan.io/address/${wallet}`}
-            className="border w-full h-12 border-primary rounded-xl p-3"
+            className="border w-3/4 h-12 border-primary rounded-xl p-3"
           >
             <span className="text-[#fff8]">Address</span>
             <span className="text-[#fff8] px-14 underline">{wallet}</span>
           </a>
+          <button className="h-12 w-1/5 p-2 rounded-xl border border-primary hover:bg-primary font-medium items-center justify-center">
+            <div className="text-center">
+               <span className="text-white text-xl">Add wallet</span>
+            </div>
+          </button>
         </div>
 
         {isOwnPage && (
