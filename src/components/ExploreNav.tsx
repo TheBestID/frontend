@@ -39,7 +39,7 @@ const ExploreNav: React.FC<Props> = (props) => {
 
   return (
     <nav className="grid w-full grid-cols-2 mt-12 text-bold lg:grid-cols-8">
-      <Option href="/openings">
+      <Option href="/vacancies">
         Vacancies
       </Option>
       <Option href="/companies">
