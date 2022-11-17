@@ -52,7 +52,7 @@ const ProfileNav: React.FC<Props> = (props) => {
         onClick={() => {setActiveSubPage('HR')}}
         isActive={activeSubPage === 'HR'}
       >
-        HR
+        Jobs
       </Button>
       <Button
         onClick={() => {setActiveSubPage('Funds')}}

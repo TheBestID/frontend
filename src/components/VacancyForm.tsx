@@ -79,7 +79,7 @@ const VacancyForm: React.FC<Props> = (props) => {
       className="px-4 flex flex-col h-full w-full justify-center"
     >
       <h2 className="text-lg font-bold">
-        Input vacancy details
+        Input job details
       </h2>
       <div className="h-4 w-full"/>
       <label htmlFor="category" className="p-1">

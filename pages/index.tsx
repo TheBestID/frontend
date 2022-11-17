@@ -147,7 +147,7 @@ const Home: NextPage = () => {
             <div className="flex w-full pr-1 pl-1">
                 <Link href="/vacancies">
                   <a className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
-                    View all vacancies
+                    View all openings
                   </a>
                 </Link>
             </div>

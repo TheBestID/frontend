@@ -42,7 +42,7 @@ const Companies: NextPage = () => {
   return (
     <div className="bg-[#023047] min-h-[200vh] h-full">
       <Head>
-        <title>Vacancies</title>
+        <title>Openings</title>
         <meta name="description" content="explore all vacancies on Souldev network"/>
       </Head>
 
@@ -69,7 +69,7 @@ const Companies: NextPage = () => {
 
           <div className="grid w-full grid-cols-12 mt-12 mb-2">
             <span className="text-left opacity-60 font-regular text-md text-white lg:col-span-4 lg:ml-4">Company</span>
-            <span className="text-left opacity-60 font-regular text-md text-white lg:col-span-2">All vacancies</span>
+            <span className="text-left opacity-60 font-regular text-md text-white lg:col-span-2">All openings</span>
             <span className="text-left opacity-60 font-regular text-md text-white lg:col-span-1">Floor price</span>
           </div>
         

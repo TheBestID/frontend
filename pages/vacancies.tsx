@@ -98,10 +98,10 @@ const Vacancies: NextPage<Props> = (props) => {
         <ExploreNav/>
 
         <button
-          className="rounded-xl w-32 h-12 text-white bg-secondary-25 mt-6"
+          className="rounded-xl w-44 h-12 text-white bg-secondary-25 mt-6"
           onClick={() => setIsPopupOpen(true)}
         >
-          Add Vacancy
+          Add job opening
         </button>
 
         <main className ="grid gap-4 grid-cols-1s w-full mt-6 mb-6 p-4 rounded-lg lg:gap-6 lg:grid-cols-4">
