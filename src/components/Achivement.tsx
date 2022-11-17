@@ -26,7 +26,7 @@ const Achivement: React.FC<Props> = (props) => {
   const start = (new Date(startTimestamp)).toString()
   const end = endTimestamp == null
     ? 'now'
-    : (new Date(endTimestamp)).toString()
+    : (new Date(endTimestamp)).toLocaleString()
 
   return (
     <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-6">
