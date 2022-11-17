@@ -34,7 +34,7 @@ type Props = {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.params.vacancyId
+  const id = context.params.jobId
   const data = await getVacancy({
     id: Number(id),
   })
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Vacancy: NextPage<Props> = (props) => {
   const { data } = props
-  const { owner_uuid, price, category, info, id } = data
+  const { owner_uuid, price, category, info, id } = data || {}
   const dollars = price * 1200;
   const candidates = 3
   const created = 'now'
@@ -209,7 +209,7 @@ const Vacancy: NextPage<Props> = (props) => {
                   </div>
 
                   <div className="bg-secondary-25 grid grid-cols-1 items-center justify-center mt-2 rounded-xl h-12">
-                    <span className="text-white text-center opacity-70 text-2xl font-semibold hover:opacity-100">Join vacancy</span>
+                    <span className="text-white text-center opacity-70 text-2xl font-semibold hover:opacity-100">Join company</span>
                   </div>
                   <div className="border border-secondary-25  grid grid-cols-1 items-center justify-center mt-2 rounded-xl h-12 hover:border-secondary-60">
                     <span className="text-white text-center opacity-70 text-2xl font-semibold">Referral link</span>

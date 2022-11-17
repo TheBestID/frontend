@@ -51,7 +51,7 @@ const Hacks: NextPage<Props> = (props) => {
           </div>
           
           <div className="mt-24 ">
-            <span className="text-left text-white text-2xl">Hacks is coming soon</span>
+            <span className="text-left text-white text-2xl">Hacks are coming soon</span>
           </div>
         </main>
 

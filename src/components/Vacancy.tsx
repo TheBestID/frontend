@@ -22,14 +22,14 @@ const Vacancy: React.FC<Props> = (props) => {
     category, owner_uuid, price, timestamp, id,
   } = data
 
-  const datePosted = (new Date(timestamp)).toLocaleString()
+  const datePosted = (new Date(timestamp)).toUTCString()
 
   return (
 
     <Card
       title={category || 'no category'}
       subtitle={`${price}$`}
-      href={`/vacancy/${id}`}
+      href={`/job/${id}`}
     >
       <span className="text-white">
         {datePosted}

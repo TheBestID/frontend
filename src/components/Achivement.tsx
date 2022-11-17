@@ -23,10 +23,10 @@ const Achivement: React.FC<Props> = (props) => {
     description,
   } = data
 
-  const start = (new Date(startTimestamp)).toLocaleString()
+  const start = (new Date(startTimestamp)).toUTCString()
   const end = endTimestamp == null
     ? 'now'
-    : (new Date(endTimestamp)).toLocaleString()
+    : (new Date(endTimestamp)).toUTCString()
 
   return (
     <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-6">

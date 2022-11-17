@@ -37,7 +37,7 @@ const Profiles: NextPage<Props> = (props) => {
 
         <main>
           <div className="mt-24">
-            <span className="text-left text-white text-2xl">Profiles is coming soon</span>
+            <span className="text-left text-white text-2xl">Avatars are coming soon</span>
           </div>
         </main>
 
