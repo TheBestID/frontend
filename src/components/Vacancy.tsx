@@ -22,7 +22,7 @@ const Vacancy: React.FC<Props> = (props) => {
     category, owner_uuid, price, timestamp, id,
   } = data
 
-  const datePosted = (new Date(timestamp)).toString()
+  const datePosted = (new Date(timestamp)).toLocaleString()
 
   return (
 
