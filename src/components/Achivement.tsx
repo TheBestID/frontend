@@ -23,7 +23,7 @@ const Achivement: React.FC<Props> = (props) => {
     description,
   } = data
 
-  const start = (new Date(startTimestamp)).toString()
+  const start = (new Date(startTimestamp)).toLocaleString()
   const end = endTimestamp == null
     ? 'now'
     : (new Date(endTimestamp)).toLocaleString()
