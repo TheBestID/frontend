@@ -23,7 +23,7 @@ const ProfileFunds: React.FC<Props> = (props) => {
                   </div>
                   <div className="grid grid-cols-5 items-center justify-start">
                       <div className="text-left items-center col-span-1 mt-1">
-                      <Image src="/danila.svg" alt="vacancy" width="40" height="40" className=" rounded-full"/>
+                      <Image src="/danila.svg" alt="job opening" width="40" height="40" className=" rounded-full"/>
                       </div>
                       <div className="col-span-3 text-left items-center">
                         <span className="text-white text-md ml-2 font-regular opacity-60">Bob</span>
