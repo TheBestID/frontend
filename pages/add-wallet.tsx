@@ -125,27 +125,46 @@ const AddWallet: NextPage = () => {
     */
   } else if (loggedIn !== null) {
     const { address, balance } = loggedIn
-    pJsx = (
-      <>
-        <h1
-          className="text-primary font-bold text-[4rem]"
-        >
-          Attached successfully
-        </h1>
-        <p className="text-white text-lg">
-          address:&nbsp;<a 
-            target="_blank"
-            rel="noreferrer noopener"
-            href={`https://etherscan.io/address/${address}`}
-            className="text-primary"
+    pJsx = wallet === 'metamask'
+      ? (
+        <>
+          <h1
+            className="text-primary font-bold text-[4rem]"
           >
-            {address}
-          </a>
-          {' '}
-          balance:&nbsp;{ethers.utils.formatEther(balance)}&nbsp;ETH
-        </p>
-      </>
-    )
+            Attached successfully
+          </h1>
+          <p className="text-white text-lg">
+            address:&nbsp;<a 
+              target="_blank"
+              rel="noreferrer noopener"
+              href={`https://etherscan.io/address/${address}`}
+              className="text-primary"
+            >
+              {address}
+            </a>
+            {' '}
+            balance:&nbsp;{ethers.utils.formatEther(balance)}&nbsp;ETH
+          </p>
+        </>
+      ) : (
+        <>
+          <h1
+            className="text-primary font-bold text-[4rem]"
+          >
+            Attached successfully
+          </h1>
+          <p className="text-white text-lg">
+            address:&nbsp;<a 
+              target="_blank"
+              rel="noreferrer noopener"
+              href={`https://explorer.testnet.near.org/accounts/${address}`}
+              className="text-primary"
+            >
+              {address}
+            </a>
+          </p>
+        </>
+      )
     router.replace(`/profile/${address}`)
   }
 

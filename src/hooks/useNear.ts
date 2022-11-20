@@ -39,11 +39,11 @@ export default function useNear(wallet) {
 
       let uid
 
-      const chainId = 0
       const blockchain = EBlockchain.NEAR
+      const chainId = 0
       try {
         uid = await checkAddress({
-          address, chainId, blockchain,
+          address, chainId, blockchain
         })
       } catch(e) { }
       setRes({

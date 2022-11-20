@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { BASE_URL } from 'src/constants'
 
 import useLoggedIn from 'src/hooks/useLoggedIn'
+import postMsgParams from 'src/utils/userMessageParams'
 
 type Props = {
   code: string | null,
@@ -22,39 +23,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const email_token = context?.query?.email_token || null
   return {
     props: { code, email, email_token, },
-  }
-}
-
-async function postMsgParams(
-  {...bodyData}: {
-    address: string,
-    chainId: string,
-    github_token: string,
-    hash_email: string,
-    email_token: string,
-  }
-): Promise<number | null> {
-  const { address } = bodyData
-  const body = JSON.stringify(bodyData)
-  const url = `${BASE_URL}/user/msg_params`
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body,
-    })
-    const msgParams = await response.json()
-    console.log(msgParams)
-
-    const params = {...msgParams, from: address}
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [params],
-    })
-
-    return txHash
-  } catch(e) {
-    console.log(e)
-    return null
   }
 }
 

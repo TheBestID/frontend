@@ -45,7 +45,7 @@ export default function useMetamask(wallet) {
       const blockchain = EBlockchain.ETH
       try {
         uid = await checkAddress({
-          address, chainId, blockchain,
+          address, chainId, blockchain
         })
       } catch(e) { }
       setRes({
