@@ -2,9 +2,8 @@ import {
   useState, useEffect,
 } from 'react'
 
-import checkAddress, {
-  EBlockchain
-} from 'src/utils/checkAddress'
+import checkAddress from 'src/utils/checkAddress'
+import { EBlockchain } from 'src/types'
 
 type TAddress = string
 type TChainId = number
@@ -16,6 +15,7 @@ export type TMetamaskWalletInfo = {
   balance: TBalance,
   chainId: TChainId,
   uid: TUid,
+  isAuth: boolean,
 }
 
 export default function useMetamask(wallet) {
@@ -53,6 +53,7 @@ export default function useMetamask(wallet) {
         balance,
         chainId,
         uid: typeof uid === 'number' ? uid : null,
+        isAuth: typeof uid === 'number',
       })
     }
     fn()

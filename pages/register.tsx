@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import { ethers } from 'ethers'
 import Head from 'next/head'
@@ -10,6 +10,8 @@ import { BASE_URL } from 'src/constants'
 
 import useLoggedIn from 'src/hooks/useLoggedIn'
 import postMsgParams from 'src/utils/userMessageParams'
+import { EBlockchain } from 'src/types'
+import { WalletContext } from 'src/contexts/WalletContext'
 
 type Props = {
   code: string | null,
@@ -53,6 +55,8 @@ const Register: NextPage<Props> = (props) => {
   const router = useRouter()
   const { code, email, email_token } = props
   const loggedIn = useLoggedIn()
+  const { wallet } = useContext(WalletContext)
+
   if (
       loggedIn != null
       && loggedIn.isAuth !== false
@@ -74,12 +78,20 @@ const Register: NextPage<Props> = (props) => {
       || email == null
     ) return
 
+    const blockchain =
+      wallet === 'near'
+      ? EBlockchain.NEAR
+      : wallet === 'eth'
+      ? EBlockchain.ETH
+      : 'unknown'
+
     const txHash = await postMsgParams({
       address,
       chainId: String(chainId),
       github_token: code,
       email_token,
       hash_email: email,
+      blockchain,
     })
     if (txHash == null) return
 

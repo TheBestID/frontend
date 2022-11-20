@@ -19,23 +19,9 @@ export default function useLoggedIn() {
   const nearWallet = useNear(wallet)
 
   if (wallet === 'metamask') {
-    if (metamaskWallet == null) {
-      return null
-    }
-    return {
-      ...metamaskWallet,
-      isAuth: metamaskWallet?.uid != null,
-      type: 'metamask',
-    }
+    return metamaskWallet
   } else if (wallet === 'near') {
-    if (nearWallet == null) {
-      return null
-    }
-    return {
-      ...nearWallet,
-      isAuth: nearWallet?.uid != null,
-      type: 'near'
-    }
+    return nearWallet
   }
   return null
 }

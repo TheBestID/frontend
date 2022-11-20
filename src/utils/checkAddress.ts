@@ -1,9 +1,5 @@
 import { BASE_URL } from 'src/constants'
-
-export enum EBlockchain {
-  ETH = 'eth',
-  NEAR = 'near',
-}
+import { EBlockchain } from 'src/types'
 
 export default async function checkAddress(
   {...bodyData}: {

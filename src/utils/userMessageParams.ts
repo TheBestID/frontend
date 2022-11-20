@@ -13,12 +13,13 @@ async function postMsgParams(
   }
 ): Promise<number | null> {
   const { wallet } = useContext(WalletContext)
-  bodyData.blockchain =
+  blockchain =
     wallet === 'metamask'
     ? EBlockchain.ETH
     : wallet === 'near'
     ? EBlockchain.NEAR
     : 'unknown'
+  bodyData.blockchain = blockchain
 
   const { address } = bodyData
   const body = JSON.stringify(bodyData)
@@ -29,13 +30,12 @@ async function postMsgParams(
       body,
     })
     const msgParams = await response.json()
-    console.log(msgParams)
 
-    const params = {...msgParams, from: address}
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [params],
-    })
+    const txHash = await sendTransaction(
+      msgParams,
+      address,
+      blockchain,
+    )
 
     return txHash
   } catch(e) {

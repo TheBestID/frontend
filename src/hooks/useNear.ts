@@ -5,9 +5,8 @@ import {
   BASE_URL, NEAR_CONTRACT_ADDRESS
 } from 'src/constants'
 
-import checkAddress, {
-  EBlockchain
-} from 'src/utils/checkAddress'
+import checkAddress from 'src/utils/checkAddress'
+import { EBlockchain } from 'src/types'
 
 type TUid = number
 type TAddress = string
@@ -17,6 +16,7 @@ export type TNearWalletInfo = {
   uid: TUid,
   chainId: TChainId,
   address: TAddress,
+  isAuth: boolean,
 }
 
 export default function useNear(wallet) {
@@ -50,6 +50,7 @@ export default function useNear(wallet) {
         address,
         chainId,
         uid: typeof uid === 'number' ? uid : null,
+        isAuth: typeof uid === 'number',
       })
     } else {
       nearWallet.signIn()
