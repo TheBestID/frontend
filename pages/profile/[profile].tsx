@@ -16,10 +16,14 @@ import Header from 'src/components/Header'
 import Popup from 'src/components/Popup'
 import AchivementForm from 'src/components/AchivementForm'
 import useLoggedIn from 'src/hooks/useLoggedIn'
+import {
+  EBlockchain, TUserWallet, TUserData,
+} from 'src/types'
 
 type Props = {
-  wallet: string | undefined,
+  uid: string | undefined,
   achivements: Array<TAchivement>,
+  userData: TUserData,
 }
 
 async function postGetAchivements(bodyData: {
@@ -42,6 +46,25 @@ async function postGetAchivements(bodyData: {
   }
 }
 
+async function postUserGet(bodyData: {
+  uid: string
+}) {
+  const body = JSON.stringify(bodyData)
+  const url = `${BASE_URL}/user/get`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body,
+    })
+    const res = await response.json()
+
+    return res
+  } catch(e) {
+    console.log(e)
+    return null
+  }
+}
+
 
 const MOCK_GLE = {
   startTimestamp: '13 nov 2020',
@@ -51,18 +74,46 @@ const MOCK_GLE = {
   description: 'I did great things. Mostly attending useless meetings',
 }
 
+function Wallet({
+  address, blockchain, chainId
+}: TUserWallet) {
+  return (
+    <a 
+      target="_blank"
+      rel="noreferrer noopener"
+      href={
+        blockchain === EBlockchain.ETH
+        ? `https://etherscan.io/address/${address}`
+        : blockchain === EBlockchain.NEAR
+        ? `https://explorer.testnet.near.org/accounts/${address}`
+        : ''
+      }
+      className="border w-3/4 h-12 border-primary rounded-xl p-3"
+    >
+      <span className="text-[#fff8]">Address</span>
+      <span className="text-[#fff8] px-14 underline">
+        {address}
+      </span>
+    </a>
+  )
+}
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const wallet = context?.params?.profile
+  const uid = context?.params?.profile
+  const userData = await postUserGet({ uid }) || null
+  console.log(userData)
   const achivements = [
   ]
   return {
-    props: { wallet, achivements },
+    props: { userData, achivements, uid },
   }
 }
 
-
 const Profile: NextPage<Props> = (props) => {
-  const { wallet, achivements: preloadedAchivements } = props
+  const { userData, achivements: preloadedAchivements } = props
+  const username = userData?.username
+  const wallets = userData?.wallets || []
+
   const loggedIn = useLoggedIn()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [activeSubPage, setActiveSubPage] = useState('CV')
@@ -78,16 +129,19 @@ const Profile: NextPage<Props> = (props) => {
     // till here
 
     postGetAchivements({
-      address: wallet,
+      address: wallets[0]?.address,
       chainId,
     }).then(res => setAchivements(res))
   }, [loggedIn])
 
   let isOwnPage = false
   if (
-    loggedIn != null && loggedIn.isAuth !== false
+    loggedIn != null && loggedIn.isAuth === true
   ) {
-    isOwnPage = wallet === loggedIn.address
+    isOwnPage = wallets.some(wallet => {
+      // fix for blockchain comparison
+      return wallet.address === loggedIn.address
+    })
   }
 
   return (
@@ -125,17 +179,22 @@ const Profile: NextPage<Props> = (props) => {
         </div>
 
         <div className="gap-10 flex flex-col w-full mb-6 md:flex-row items-center">
-          <span className="text-2xl text-white font-medium ml-2 lg:mr-6">BOB</span>
-
-          <a 
-            target="_blank"
-            rel="noreferrer noopener"
-            href={`https://etherscan.io/address/${wallet}`}
-            className="border w-3/4 h-12 border-primary rounded-xl p-3"
+          <span
+            className="text-2xl text-white font-medium ml-2 lg:mr-6"
           >
-            <span className="text-[#fff8]">Address</span>
-            <span className="text-[#fff8] px-14 underline">{wallet}</span>
-          </a>
+            {username}
+          </span>
+          {
+            wallets.map((
+              wallet: TUserWallet, i: number
+            ) => 
+              <Wallet
+                key={i}
+                {...wallet}
+              />
+            )
+          }
+
           {isOwnPage && (
             <button className="h-12 w-1/5 p-2 rounded-xl border-2 border-primary hover:bg-primary font-medium items-center justify-center">
               <div className="text-center">
