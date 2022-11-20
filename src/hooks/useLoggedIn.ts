@@ -37,5 +37,5 @@ export default function useLoggedIn() {
       type: 'near'
     }
   }
-  return {}
+  return null
 }

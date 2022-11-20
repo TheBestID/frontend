@@ -11,9 +11,11 @@ import checkAddress, {
 
 type TUid = number
 type TAddress = string
+type TChainId = number
 
 export type TNearWalletInfo = {
   uid: TUid,
+  chainId: TChainId,
   address: TAddress,
 }
 
@@ -46,6 +48,7 @@ export default function useNear(wallet) {
       } catch(e) { }
       setRes({
         address,
+        chainId,
         uid: typeof uid === 'number' ? uid : null,
       })
     } else {

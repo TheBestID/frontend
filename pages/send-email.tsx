@@ -46,18 +46,21 @@ const SendEmail: NextPage<Props> = (props) => {
   const url = `/register?code=${code}`
   const router = useRouter()
   const loggedIn = useLoggedIn()
-  if (
-    loggedIn != null
-    && loggedIn.isAuth !== false
-  ) {
-    const { address } = loggedIn
-    router.replace(`/profile/${address}`)
-  }
-
   const [ email, setEmail ] = useState<string>('')
+
+  useEffect(() => {
+    if (
+      loggedIn != null
+      && loggedIn.isAuth === true
+    ) {
+      const { address } = loggedIn
+      router.replace(`/profile/${address}`)
+    }
+  }, [loggedIn])
 
   async function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
+
     if (code == null || loggedIn == null) {
       router.replace(`/add-wallet`)
       return

@@ -1,10 +1,26 @@
-import { createContext, useState } from 'react'
+import {
+  useState, useEffect, createContext
+} from 'react'
 
 export const WalletContext = createContext()
 
 export const WalletProvider = ({ children }) => {
-  const [wallet, setWallet] = useState(null)
-  const state = { wallet, setWallet }
+  let savedWallet = null
+  if (typeof window !== 'undefined') {
+    savedWallet = window.localStorage.getItem(
+      'wallet'
+    )
+  }
+  const [wallet, setWallet] = useState(savedWallet)
+  const state = {
+    wallet,
+    setWallet: (newWallet) => {
+      window.localStorage.setItem(
+        'wallet', newWallet
+      )
+      setWallet(newWallet)
+    },
+  }
 
   return (
     <WalletContext.Provider value={state}>
