@@ -1,10 +1,11 @@
 import '../styles/globals.css'
 import Head from 'next/head'
-import type { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
+import { WalletProvider } from 'src/contexts/WalletContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <WalletProvider>
       <Head>
         <meta charSet="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -18,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#000000"/>
       </Head>
       <Component {...pageProps} />
-    </>
+    </WalletProvider>
   )
 }
 
