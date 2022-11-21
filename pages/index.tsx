@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       subtitle: 'Empowering people to change the world faster',
       children: (
         <span className="text-white text-sm">
-          {23} vacancies | {1000} followers
+          {23} job openings | {1000} followers
         </span>
       ),
       href: '/job/1',
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
     ])
 
     const MOCK_PROFILE = {
-      title: 'Artem',
+      title: 'BOB',
       subtitle: 'Evolution is not about going forward',
       children: (
         <span className="text-white text-sm">
@@ -44,11 +44,11 @@ const Home: NextPage = () => {
     ])
 
     const MOCK_HACK = {
-      title: 'Artem',
-      subtitle: 'Evolution is not about going forward',
+      title: 'NEAR MetaBUILD III',
+      subtitle: 'Build the next big thing on NEAR.',
       children: (
         <span className="text-white text-sm">
-          Cool guy!!!
+          Prize Pool: <span className="text-white opacity-100 text-md font-medium">1 000 000 $</span>
         </span>
       ),
       href: '/profile/0x41c9288b78090946db0fd6d32d8cb1fefe18134b',
@@ -145,9 +145,9 @@ const Home: NextPage = () => {
             </div>
 
             <div className="flex w-full pr-1 pl-1">
-                <Link href="/jobs">
+                <Link href="/companies">
                   <a className="flex w-full h-12 mt-6 mb-24 items-center text-white text-center justify-center rounded-md border border-transparent bg-secondary-25 font-medium hover:bg-secondary-60">
-                    View all openings
+                    View all companies
                   </a>
                 </Link>
             </div>

@@ -61,17 +61,18 @@ const Hack: NextPage = () => {
             </div>
 
             <div className="grid items-center grid-cols-3 lg:gap-32 gap-4 mt-6">
-            <button className="flex items-center">
-              <Image alt="solana" src="/solana.svg" width="150" height="150"></Image>
-            </button>
-
-            <button className="flex items-center">
-              <Image alt="polygon" src="/polygon.svg" width="150" height="150"></Image>
-            </button>
-
             <button className="flex items-cente">
-              <Image alt="near" src="/&&&.svg" width="130" height="130"></Image>
+              <Image alt="near" src="/near.svg" width="120" height="120"></Image>
             </button>
+            <button className="flex items-center">
+              <Image alt="solana" src="/solana.svg" width="160" height="160"></Image>
+            </button>
+
+            <button className="flex items-center">
+              <Image alt="polygon" src="/polygon.svg" width="170" height="170"></Image>
+            </button>
+
+
             </div>
 
             <div className='text-center p-0 mx-auto mt-52 lg:ml-24 lg:mr-24'>

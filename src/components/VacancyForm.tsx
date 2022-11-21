@@ -120,7 +120,7 @@ const VacancyForm: React.FC<Props> = (props) => {
       </label>
       <label htmlFor="price" className="p-1">
         <span className="cursor-pointer">
-          price ETH:
+          price NEAR:
         </span>
         <input
           className="ml-2 border border-primary"

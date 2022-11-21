@@ -77,7 +77,7 @@ const Companies: NextPage = () => {
           <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full pt-12">
 
                 <div className="grid w-full grid-cols-12 items-center">
-                    <div className="border border-secondary-25 p-7 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
+                    <div className="border border-secondary-25 p-6 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
                       <Image src="/logo.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Souldev Network</span>
@@ -106,7 +106,21 @@ const Companies: NextPage = () => {
                 </div>
 
                 <div className="grid w-full grid-cols-12 items-center mt-12">
-                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
+                    <div className="border border-secondary-25 p-6 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
+                      <Image src="/near.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
+                    </div>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">NEAR</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-2">27</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-2">16 887,42 NEAR</span>
+                    <Link href="/vacancy/1">
+                    <button className="border border-secondary-25 p-3 rounded-xl items-center w-28 h-28 ml-3">
+                      <Image src="/near_job.svg" alt="Identicon" width="90" height="90" className="lg:col-span-1 border-2"></Image>
+                    </button>
+                    </Link>
+                </div>
+
+                <div className="grid w-full grid-cols-12 items-center mt-12">
+                    <div className="border border-secondary-25 p-4 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
                       <Image src="/solana.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Solana</span>
@@ -116,7 +130,7 @@ const Companies: NextPage = () => {
                 </div>
 
                 <div className="grid w-full grid-cols-12 items-center mt-12">
-                    <div className="border border-secondary-25 p-5 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
+                    <div className="border border-secondary-25 p-4 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
                       <Image src="/polygon.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
                     <span className="text-left font-regular text-2xl text-white lg:col-span-3">Polygon</span>
