@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, {
+  useState, useEffect, useContext
+} from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -15,7 +17,9 @@ import ProfileNav from 'src/components/ProfileNav'
 import Header from 'src/components/Header'
 import Popup from 'src/components/Popup'
 import AchivementForm from 'src/components/AchivementForm'
+
 import useLoggedIn from 'src/hooks/useLoggedIn'
+import { WalletContext } from 'src/contexts/WalletContext'
 import {
   EBlockchain, TUserWallet, TUserData,
 } from 'src/types'
@@ -101,7 +105,6 @@ function Wallet({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const uid = context?.params?.profile
   const userData = await postUserGet({ uid }) || null
-  console.log(userData)
   const achivements = [
   ]
   return {
@@ -113,8 +116,9 @@ const Profile: NextPage<Props> = (props) => {
   const { userData, achivements: preloadedAchivements } = props
   const username = userData?.username
   const wallets = userData?.wallets || []
+  const { wallet } = useContext(WalletContext)
 
-  const loggedIn = useLoggedIn()
+  const loggedIn = useLoggedIn(wallet)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [activeSubPage, setActiveSubPage] = useState('CV')
 
