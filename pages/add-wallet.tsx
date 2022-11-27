@@ -34,10 +34,10 @@ function Layout({ children }) {
 
 const AddWallet: NextPage = () => {
   const router = useRouter()
-  const loggedIn = useLoggedIn()
   const {
     wallet, setWallet
   } = useContext(WalletContext)
+  const loggedIn = useLoggedIn(wallet)
   const [blockchain, setBlockchain] = useState(null)
 
   if (blockchain === null) {

@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, {
+  useState, useEffect, useContext,
+} from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -6,6 +8,7 @@ import { useRouter } from 'next/router'
 
 import { BASE_URL } from 'src/constants'
 
+import { WalletContext } from 'src/contexts/WalletContext'
 import useLoggedIn from 'src/hooks/useLoggedIn'
 
 type Props = {
@@ -45,7 +48,8 @@ const SendEmail: NextPage<Props> = (props) => {
   const { code } = props
   const url = `/register?code=${code}`
   const router = useRouter()
-  const loggedIn = useLoggedIn()
+  const { wallet } = useContext(WalletContext)
+  const loggedIn = useLoggedIn(wallet)
   const [ email, setEmail ] = useState<string>('')
 
   useEffect(() => {

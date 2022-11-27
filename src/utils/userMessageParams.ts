@@ -1,27 +1,21 @@
 import { useContext } from 'react'
 
 import { BASE_URL } from 'src/constants'
+import { EBlockchain } from 'src/types'
 import { WalletContext } from 'src/contexts/WalletContext'
+import sendTransaction from 'src/utils/sendTransaction'
 
-async function postMsgParams(
+export default async function postMsgParams(
   {...bodyData}: {
     address: string,
     chainId: string,
     github_token: string,
     hash_email: string,
     email_token: string,
+    blockchain: EBlockchain,
   }
 ): Promise<number | null> {
-  const { wallet } = useContext(WalletContext)
-  blockchain =
-    wallet === 'metamask'
-    ? EBlockchain.ETH
-    : wallet === 'near'
-    ? EBlockchain.NEAR
-    : 'unknown'
-  bodyData.blockchain = blockchain
-
-  const { address } = bodyData
+  const { address, blockchain } = bodyData
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/msg_params`
   try {

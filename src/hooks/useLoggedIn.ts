@@ -1,10 +1,5 @@
-import {
-  useState, useEffect, useContext
-} from 'react'
+import { useState, useEffect } from 'react'
 
-import {
-  WalletContext
-} from 'src/contexts/WalletContext'
 import
   useMetamask, { TMetamaskWalletInfo }
 from 'src/hooks/useMetamask'
@@ -12,9 +7,7 @@ import
   useNear, { TNearWalletInfo }
 from 'src/hooks/useNear'
 
-export default function useLoggedIn() {
-  const { wallet } = useContext(WalletContext)
-
+export default function useLoggedIn(wallet) {
   const metamaskWallet = useMetamask(wallet)
   const nearWallet = useNear(wallet)
 

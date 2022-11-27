@@ -54,8 +54,8 @@ async function postAddress(
 const Register: NextPage<Props> = (props) => {
   const router = useRouter()
   const { code, email, email_token } = props
-  const loggedIn = useLoggedIn()
   const { wallet } = useContext(WalletContext)
+  const loggedIn = useLoggedIn(wallet)
 
   if (
       loggedIn != null
@@ -81,7 +81,7 @@ const Register: NextPage<Props> = (props) => {
     const blockchain =
       wallet === 'near'
       ? EBlockchain.NEAR
-      : wallet === 'eth'
+      : wallet === 'metamask'
       ? EBlockchain.ETH
       : 'unknown'
 
