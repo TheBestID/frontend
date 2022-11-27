@@ -1,14 +1,18 @@
-import React, { useState, useContext } from 'react'
+import React, {
+  useState, useEffect, useContext
+} from 'react'
 import { useRouter } from 'next/router'
 
-import { TAchivement } from 'src/components/Achivement'
-import { EBlockchain } from 'src/types'
+import {
+  WalletContext
+} from 'src/contexts/WalletContext'
 import useLoggedIn from 'src/hooks/useLoggedIn'
-import { WalletContext } from 'src/contexts/WalletContext'
+import { postAddParamsHacks } from 'src/utils/addParamsHacks'
+
 
 const BASE_URL = 'http://127.0.0.1:8000'
 
-async function postAddAchivement(
+async function postAddHacks(
   {...bodyData}: {
     address: string,
     chainId: number,
@@ -19,7 +23,7 @@ async function postAddAchivement(
 ): Promise<number | null> {
   const { address } = bodyData
   const body = JSON.stringify(bodyData)
-  const url = `${BASE_URL}/achievements/add`
+  const url = `${BASE_URL}/hacks/add`
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -34,60 +38,23 @@ async function postAddAchivement(
   }
 }
 
-async function postAddAchivementParams(
-  {...bodyData}: {
-    from_address: string,
-    to_address: string,
-    chainId: number,
-    data: TAchivement,
-    blockchain: EBlockchain,
-  }
-): Promise<Array<string | null>> {
-  const { address } = bodyData
-  const body = JSON.stringify(bodyData)
-  const url = `${BASE_URL}/achievements/add_params`
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body,
-    })
-    const msgParams = await response.json()
-    const { transaction, sbt_id } = msgParams
-
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [transaction],
-    })
-
-    return [txHash, sbt_id]
-  } catch(e) {
-    console.log(e)
-    return [null, null]
-  }
-}
-
 type Props = {
   close: Function
 };
 
-const AchivementForm: React.FC<Props> = (props) => {
+const HackForm: React.FC<Props> = (props) => {
   const { close } = props
   const { wallet } = useContext(WalletContext)
-  const blockchain =
-    wallet === 'near'
-    ? EBlockchain.NEAR
-    : wallet === 'metamask'
-    ? EBlockchain.ETH
-    : 'unknown'
-
   const loggedIn = useLoggedIn(wallet)
   const router = useRouter()
 
-  const [company, setCompany] = useState<string>('')
-  const [position, setPosition] = useState<string>('')
+  const [ price, setPrice ] = useState<number>(0)
+  const [
+    hackaton_name, setHackatonName
+  ] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [startTimestamp, setStartTimestamp] = useState<number>(Date.now())
-  const [endTimestamp, setEndTimestamp] = useState<number | null>(null)
+  const [endTimestamp, setEndTimestamp] = useState<number>(Date.now())
 
   if (
     loggedIn != null && loggedIn.isAuth === false
@@ -100,33 +67,36 @@ const AchivementForm: React.FC<Props> = (props) => {
     if (loggedIn == null) return
     const { address, chainId } = loggedIn
     if (address == null || chainId == null) return
-    if (
-      company === ''
-      || position === ''
-      || startTimestamp === ''
-      || endTimestamp === ''
-    ) return
 
     const [
       txHash, sbt_id
-    ] = await postAddAchivementParams({
-      from_address: address,
-      to_address: address,
+    ] = await postAddParamsHacks({
+      address,
       chainId,
       blockchain,
-      data: {
-        company,
-        position,
-        description,
-        startTimestamp,
-        endTimestamp
-      },
+      hackaton_name,
+      description,
+      /*
+      theme,
+      base_color,
+      font_head,
+      font_par,
+      back_url,
+      logo_url,
+      price,
+      pool,
+      descr_price,
+      sbt_url,
+      task_descr,
+      social_link,
+      category,
+      */
     })
     if (txHash == null || sbt_id == null) {
       return
     }
 
-    const res = await postAddAchivement({
+    const res = await postAddHacks({
       address,
       chainId,
       txHash,
@@ -145,41 +115,22 @@ const AchivementForm: React.FC<Props> = (props) => {
       className="px-4 flex flex-col h-full w-full justify-center"
     >
       <h2 className="text-lg font-bold">
-        Input achivement details
+        Input hackaton details
       </h2>
       <div className="h-4 w-full"/>
 
-      <label htmlFor="company" className="p-1">
+      <label htmlFor="hackaton_name" className="p-1">
         <span className="cursor-pointer">
-          company:
+          hackaton name:
         </span>
         <input
           className="ml-2 border border-primary"
           type="text"
-          id="company"
-          value={company}
+          id="hackaton_name"
+          value={hackaton_name}
           onChange={
             (e: React.SyntheticEvent) =>
-              setCompany(
-                (e.target as HTMLInputElement)
-                .value
-              )
-          }
-        />
-      </label>
-
-      <label htmlFor="position" className="p-1">
-        <span className="cursor-pointer">
-          position:
-        </span>
-        <input
-          className="ml-2 border border-primary"
-          type="text"
-          id="position"
-          value={position}
-          onChange={
-            (e: React.SyntheticEvent) =>
-              setPosition(
+              setHackatonName(
                 (e.target as HTMLInputElement)
                 .value
               )
@@ -189,7 +140,7 @@ const AchivementForm: React.FC<Props> = (props) => {
 
       <label htmlFor="startTimestamp" className="p-1">
         <span className="cursor-pointer">
-          started:
+          starting:
         </span>
         <input
           className="ml-2 border border-primary"
@@ -208,36 +159,21 @@ const AchivementForm: React.FC<Props> = (props) => {
 
       <label htmlFor="endTimestamp" className="p-1">
         <span className="cursor-pointer">
-          ended:
+          ending:
         </span>
         <input
-          type="checkbox"
-          value={endTimestamp != null}
+          className="ml-2 border border-primary"
+          type="date"
+          id="endTimestamp"
+          value={new Date(endTimestamp).toISOString().split('T')[0]}
           onChange={
-            () =>
-              setEndTimestamp(
-                endTimestamp == null
-                  ? Date.now()
-                  : null
-              )
+            (e: React.SyntheticEvent) =>
+              setEndTimestamp(new Date(
+                (e.target as HTMLInputElement)
+                .value
+              ).getTime())
           }
         />
-
-        {endTimestamp != null && (
-          <input
-            className="ml-2 border border-primary"
-            type="date"
-            id="endTimestamp"
-            value={new Date(endTimestamp).toISOString().split('T')[0]}
-            onChange={
-              (e: React.SyntheticEvent) =>
-                setEndTimestamp(new Date(
-                  (e.target as HTMLInputElement)
-                  .value
-                ).getTime())
-            }
-          />
-        )}
       </label>
 
       <label htmlFor="description" className="p-1">
@@ -268,5 +204,5 @@ const AchivementForm: React.FC<Props> = (props) => {
   )
 }
 
-export default AchivementForm
+export default HackForm
 

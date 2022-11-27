@@ -1,12 +1,18 @@
-import { useState, useEffect } from 'react'
+import {
+  useState, useEffect, useContext
+} from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import Popup from 'src/components/Popup'
+import HackForm from 'src/components/HackForm'
 import Header from 'src/components/Header'
 
 const Hack: NextPage = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+
   return (
     <div className="bg-[#023047] min-h-[200vh] h-full">
       <Head>
@@ -15,6 +21,19 @@ const Hack: NextPage = () => {
       </Head>
 
       <Header/>
+
+      {isPopupOpen && (
+        <Popup close={
+            () => setIsPopupOpen(false)
+          }
+        >
+          <HackForm
+            close={
+              () => setIsPopupOpen(false)
+            }
+          />
+        </Popup>
+      )}
 
       <div id="spacer" className="h-8 w-8"/>
 
@@ -34,13 +53,12 @@ const Hack: NextPage = () => {
 
             <div className="flex mt-5 justify-center lg:justify-start">
                   <div className=" rounded-md pb-8">
-                  <Link href="/add-wallet">
-                    <a
+                    <button
+                      onClick={() => setIsPopupOpen(true)}
                       className="btn btn-primary btn-large justify-center lg:justify-start lg:ml-4 rounded-xl border border-transparent bg-primary px-10 py-4 text-base font-medium text-white hover:bg-secondary-25 lg:py-6 lg:px-20 lg:text-2xl lg:rounded-2xl"
                     >
                       Create hackathon
-                    </a>
-                  </Link>
+                    </button>
 
                 </div>
             </div> 

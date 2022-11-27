@@ -49,6 +49,7 @@ const Vacancy: NextPage<Props> = (props) => {
   const {
     owner_uuid, price, category, info, sbt_id
   } = data
+  console.log(data)
   const dollars = price * 1200;
   const candidates = 3
   const created = 'now'

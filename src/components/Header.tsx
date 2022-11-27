@@ -74,17 +74,17 @@ const Header: React.FC<Props> = () => {
               <div className="col-span-2"></div>
               <Link href="/jobs">
               <button className="col-span-1">
-                  <span className="text-white opacity-80 hover:opacity-100 text-2xl font-medium text-center">Explore</span>
+                  <span className="text-white text-2xl font-medium text-center">Explore</span>
               </button>
               </Link>
               <Link href="/profile/4">
               <button className="col-span-1">
-                  <span className="text-white opacity-80 hover:opacity-100 text-2xl font-medium text-center">My Profile</span>
+                  <span className="text-white text-2xl font-medium text-center">My Profile</span>
               </button>
               </Link>
               <Link href="/create-hack">
               <button className="col-span-1">
-                  <span className="text-white opacity-80 hover:opacity-100 text-2xl font-medium text-center">Create hack</span>
+                  <span className="text-white text-2xl font-medium text-center">Create hack</span>
               </button>
               </Link>
               <div className=""></div>
