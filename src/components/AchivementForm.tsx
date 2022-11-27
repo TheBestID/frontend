@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 
-
 import { TAchivement } from 'src/components/Achivement'
+import { EBlockchain } from 'src/types'
 import useLoggedIn from 'src/hooks/useLoggedIn'
+import { WalletContext } from 'src/contexts/WalletContext'
 
 const BASE_URL = 'http://127.0.0.1:8000'
 
@@ -13,6 +14,7 @@ async function postAddAchivement(
     chainId: number,
     sbt_id: string,
     txHash: string,
+    blockchain: EBlockchain,
   }
 ): Promise<number | null> {
   const { address } = bodyData
@@ -38,6 +40,7 @@ async function postAddAchivementParams(
     to_address: string,
     chainId: number,
     data: TAchivement,
+    blockchain: EBlockchain,
   }
 ): Promise<Array<string | null>> {
   const { address } = bodyData
@@ -69,7 +72,15 @@ type Props = {
 
 const AchivementForm: React.FC<Props> = (props) => {
   const { close } = props
-  const loggedIn = useLoggedIn()
+  const { wallet } = useContext(WalletContext)
+  const blockchain =
+    wallet === 'near'
+    ? EBlockchain.NEAR
+    : wallet === 'metamask'
+    ? EBlockchain.ETH
+    : 'unknown'
+
+  const loggedIn = useLoggedIn(wallet)
   const router = useRouter()
 
   const [company, setCompany] = useState<string>('')
@@ -92,7 +103,6 @@ const AchivementForm: React.FC<Props> = (props) => {
     if (
       company === ''
       || position === ''
-      || description === ''
       || startTimestamp === ''
       || endTimestamp === ''
     ) return
@@ -103,6 +113,7 @@ const AchivementForm: React.FC<Props> = (props) => {
       from_address: address,
       to_address: address,
       chainId,
+      blockchain,
       data: {
         company,
         position,
@@ -120,6 +131,7 @@ const AchivementForm: React.FC<Props> = (props) => {
       chainId,
       txHash,
       sbt_id,
+      blockchain,
     })
 
     if (typeof res === 'number') {

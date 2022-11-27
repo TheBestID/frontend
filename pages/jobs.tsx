@@ -14,16 +14,11 @@ import useLoggedIn from 'src/hooks/useLoggedIn'
 
 
 async function getVacancies(
-  {...bodyData}: {
-    value_sorted: string,
-    offset: number,
-    top_number: number,
-    in_asc: boolean
-  }
+  {...bodyData}: { }
 ): Promise<number | null> {
   const { address } = bodyData
   const body = JSON.stringify(bodyData)
-  const url = `${BASE_URL}/vacancy/get_previews_sortby_one`
+  const url = `${BASE_URL}/vacancy/get_vacancies`
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -56,14 +51,10 @@ const Vacancies: NextPage<Props> = (props) => {
   const [vacancies, setVacancies] = useState(data)
 
   useEffect(() => {
-    getVacancies({
-      value_sorted: 'price',
-      offset: 0,
-      top_number: null,
-      in_asc: true,
-    }).then(res => {
-      setVacancies(res)
-    })
+    getVacancies({ })
+      .then(res => {
+        setVacancies(res)
+      })
   }, [])
 
   return (

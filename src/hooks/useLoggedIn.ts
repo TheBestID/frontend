@@ -7,7 +7,9 @@ import
   useNear, { TNearWalletInfo }
 from 'src/hooks/useNear'
 
-export default function useLoggedIn(wallet) {
+export default function useLoggedIn(
+  wallet?: 'metamask' | 'near'
+) {
   const metamaskWallet = useMetamask(wallet)
   const nearWallet = useNear(wallet)
 

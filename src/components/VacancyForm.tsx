@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 
 import useLoggedIn from 'src/hooks/useLoggedIn'
+import { WalletContext } from 'src/contexts/WalletContext'
+import { EBlockchain } from 'src/types'
+
+import {
+  postAddParamsVacancy
+} from 'src/utils/addParamsVacancy'
 
 const BASE_URL = 'http://127.0.0.1:8000'
 
@@ -9,10 +15,9 @@ async function postAddVacancy(
   {...bodyData}: {
     address: string,
     chainId: number,
-    price: number,
-    category: string,
-    info: string,
-    return_trans: boolean,
+    blockchain: EBlockchain,
+    sbt_id: string,
+    txHash: string,
   }
 ): Promise<number | null> {
   const { address } = bodyData
@@ -23,15 +28,9 @@ async function postAddVacancy(
       method: 'POST',
       body,
     })
-    const msgParams = await response.json()
+    const result = await response.json()
 
-    const params = {...msgParams, from: address}
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [params],
-    })
-
-    return txHash
+    return result
   } catch(e) {
     console.log(e)
     return null
@@ -44,7 +43,8 @@ type Props = {
 
 const VacancyForm: React.FC<Props> = (props) => {
   const { close } = props
-  const loggedIn = useLoggedIn()
+  const { wallet } = useContext(WalletContext)
+  const loggedIn = useLoggedIn(wallet)
   const router = useRouter()
   if (
     loggedIn != null && loggedIn.isAuth === false
@@ -62,13 +62,31 @@ const VacancyForm: React.FC<Props> = (props) => {
     if (loggedIn == null) return
     const { address, chainId } = loggedIn
     if (address == null || chainId == null) return
-    const txHash = await postAddVacancy({
+
+    const blockchain =
+      wallet === 'near'
+      ? EBlockchain.NEAR
+      : wallet === 'metamask'
+      ? EBlockchain.ETH
+      : 'unknown'
+
+    const [
+      txHash, sbt_id
+    ] = await postAddParamsVacancy({
       address,
       chainId,
       price,
       category,
       info,
-      return_trans: true,
+      blockchain,
+    })
+
+    const result = await postAddVacancy({
+      address,
+      chainId,
+      blockchain,
+      txHash,
+      sbt_id,
     })
 
     close()

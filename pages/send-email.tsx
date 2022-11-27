@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { BASE_URL } from 'src/constants'
+import { EBlockchain } from 'src/types'
 
 import { WalletContext } from 'src/contexts/WalletContext'
 import useLoggedIn from 'src/hooks/useLoggedIn'
@@ -27,6 +28,7 @@ async function postSendEmail(bodyData: {
   chainId: number,
   email: string,
   githubCode: string,
+  blockchain: EBlockchain,
 }) {
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/email`
@@ -57,8 +59,8 @@ const SendEmail: NextPage<Props> = (props) => {
       loggedIn != null
       && loggedIn.isAuth === true
     ) {
-      const { address } = loggedIn
-      router.replace(`/profile/${address}`)
+      const { uid } = loggedIn
+      router.replace(`/profile/${uid}`)
     }
   }, [loggedIn])
 
@@ -70,12 +72,24 @@ const SendEmail: NextPage<Props> = (props) => {
       return
     }
     if (loggedIn.isAuth) {
-      router.replace(`/profile/${loggedIn.address}`)
+      router.replace(`/profile/${loggedIn.uid}`)
       return
     }
     const { address, chainId } = loggedIn
+
+    const blockchain =
+      wallet === 'near'
+      ? EBlockchain.NEAR
+      : wallet === 'metamask'
+      ? EBlockchain.ETH
+      : 'unknown'
+
     const res = await postSendEmail({
-      address, chainId, email, githubCode: code,
+      address,
+      chainId,
+      email,
+      githubCode: code,
+      blockchain,
     })
   }
 

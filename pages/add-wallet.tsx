@@ -112,6 +112,7 @@ const AddWallet: NextPage = () => {
     loggedIn != null
     && loggedIn.isAuth === false
   ) {
+    console.log(loggedIn)
     const url = 
       `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
     window.location.assign(url)
@@ -124,7 +125,7 @@ const AddWallet: NextPage = () => {
     )
     */
   } else if (loggedIn !== null) {
-    const { address, balance } = loggedIn
+    const { address, balance, uid, } = loggedIn
     pJsx = wallet === 'metamask'
       ? (
         <>
@@ -165,7 +166,7 @@ const AddWallet: NextPage = () => {
           </p>
         </>
       )
-    router.replace(`/profile/${address}`)
+    router.replace(`/profile/${uid}`)
   }
 
   return <Layout>{pJsx}</Layout>

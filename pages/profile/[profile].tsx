@@ -31,11 +31,10 @@ type Props = {
 }
 
 async function postGetAchivements(bodyData: {
-  address: string,
-  chainId: number,
+  uid: string,
 }) {
   const body = JSON.stringify(bodyData)
-  const url = `${BASE_URL}/achievements/get_created_achievement`
+  const url = `${BASE_URL}/achievements/get_owned_achievement`
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -113,7 +112,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const Profile: NextPage<Props> = (props) => {
-  const { userData, achivements: preloadedAchivements } = props
+  const { userData, achivements: preloadedAchivements, uid } = props
   const username = userData?.username
   const wallets = userData?.wallets || []
   const { wallet } = useContext(WalletContext)
@@ -125,18 +124,12 @@ const Profile: NextPage<Props> = (props) => {
   const [achivements, setAchivements] = useState(preloadedAchivements)
 
   useEffect(() => {
-    // TODO: remove this as this data is irrelevant
-    if (loggedIn == null || loggedIn.isAuth == false) {
-      return () => {}
+    if (uid) {
+      postGetAchivements({
+        uid,
+      }).then(res => setAchivements(res))
     }
-    const { address, chainId } = loggedIn
-    // till here
-
-    postGetAchivements({
-      address: wallets[0]?.address,
-      chainId,
-    }).then(res => setAchivements(res))
-  }, [loggedIn])
+  }, [uid])
 
   let isOwnPage = false
   if (
@@ -144,7 +137,10 @@ const Profile: NextPage<Props> = (props) => {
   ) {
     isOwnPage = wallets.some(wallet => {
       // fix for blockchain comparison
-      return wallet.address === loggedIn.address
+      return (
+        wallet.address.toUpperCase()
+        === loggedIn.address.toUpperCase()
+      )
     })
   }
 

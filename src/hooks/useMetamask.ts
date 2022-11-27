@@ -8,7 +8,7 @@ import { EBlockchain } from 'src/types'
 type TAddress = string
 type TChainId = number
 type TBalance = number
-type TUid = number
+type TUid = string
 
 export type TMetamaskWalletInfo = {
   address: TAddress,
@@ -52,8 +52,8 @@ export default function useMetamask(wallet) {
         address,
         balance,
         chainId,
-        uid: typeof uid === 'number' ? uid : null,
-        isAuth: typeof uid === 'number',
+        uid: typeof uid === 'string' ? uid : null,
+        isAuth: typeof uid === 'string',
       })
     }
     fn()

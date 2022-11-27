@@ -5,14 +5,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { BASE_URL } from 'src/constants'
+import { TVacancy } from 'src/components/Vacancy'
 
 import Header from 'src/components/Header'
 
 async function getVacancy(
   {...bodyData}: {
-    id: number,
+    sbt_id: string,
   }
-): Promise<number | null> {
+): Promise<TVacancy | null> {
   const { address } = bodyData
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/vacancy/get_vacancy_by_id`
@@ -30,14 +31,14 @@ async function getVacancy(
 }
 
 type Props = {
-  data: any,
+  data: TVacancy | null,
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.params.jobId
+  const sbt_id= context.params?.jobId
   const data = await getVacancy({
-    id: Number(id),
-  })
+    sbt_id,
+  }) || null
   return {
     props: { data },
   }
@@ -45,7 +46,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Vacancy: NextPage<Props> = (props) => {
   const { data } = props
-  const { owner_uuid, price, category, info, id } = data || {}
+  const {
+    owner_uuid, price, category, info, sbt_id
+  } = data
   const dollars = price * 1200;
   const candidates = 3
   const created = 'now'

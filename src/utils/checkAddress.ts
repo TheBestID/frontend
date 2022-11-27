@@ -7,7 +7,7 @@ export default async function checkAddress(
     chainId: number,
     blockchain: EBlockchain,
   }
-): Promise<number | null> {
+): Promise<string | null> {
   const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/user/check`
   try {

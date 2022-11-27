@@ -33,6 +33,7 @@ async function postAddress(
     address: string,
     chainId: number,
     txHash: number,
+    blockchain: EBlockchain,
   }
 ): Promise<number | null> {
   const body = JSON.stringify(bodyData)
@@ -61,8 +62,8 @@ const Register: NextPage<Props> = (props) => {
       loggedIn != null
       && loggedIn.isAuth !== false
   ) {
-    const { address } = loggedIn
-    router.replace(`/profile/${address}`)
+    const { uid } = loggedIn
+    router.replace(`/profile/${uid}`)
   }
 
   async function onSubmit(e: React.SyntheticEvent) {
@@ -99,10 +100,11 @@ const Register: NextPage<Props> = (props) => {
       address,
       chainId: String(chainId),
       txHash,
+      blockchain,
     })
 
     if (resultUid != null) {
-      router.replace(`/profile/${address}`)
+      router.replace(`/profile/${resultUid}`)
     }
   }
 
