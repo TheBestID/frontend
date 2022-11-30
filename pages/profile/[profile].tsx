@@ -23,11 +23,35 @@ import { WalletContext } from 'src/contexts/WalletContext'
 import {
   EBlockchain, TUserWallet, TUserData,
 } from 'src/types'
+import deleteParamsUser from 'src/utils/deleteParamsUser'
 
 type Props = {
   uid: string | undefined,
   achivements: Array<TAchivement>,
   userData: TUserData,
+}
+
+async function postDeleteUser(
+  {...bodyData}: {
+    address: string,
+    chainId: number,
+    txHash: number,
+    blockchain: EBlockchain,
+  }
+): Promise<number | null> {
+  const body = JSON.stringify(bodyData)
+  const url = `${BASE_URL}/user/delete`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body,
+    })
+    const data = await response.json()
+    const uid = data.uid
+    return uid
+  } catch(e) {
+    return null
+  }
 }
 
 async function postGetAchivements(bodyData: {
@@ -77,27 +101,52 @@ const MOCK_GLE = {
   description: 'I did great things. Mostly attending useless meetings',
 }
 
+
+type WalletProps  = TUserWallet & {
+  isOwnPage: boolean;
+}
+
 function Wallet({
-  address, blockchain, chainId
-}: TUserWallet) {
+  address, blockchain, chainId, isOwnPage
+}: WalletProps) {
+  const deleteWallet = async () => {
+    const txHash = await deleteParamsUser({
+      address, chainId, blockchain,
+    })
+    const res = await postDeleteUser({
+      address, chainId, blockchain, txHash,
+    })
+  }
+
   return (
-    <a 
-      target="_blank"
-      rel="noreferrer noopener"
-      href={
-        blockchain === EBlockchain.ETH
-        ? `https://etherscan.io/address/${address}`
-        : blockchain === EBlockchain.NEAR
-        ? `https://explorer.testnet.near.org/accounts/${address}`
-        : ''
-      }
-      className="border w-3/4 h-12 border-primary rounded-xl p-3"
+    <div 
+      className="flex border w-3/4 h-12 border-primary rounded-xl p-3 items-center justify-between"
     >
-      <span className="text-[#fff8]">Address</span>
-      <span className="text-[#fff8] px-14 underline">
-        {address}
-      </span>
-    </a>
+      <a
+        target="_blank"
+        rel="noreferrer noopener"
+        href={
+          blockchain === EBlockchain.ETH
+          ? `https://etherscan.io/address/${address}`
+          : blockchain === EBlockchain.NEAR
+          ? `https://explorer.testnet.near.org/accounts/${address}`
+          : ''
+        }
+      >
+        <span className="text-[#fff8]">Address</span>
+        <span className="text-[#fff8] px-14 underline">
+          {address}
+        </span>
+      </a>
+      {isOwnPage && (
+        <button
+          onClick={() => deleteWallet()}
+          className="text-white text-xs bg-[#fff8] p-1 rounded"
+        >
+          sign out
+        </button>
+      )}
+    </div>
   )
 }
 
@@ -178,7 +227,7 @@ const Profile: NextPage<Props> = (props) => {
           </div>
         </div>
 
-        <div className="gap-10 flex flex-col w-full mb-6 md:flex-row items-center">
+        <div className="gap-10 flex flex-col w-full mb-6 md:flex-row items-center flex-wrap">
           <span
             className="text-2xl text-white font-medium ml-2 lg:mr-6"
           >
@@ -190,17 +239,22 @@ const Profile: NextPage<Props> = (props) => {
             ) => 
               <Wallet
                 key={i}
+                isOwnPage={isOwnPage}
                 {...wallet}
               />
             )
           }
 
           {isOwnPage && (
-            <button className="h-12 w-1/5 p-2 rounded-xl border-2 border-primary hover:bg-primary font-medium items-center justify-center">
-              <div className="text-center">
-                 <span className="text-white text-xl">Add wallet</span>
-              </div>
-            </button>
+            <Link href="/add-wallet">
+              <a className="h-12 w-1/5 p-2 rounded-xl border-2 border-primary hover:bg-primary font-medium items-center justify-center">
+                <div className="text-center">
+                  <span className="text-white text-xl">
+                    Add wallet
+                  </span>
+                </div>
+              </a>
+            </Link>
           )}
         </div>
 
