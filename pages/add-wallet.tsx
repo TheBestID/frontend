@@ -15,6 +15,29 @@ import {
 
 const GITHUB_CLIENT_ID = 'ec74794a7d8786ccf463';
 
+async function postSendEmail(bodyData: {
+  address: string,
+  chainId: number,
+  email: string,
+  blockchain: EBlockchain,
+}) {
+  const body = JSON.stringify(bodyData)
+  const url = `${BASE_URL}/company/email`
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body,
+    })
+    const res = await response.json()
+
+    return res
+  } catch(e) {
+    console.log(e)
+    return null
+  }
+}
+
+
 function Layout({ children }) {
   return (
     <div className="bg-black min-h-[100vh] h-full">
@@ -39,6 +62,8 @@ const AddWallet: NextPage = () => {
   } = useContext(WalletContext)
   const loggedIn = useLoggedIn(wallet)
   const [blockchain, setBlockchain] = useState(null)
+  const [isCompany, setIsCompany] = useState<bool>(false)
+  const [companyEmail, setCompanyEmail] = useState<string>('')
 
   if (blockchain === null) {
     return (
@@ -68,6 +93,44 @@ const AddWallet: NextPage = () => {
             Near
           </button>
         </div>
+
+        {isCompany ? (
+          <div className="flex flex-col mt-8">
+            <input
+              value={companyEmail}
+              onChange={(e: React.HTMLInputEvent) => {
+                setCompanyEmail(e.target.value)
+              }}
+              placeholder="Enter your company email"
+              className="p-1 bg-gray-900 text-gray-300"
+            />
+            <div
+              className="align-middle text-gray-300 py-2 ml-2 flex flex-col"
+            >
+              We will get to you as soon as possible to verify your company 💘.
+              <small className="text-xs">
+                Your email will be saved for later and may be used for communication.
+                So it will be stored on our server.
+              </small>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-row items-center mt-4">
+            <button
+              onClick={() => {
+                setIsCompany(true)
+              }}
+              className="w-4 h-4 bg-gray-300 rounded-full border-primary border"
+              id="company-toggle"
+            />
+            <label
+              className="cursor-pointer align-middle text-gray-300 py-2 ml-2"
+              htmlFor="company-toggle"
+            >
+              Register company
+            </label>
+          </div>
+        )}
       </Layout>
     )
   }
@@ -112,18 +175,27 @@ const AddWallet: NextPage = () => {
     loggedIn != null
     && loggedIn.isAuth === false
   ) {
-    console.log(loggedIn)
-    const url = 
-      `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
-    window.location.assign(url)
-    /*
-    // for popup
-    window.open(
-      url,
-      '_blank',
-      'height=480,width=640',
-    )
-    */
+    if (isCompany === false) {
+      const url = 
+        `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
+      window.location.assign(url)
+      /*
+      // for popup
+      window.open(
+        url,
+        '_blank',
+        'height=480,width=640',
+      )
+      */
+    } else {
+      const { address, chainId } = loggedIn
+      postSendEmail({
+        address,
+        chainId,
+        email: companyEmail,
+        blockchain,
+      })
+    }
   } else if (loggedIn !== null) {
     const { address, balance, uid, } = loggedIn
     pJsx = wallet === 'metamask'
