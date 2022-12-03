@@ -112,7 +112,7 @@ const AddWallet: NextPage = () => {
                 setCompanyLink(e.target.value)
               }}
               placeholder="Enter your company website"
-              className="p-1 bg-gray-900 text-gray-300"
+              className="mt-1 p-1 bg-gray-900 text-gray-300"
             />
             <div
               className="align-middle text-gray-300 py-2 ml-2 flex flex-col"
