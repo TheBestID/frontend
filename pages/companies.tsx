@@ -131,11 +131,11 @@ const Companies: NextPage = () => {
 
                 <div className="grid w-full grid-cols-12 items-center mt-12">
                     <div className="border border-secondary-25 p-4 rounded-xl items-center w-28 h-28 ml-3 hover:border-secondary-60">
-                      <Image src="/polygon.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
+                      <Image src="/ethereum.svg" alt="Identicon" width="80" height="80" className="lg:col-span-1 border-2 "></Image>
                     </div>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">Polygon</span>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-2">13</span>
-                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">27249 MATIC</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">Ethereum</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-2">42</span>
+                    <span className="text-left font-regular text-2xl text-white lg:col-span-3">20 ETH</span>
                     <span className="text-left font-regular text-2xl text-white ">Coming soon</span>
                 </div>
 
