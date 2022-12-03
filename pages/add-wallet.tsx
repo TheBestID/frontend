@@ -19,6 +19,7 @@ async function postSendEmail(bodyData: {
   address: string,
   chainId: number,
   email: string,
+  link: string,
   blockchain: EBlockchain,
 }) {
   const body = JSON.stringify(bodyData)
@@ -64,6 +65,7 @@ const AddWallet: NextPage = () => {
   const [blockchain, setBlockchain] = useState(null)
   const [isCompany, setIsCompany] = useState<bool>(false)
   const [companyEmail, setCompanyEmail] = useState<string>('')
+  const [companyLink, setCompanyLink] = useState<string>('')
 
   if (blockchain === null) {
     return (
@@ -102,6 +104,14 @@ const AddWallet: NextPage = () => {
                 setCompanyEmail(e.target.value)
               }}
               placeholder="Enter your company email"
+              className="p-1 bg-gray-900 text-gray-300"
+            />
+            <input
+              value={companyLink}
+              onChange={(e: React.HTMLInputEvent) => {
+                setCompanyLink(e.target.value)
+              }}
+              placeholder="Enter your company website"
               className="p-1 bg-gray-900 text-gray-300"
             />
             <div
@@ -193,6 +203,7 @@ const AddWallet: NextPage = () => {
         address,
         chainId,
         email: companyEmail,
+        link: companyLink,
         blockchain,
       })
     }
