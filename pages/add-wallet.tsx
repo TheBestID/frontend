@@ -18,8 +18,8 @@ const GITHUB_CLIENT_ID = 'ec74794a7d8786ccf463';
 async function postSendEmail(bodyData: {
   address: string,
   chainId: number,
-  email: string,
-  link: string,
+  company_email: string,
+  company_link: string,
   blockchain: EBlockchain,
 }) {
   const body = JSON.stringify(bodyData)
@@ -202,8 +202,8 @@ const AddWallet: NextPage = () => {
       postSendEmail({
         address,
         chainId,
-        email: companyEmail,
-        link: companyLink,
+        company_email: companyEmail,
+        company_link: companyLink,
         blockchain,
       })
     }
