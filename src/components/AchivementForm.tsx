@@ -55,14 +55,14 @@ async function postAddAchivementParams(
   } = bodyData
 
   const body = new FormData()
-  body.append('from_address', from_address)
-  body.append('to_address', to_address)
-  body.append('chainId', chainId)
-  body.append('data', JSON.stringify(data))
-  body.append('blockchain', blockchain)
+  body.set('from_address', from_address)
+  body.set('to_address', to_address)
+  body.set('chainId', chainId)
+  body.set('data', JSON.stringify(data))
+  body.set('blockchain', blockchain)
 
   if (image != null) {
-    body.append('image', image)
+    body.set('image', image)
   }
   const url = `${BASE_URL}/achievements/add_params`
   try {
