@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 import { BASE_URL } from 'src/constants'
 
-import Achivement, { TAchivement } from 'src/components/Achivement'
+import Achivement from 'src/components/Achivement'
 import ProfileCV from 'src/components/ProfileCV'
 import ProfileHacks from 'src/components/ProfileHacks'
 import ProfileHR from 'src/components/ProfileHR'
@@ -24,10 +24,13 @@ import {
   EBlockchain, TUserWallet, TUserData,
 } from 'src/types'
 import deleteParamsUser from 'src/utils/deleteParamsUser'
+import {
+  postGetAchivements,
+  getProfilePictures,
+} from 'src/utils/postGetAchivements'
 
 type Props = {
   uid: string | undefined,
-  achivements: Array<TAchivement>,
   userData: TUserData,
 }
 
@@ -50,25 +53,6 @@ async function postDeleteUser(
     const uid = data.uid
     return uid
   } catch(e) {
-    return null
-  }
-}
-
-async function postGetAchivements(bodyData: {
-  uid: string,
-}) {
-  const body = JSON.stringify(bodyData)
-  const url = `${BASE_URL}/achievements/get_owned_achievement`
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body,
-    })
-    const res = await response.json()
-
-    return res.data
-  } catch(e) {
-    console.log(e)
     return null
   }
 }
@@ -153,15 +137,13 @@ function Wallet({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const uid = context?.params?.profile
   const userData = await postUserGet({ uid }) || null
-  const achivements = [
-  ]
   return {
-    props: { userData, achivements, uid },
+    props: { userData, uid },
   }
 }
 
 const Profile: NextPage<Props> = (props) => {
-  const { userData, achivements: preloadedAchivements, uid } = props
+  const { userData, uid } = props
   const username = userData?.username
   const wallets = userData?.wallets || []
   const { wallet } = useContext(WalletContext)
@@ -170,13 +152,20 @@ const Profile: NextPage<Props> = (props) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [activeSubPage, setActiveSubPage] = useState('CV')
 
-  const [achivements, setAchivements] = useState(preloadedAchivements)
+  const [achivements, setAchivements] = useState([])
+  const [
+    profilePictures, setProfilePictures
+  ] = useState({})
 
   useEffect(() => {
     if (uid) {
       postGetAchivements({
         uid,
       }).then(res => setAchivements(res))
+
+      getProfilePictures({
+        uid,
+      }).then(res => setProfilePictures(res))
     }
   }, [uid])
 
@@ -221,9 +210,27 @@ const Profile: NextPage<Props> = (props) => {
       <main className="flex items-center flex-col mr-4 lg:mr-8 ml-4 lg:ml-8 pt-14">
 
         
-        <div className="rounded-2xl w-full bg-[#FFB703] h-60 mt-16 mb-24">
+        <div
+          className="bg-no-repeat bg-center bg-contain rounded-2xl w-full bg-[#FFB703] h-60 mt-16 mb-24"
+          style={{
+            backgroundImage:
+              profilePictures?.background
+              ? `url(${profilePictures?.background})`
+              : ''
+          }}
+        >
           <div className="mt-40 ml-8">
-          <Image src="/danila.svg" alt="Identicon" width="128" height="128" className="rounded-full h-32 w-32 mx-5 my-20"/>
+          <Image
+            src={
+              profilePictures?.profile
+                ? `${profilePictures?.profile}`
+                : '/danila.svg'
+            }
+            alt="profile"
+            width="128"
+            height="128"
+            className="rounded-full h-32 w-32 mx-5 my-20"
+          />
           </div>
         </div>
 

@@ -1,6 +1,11 @@
 import React from 'react'
 import { STORAGE_BASE_URL } from 'src/constants'
 
+export enum EPictureDescription {
+  PROFILE = 'profile',
+  BACKGROUND = 'background',
+}
+
 export type TAchivement = {
   startTimestamp: string,
   endTimestamp: string,
