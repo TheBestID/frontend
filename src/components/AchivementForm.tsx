@@ -18,7 +18,7 @@ async function postAddAchivement(
   }
 ): Promise<number | null> {
   const { address } = bodyData
-  const body = new FormData(bodyData)
+  const body = JSON.stringify(bodyData)
   const url = `${BASE_URL}/achievements/add`
   try {
     const response = await fetch(url, {
@@ -45,7 +45,7 @@ async function postAddAchivementParams(
   }
 ): Promise<Array<string | null>> {
   const { address, image } = bodyData
-  const body = JSON.stringify(bodyData)
+  const body = new FormData(bodyData)
   if (image != null) {
     body.append('image', image)
   }
