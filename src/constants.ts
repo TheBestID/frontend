@@ -1,2 +1,2 @@
-export const BASE_URL = 'https://soulid.herokuapp.com'
+export const BASE_URL = 'http://localhost:8000'
 export const NEAR_CONTRACT_ADDRESS = 'sbt.soul_dev.testnet'

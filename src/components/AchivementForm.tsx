@@ -18,7 +18,7 @@ async function postAddAchivement(
   }
 ): Promise<number | null> {
   const { address } = bodyData
-  const body = JSON.stringify(bodyData)
+  const body = new FormData(bodyData)
   const url = `${BASE_URL}/achievements/add`
   try {
     const response = await fetch(url, {
@@ -83,11 +83,13 @@ const AchivementForm: React.FC<Props> = (props) => {
   const loggedIn = useLoggedIn(wallet)
   const router = useRouter()
 
+  const [to, setTo] = useState<string>('')
   const [company, setCompany] = useState<string>('')
   const [position, setPosition] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [startTimestamp, setStartTimestamp] = useState<number>(Date.now())
   const [endTimestamp, setEndTimestamp] = useState<number | null>(null)
+  const [file, setFile] = useState<string>('')
 
   if (
     loggedIn != null && loggedIn.isAuth === false
@@ -111,7 +113,7 @@ const AchivementForm: React.FC<Props> = (props) => {
       txHash, sbt_id
     ] = await postAddAchivementParams({
       from_address: address,
-      to_address: address,
+      to_address: to ? to : address,
       chainId,
       blockchain,
       data: {
@@ -149,7 +151,27 @@ const AchivementForm: React.FC<Props> = (props) => {
       </h2>
       <div className="h-4 w-full"/>
 
-      <label htmlFor="company" className="p-1">
+      <label htmlFor="to" className="flex flex-col p-1">
+        <span className="cursor-pointer">
+          send this achivement to address:
+        </span>
+        <input
+          className="ml-2 border border-primary"
+          type="text"
+          id="to"
+          value={to}
+          onChange={
+            (e: React.SyntheticEvent) =>
+              setTo(
+                (e.target as HTMLInputElement)
+                .value
+              )
+          }
+          placeholder="me"
+        />
+      </label>
+
+      <label htmlFor="company" className="flex flex-col p-1">
         <span className="cursor-pointer">
           company:
         </span>
@@ -168,7 +190,7 @@ const AchivementForm: React.FC<Props> = (props) => {
         />
       </label>
 
-      <label htmlFor="position" className="p-1">
+      <label htmlFor="position" className="flex flex-col p-1">
         <span className="cursor-pointer">
           position:
         </span>
@@ -187,7 +209,7 @@ const AchivementForm: React.FC<Props> = (props) => {
         />
       </label>
 
-      <label htmlFor="startTimestamp" className="p-1">
+      <label htmlFor="startTimestamp" className="flex flex-col p-1">
         <span className="cursor-pointer">
           started:
         </span>
@@ -206,22 +228,25 @@ const AchivementForm: React.FC<Props> = (props) => {
         />
       </label>
 
-      <label htmlFor="endTimestamp" className="p-1">
-        <span className="cursor-pointer">
-          ended:
-        </span>
-        <input
-          type="checkbox"
-          value={endTimestamp != null}
-          onChange={
-            () =>
-              setEndTimestamp(
-                endTimestamp == null
-                  ? Date.now()
-                  : null
-              )
-          }
-        />
+      <label htmlFor="endTimestamp" className="flex flex-col p-1">
+        <div className="flex items-center">
+          <span className="cursor-pointer">
+            ended:
+          </span>
+          <input
+            type="checkbox"
+            value={endTimestamp != null}
+            className="ml-2"
+            onChange={
+              () =>
+                setEndTimestamp(
+                  endTimestamp == null
+                    ? Date.now()
+                    : null
+                )
+            }
+          />
+        </div>
 
         {endTimestamp != null && (
           <input
@@ -240,19 +265,37 @@ const AchivementForm: React.FC<Props> = (props) => {
         )}
       </label>
 
-      <label htmlFor="description" className="p-1">
+      <label htmlFor="description" className="flex flex-col p-1">
         <span className="cursor-pointer">
           description:
         </span>
         <textarea
           className="ml-2 border border-primary"
-          id="category"
+          id="description"
           value={description}
           onChange={
             (e: React.SyntheticEvent) =>
               setDescription(
                 (e.target as HTMLTextAreaElement)
                 .value
+              )
+          }
+        />
+      </label>
+
+      <label htmlFor="file" className="flex flex-col p-1">
+        <span className="cursor-pointer">
+          attach file:
+        </span>
+        <input
+          type="file"
+          className="ml-2 border border-primary"
+          id="file"
+          onChange={
+            (e: React.SyntheticEvent) =>
+              setFile(
+                (e.target as HTMLInputElement)
+                .files[0]
               )
           }
         />

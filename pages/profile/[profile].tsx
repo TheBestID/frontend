@@ -120,7 +120,7 @@ function Wallet({
 
   return (
     <div 
-      className="flex border w-3/4 h-12 border-primary rounded-xl p-3 items-center justify-between"
+      className="flex border h-12 border-primary rounded-xl p-3 items-center justify-between"
     >
       <a
         target="_blank"
@@ -134,7 +134,7 @@ function Wallet({
         }
       >
         <span className="text-[#fff8]">Address</span>
-        <span className="text-[#fff8] px-14 underline">
+        <span className="text-[#fff8] pl-1 pr-2 underline">
           {address}
         </span>
       </a>
