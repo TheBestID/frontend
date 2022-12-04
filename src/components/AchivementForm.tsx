@@ -41,10 +41,14 @@ async function postAddAchivementParams(
     chainId: number,
     data: TAchivement,
     blockchain: EBlockchain,
+    image: any,
   }
 ): Promise<Array<string | null>> {
-  const { address } = bodyData
+  const { address, image } = bodyData
   const body = JSON.stringify(bodyData)
+  if (image != null) {
+    body.append('image', image)
+  }
   const url = `${BASE_URL}/achievements/add_params`
   try {
     const response = await fetch(url, {
@@ -123,6 +127,7 @@ const AchivementForm: React.FC<Props> = (props) => {
         startTimestamp,
         endTimestamp
       },
+      image: file ? file : null,
     })
     if (txHash == null || sbt_id == null) {
       return
