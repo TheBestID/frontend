@@ -122,12 +122,6 @@ const AchivementForm: React.FC<Props> = (props) => {
     if (loggedIn == null) return
     const { address, chainId } = loggedIn
     if (address == null || chainId == null) return
-    if (
-      company === ''
-      || position === ''
-      || startTimestamp === ''
-      || endTimestamp === ''
-    ) return
 
     const [
       txHash, sbt_id
