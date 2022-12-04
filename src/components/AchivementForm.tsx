@@ -5,6 +5,7 @@ import { TAchivement } from 'src/components/Achivement'
 import { EBlockchain } from 'src/types'
 import useLoggedIn from 'src/hooks/useLoggedIn'
 import { WalletContext } from 'src/contexts/WalletContext'
+import sendTransaction from 'src/utils/sendTransaction'
 
 const BASE_URL = 'http://127.0.0.1:8000'
 
@@ -44,8 +45,22 @@ async function postAddAchivementParams(
     image: any,
   }
 ): Promise<Array<string | null>> {
-  const { address, image } = bodyData
-  const body = new FormData(bodyData)
+  const {
+    from_address,
+    to_address,
+    chainId,
+    data,
+    blockchain,
+    image,
+  } = bodyData
+
+  const body = new FormData()
+  body.append('from_address', from_address)
+  body.append('to_address', to_address)
+  body.append('chainId', chainId)
+  body.append('data', JSON.stringify(data))
+  body.append('blockchain', blockchain)
+
   if (image != null) {
     body.append('image', image)
   }
@@ -58,10 +73,11 @@ async function postAddAchivementParams(
     const msgParams = await response.json()
     const { transaction, sbt_id } = msgParams
 
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [transaction],
-    })
+    const txHash = await sendTransaction(
+      transaction,
+      from_address,
+      blockchain,
+    )
 
     return [txHash, sbt_id]
   } catch(e) {
