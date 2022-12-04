@@ -1,4 +1,5 @@
 import React from 'react'
+import { STORAGE_BASE_URL } from 'src/constants'
 
 export type TAchivement = {
   startTimestamp: string,
@@ -6,6 +7,7 @@ export type TAchivement = {
   company: string,
   position: string,
   description: string,
+  image_cid?: string,
 };
 
 type Props = {
@@ -21,6 +23,7 @@ const Achivement: React.FC<Props> = (props) => {
     company,
     position,
     description,
+    image_cid,
   } = data
 
   const start = (new Date(startTimestamp)).toUTCString()
@@ -29,7 +32,12 @@ const Achivement: React.FC<Props> = (props) => {
     : (new Date(endTimestamp)).toUTCString()
 
   return (
-    <div className="flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-6">
+    <div
+      className="bg-contain bg-no-repeat bg-right flex flex-col border border-secondary-25 p-3 rounded-xl w-full mt-6"
+      style={{
+        backgroundImage: image_cid ? `url(${STORAGE_BASE_URL}/${image_cid})` : '',
+      }}
+    >
       <div className="flex justify-between">
         <span
           className="text-xl font-medium text-white text"
