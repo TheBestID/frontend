@@ -80,14 +80,14 @@ const Hack: NextPage = () => {
 
             <div className="grid items-center grid-cols-3 lg:gap-32 gap-4 mt-6">
             <button className="flex items-cente">
-              <Image alt="near" src="/near.svg" width="120" height="120"></Image>
+              <Image alt="ethereum" src="/ethereum.svg" width="150" height="150"></Image>
             </button>
             <button className="flex items-center">
               <Image alt="solana" src="/solana.svg" width="160" height="160"></Image>
             </button>
 
             <button className="flex items-center">
-              <Image alt="polygon" src="/polygon.svg" width="170" height="170"></Image>
+              <Image alt="near" src="/near.svg" width="120" height="120"></Image>
             </button>
 
 
